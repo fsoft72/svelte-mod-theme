@@ -1,0 +1,3553 @@
+/*liweDarkerColor($liweSecondaryColorLight);*/
+/*liweLighterColor($liweSecondaryColorLight);*/
+@font-face {
+  src: url("/fonts/Roboto/Roboto-Regular.ttf");
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  src: url("/fonts/Roboto/Roboto-Bold.ttf");
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  src: url("/fonts/Roboto/Roboto-Italic.ttf");
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  src: url("/fonts/Roboto/Roboto-Medium.ttf");
+  font-family: 'Rozha One';
+  font-style: normal;
+  font-weight: 400 700;
+}
+
+:root {
+  --liwe3-main-font-family: Roboto, sans-serif;
+  --liwe3-space-1: 0.25rem;
+  --liwe3-space-2: 0.5rem;
+  --liwe3-space-3: 1rem;
+  --liwe3-space-4: 2rem;
+  --liwe3-breakpoint-xs: 0;
+  --liwe3-breakpoint-sm: 640px;
+  --liwe3-breakpoint-md: 768px;
+  --liwe3-breakpoint-lg: 1024px;
+  --liwe3-breakpoint-xl: 1280px;
+  --liwe3-breakpoint-xxl: 1536px;
+  --liwe3-breakpoint-4k: 1930px;
+  --liwe3-font-family: Roboto, sans-serif;
+  --liwe3-secondary-font-family: Rozha One, serif;
+  --liwe3-font-weight: 400;
+  --liwe3-font-size: 20px;
+  --liwe3-border-radius: 0.15rem;
+  --liwe3-border-width: 1px;
+  --liwe3-border-style: solid;
+  --liwe3-button-padding-y: 0.25rem;
+  --liwe3-button-padding-x: 0.1rem;
+  --liwe3-input-padding-y: 0.15rem;
+  --liwe3-input-padding-x: 0.15rem;
+  --liwe3-form-checkbox-width: 26px;
+}
+
+/* WIP arranging colors for light theme starting wicth mode1 */
+.liwe3-light-theme {
+  /* default values */
+  --liwe3-primary-color: var(--liwe3-light-mode1-500);
+  --liwe3-lighter-primary-color: var(--liwe3-light-mode1-300);
+  --liwe3-darker-primary-color: var(--liwe3-light-mode1-700);
+  --liwe3-secondary-color: var(--liwe3-light-mode2-500);
+  --liwe3-lighter-secondary-color: var(--liwe3-light-mode2-300);
+  --liwe3-darker-secondary-color: var(--liwe3-light-mode2-700);
+  --liwe3-tertiary-color: var(--liwe3-light-mode3-500);
+  --liwe3-lighter-tertiary-color: var(--liwe3-light-mode3-300);
+  --liwe3-darker-tertiary-color: var(--liwe3-light-mode3-700);
+  --liwe3-accent-color: var(--liwe3-light-mode4-500);
+  --liwe3-lighter-accent-color: var(--liwe3-light-mode4-300);
+  --liwe3-darker-accent-color: var(--liwe3-light-mode4-700);
+  --liwe3-background: var(--liwe3-light-background-color);
+  --liwe3-color: var(--liwe3-light-text-color);
+  --liwe3-link-color: var(--liwe3-light-link-color);
+  --liwe3-link-hover-color: var(--liwe3-light-link-500-hover);
+  --liwe3-link-active-color: var(--liwe3-light-link-500-active);
+  --liwe3-link-visited-color: var(--liwe3-light-link-500-active);
+  --liwe3-link-disabled-color: var(--liwe3-light-link-500-disabled);
+  --liwe3-info-color: var(--liwe3-light-info);
+  --liwe3-success-color: var(--liwe3-light-success);
+  --liwe3-warning-color: var(--liwe3-light-warning);
+  --liwe3-error-color: var(--liwe3-light-error);
+  --liwe3-paper: var(--liwe3-light-mode3-400);
+  --liwe3-lighter-paper: var(--liwe3-light-mode3-200);
+  --liwe3-darker-paper: var(--liwe3-light-mode3-500);
+  --liwe3-border-color: var(--liwe3-light-mode1-500-border);
+
+  /* FORM ELEMENTS */
+  /* button default */
+  --liwe3-button-background: var(--liwe3-light-mode1-500);
+  --liwe3-button-hover: var(--liwe3-light-mode1-500-hover);
+  --liwe3-button-active: var(--liwe3-light-mode1-500-active);
+  --liwe3-button-color: var(--liwe3-light-mode1-500-text);
+  --liwe3-button-border: var(--liwe3-light-mode1-500-border);
+  /* button default backward-compatibility*/
+  --button-mode1-background: var(--liwe3-light-mode1-500);
+  --button-mode1-hover: var(--liwe3-light-mode1-500-hover);
+  --button-mode1-active: var(--liwe3-light-mode1-500-active);
+  --button-mode1-text: var(--liwe3-light-mode1-500-text);
+  --button-mode1-border: var(--liwe3-light-mode1-500-border);
+
+  /* button secondary */
+  .liwe3-button {
+    &.mode2 {
+      --liwe3-button-background: var(--liwe3-light-mode2-500);
+      --liwe3-button-hover: var(--liwe3-light-mode2-500-hover);
+      --liwe3-button-active: var(--liwe3-light-mode2-500-active);
+      --liwe3-button-color: var(--liwe3-light-mode2-500-text);
+      --liwe3-button-border: var(--liwe3-light-mode2-500-border);
+      /* button secondary backward-compatibility*/
+      --button-mode2-background: var(--liwe3-light-mode2-500);
+      --button-mode2-hover: var(--liwe3-light-mode2-500-hover);
+      --button-mode2-active: var(--liwe3-light-mode2-500-active);
+      --button-mode2-text: var(--liwe3-light-mode2-500-text);
+      --button-mode2-border: var(--liwe3-light-mode2-500-border);
+    }
+
+    &.mode2:disabled {
+      --liwe3-button-background: var(--liwe3-light-mode2-500-disabled);
+      --liwe3-button-color: var(--liwe3-light-mode2-500-disabled-text);
+      /* button secondary backward-compatibility*/
+      --button-mode2-disabled-background: var(--liwe3-light-mode2-500-disabled);
+      --button-mode2-disabled-text: var(--liwe3-light-mode2-500-disabled-text);
+    }
+
+    &.mode2:active {
+      --liwe3-button-background: var(--liwe3-light-mode2-500-active);
+      --liwe3-button-color: var(--liwe3-light-mode2-500-active-text);
+      /* button secondary backward-compatibility*/
+      --button-mode2-active-background: var(--liwe3-light-mode2-500-active);
+      --button-mode2-active-text: var(--liwe3-light-mode2-500-active-text);
+    }
+
+    &.mode2:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-light-mode2-500-hover);
+      /* button secondary backward-compatibility*/
+      --button-mode2-hover-background: var(--liwe3-light-mode2-500-hover);
+    }
+
+    /* button tertiary */
+    &.mode3 {
+      --liwe3-button-background: var(--liwe3-light-mode3-500);
+      --liwe3-button-hover: var(--liwe3-light-mode3-500-hover);
+      --liwe3-button-active: var(--liwe3-light-mode3-500-active);
+      --liwe3-button-color: var(--liwe3-light-mode3-500-text);
+      --liwe3-button-border: var(--liwe3-light-mode3-500-border);
+      /* button tertiary backward-compatibility*/
+      --button-mode3-background: var(--liwe3-light-mode3-500);
+      --button-mode3-hover: var(--liwe3-light-mode3-500-hover);
+      --button-mode3-active: var(--liwe3-light-mode3-500-active);
+      --button-mode3-text: var(--liwe3-light-mode3-500-text);
+      --button-mode3-border: var(--liwe3-light-mode3-500-border);
+    }
+
+    &.mode3:disabled {
+      --liwe3-button-background: var(--liwe3-light-mode3-500-disabled);
+      --liwe3-button-color: var(--liwe3-light-mode3-500-disabled-text);
+      /* button tertiary backward-compatibility*/
+      --button-mode3-disabled-background: var(--liwe3-light-mode3-500-disabled);
+      --button-mode3-disabled-text: var(--liwe3-light-mode3-500-disabled-text);
+    }
+
+    &.mode3:active {
+      --liwe3-button-background: var(--liwe3-light-mode3-500-active);
+      --liwe3-button-color: var(--liwe3-light-mode3-500-active-text);
+      /* button tertiary backward-compatibility*/
+      --button-mode3-active-background: var(--liwe3-light-mode3-500-active);
+      --button-mode3-active-text: var(--liwe3-light-mode3-500-active-text);
+    }
+
+    &.mode3:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-light-mode3-500-hover);
+      /* button tertiary backward-compatibility*/
+      --button-mode3-hover-background: var(--liwe3-light-mode3-500-hover);
+    }
+
+    /* button accent */
+    &.mode4 {
+      --liwe3-button-background: var(--liwe3-light-mode4-500);
+      --liwe3-button-hover: var(--liwe3-light-mode4-500-hover);
+      --liwe3-button-active: var(--liwe3-light-mode4-500-active);
+      --liwe3-button-color: var(--liwe3-light-mode4-500-text);
+      --liwe3-button-border: var(--liwe3-light-mode4-500-border);
+      /* button accent backward-compatibility*/
+      --button-mode4-background: var(--liwe3-light-mode4-500);
+      --button-mode4-hover: var(--liwe3-light-mode4-500-hover);
+      --button-mode4-active: var(--liwe3-light-mode4-500-active);
+      --button-mode4-text: var(--liwe3-light-mode4-500-text);
+      --button-mode4-border: var(--liwe3-light-mode4-500-border);
+    }
+
+    &.mode4:disabled {
+      --liwe3-button-background: var(--liwe3-light-mode4-500-disabled);
+      --liwe3-button-color: var(--liwe3-light-mode4-500-disabled-text);
+      /* button accent backward-compatibility*/
+      --button-mode4-disabled-background: var(--liwe3-light-mode4-500-disabled);
+      --button-mode4-disabled-text: var(--liwe3-light-mode4-500-disabled-text);
+    }
+
+    &.mode4:active {
+      --liwe3-button-background: var(--liwe3-light-mode4-500-active);
+      --liwe3-button-color: var(--liwe3-light-mode4-500-active-text);
+      /* button accent backward-compatibility*/
+      --button-mode4-active-background: var(--liwe3-light-mode4-500-active);
+      --button-mode4-active-text: var(--liwe3-light-mode4-500-active-text);
+    }
+
+    &.mode4:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-light-mode4-500-hover);
+      /* button accent backward-compatibility*/
+      --button-mode4-hover-background: var(--liwe3-light-mode4-500-hover);
+    }
+
+    /* button info */
+    &.info {
+      --liwe3-button-background: var(--liwe3-info-color);
+      --liwe3-button-color: var(--liwe3-light-info-500-text);
+      --liwe3-button-hover: var(--liwe3-light-info-500-hover);
+      --liwe3-button-active: var(--liwe3-light-info-500-active);
+      --liwe3-button-500: var(--liwe3-light-info-text);
+      --liwe3-button-border: var(--liwe3-light-info-500-border);
+      /* button info backward-compatibility*/
+      --button-info-background: var(--liwe3-light-info-color);
+      --button-info-hover: var(--liwe3-light-info-500-hover);
+      --button-info-active: var(--liwe3-light-info-500-active);
+      --button-info-text: var(--liwe3-light-info-500-text);
+      --button-info-border: var(--liwe3-light-info-500-border);
+    }
+
+    &.info:disabled {
+      --liwe3-button-background: var(--liwe3-light-info-500-disabled);
+      --liwe3-button-color: var(--liwe3-light-info-500-disabled-text);
+      /* button info backward-compatibility*/
+      --button-info-disabled-background: var(--liwe3-light-info-500-disabled);
+      --button-info-disabled-text: var(--liwe3-light-info-500-disabled-text);
+    }
+
+    &.info:active {
+      --liwe3-button-background: var(--liwe3-light-info-500-active);
+      --liwe3-button-color: var(--liwe3-light-info-500-active-text);
+      /* button info backward-compatibility*/
+      --button-info-active-background: var(--liwe3-light-info-500-active);
+      --button-info-active-text: var(--liwe3-light-info-500-active-text);
+    }
+
+    &.info:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-light-info-500-hover);
+      /* button info backward-compatibility*/
+      --button-info-hover-background: var(--liwe3-light-info-500-hover);
+    }
+
+    /* button success */
+    &.success {
+      --liwe3-button-background: var(--liwe3-light-success);
+      --liwe3-button-color: var(--liwe3-light-success-500-text);
+      --liwe3-button-hover: var(--liwe3-light-success-500-hover);
+      --liwe3-button-active: var(--liwe3-light-success-500-active);
+      --liwe3-button-500: var(--liwe3-light-success-text);
+      --liwe3-button-border: var(--liwe3-light-success-500-border);
+      /* button success backward-compatibility*/
+      --button-success-background: var(--liwe3-light-success-color);
+      --button-success-hover: var(--liwe3-light-success-500-hover);
+      --button-success-active: var(--liwe3-light-success-500-active);
+      --button-success-text: var(--liwe3-light-success-500-text);
+      --button-success-border: var(--liwe3-light-success-500-border);
+    }
+
+    &.success:disabled {
+      --liwe3-button-background: var(--liwe3-light-success-500-disabled);
+      --liwe3-button-color: var(--liwe3-light-success-500-disabled-text);
+      /* button success backward-compatibility*/
+      --button-success-disabled-background: var(--liwe3-light-success-500-disabled);
+      --button-success-disabled-text: var(--liwe3-light-success-500-disabled-text);
+    }
+
+    &.success:active {
+      --liwe3-button-background: var(--liwe3-light-success-500-active);
+      --liwe3-button-color: var(--liwe3-light-success-500-active-text);
+      /* button success backward-compatibility*/
+      --button-success-active-background: var(--liwe3-light-success-500-active);
+      --button-success-active-text: var(--liwe3-light-success-500-active-text);
+    }
+
+    &.success:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-light-success-500-hover);
+      /* button success backward-compatibility*/
+      --button-success-hover-background: var(--liwe3-light-success-500-hover);
+    }
+
+    /* button warning */
+    &.warning {
+      --liwe3-button-background: var(--liwe3-light-warning);
+      --liwe3-button-color: var(--liwe3-light-warning-500-text);
+      --liwe3-button-hover: var(--liwe3-light-warning-500-hover);
+      --liwe3-button-active: var(--liwe3-light-warning-500-active);
+      --liwe3-button-500: var(--liwe3-light-warning-500-text);
+      --liwe3-button-border: var(--liwe3-light-warning-500-border);
+      /* button warning backward-compatibility*/
+      --button-warning-background: var(--liwe3-light-warning-color);
+      --button-warning-hover: var(--liwe3-light-warning-500-hover);
+      --button-warning-active: var(--liwe3-light-warning-500-active);
+      --button-warning-text: var(--liwe3-light-warning-500-text);
+      --button-warning-border: var(--liwe3-light-warning-500-border);
+    }
+
+    &.warning:disabled {
+      --liwe3-button-background: var(--liwe3-light-warning-500-disabled);
+      --liwe3-button-color: var(--liwe3-light-warning-500-disabled-text);
+      /* button warning backward-compatibility*/
+      --button-warning-disabled-background: var(--liwe3-light-warning-500-disabled);
+      --button-warning-disabled-text: var(--liwe3-light-warning-500-disabled-text);
+    }
+
+    &.warning:active {
+      --liwe3-button-background: var(--liwe3-light-warning-500-active);
+      --liwe3-button-color: var(--liwe3-light-warning-500-active-text);
+      /* button warning backward-compatibility*/
+      --button-warning-active-background: var(--liwe3-light-warning-500-active);
+      --button-warning-active-text: var(--liwe3-light-warning-500-active-text);
+    }
+
+    &.warning:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-light-warning-500-hover);
+      /* button warning backward-compatibility*/
+      --button-warning-hover-background: var(--liwe3-light-warning-500-hover);
+    }
+
+    /* button danger */
+    &.error,
+    &.danger {
+      --liwe3-button-background: var(--liwe3-light-error);
+      --liwe3-button-color: var(--liwe3-light-error-500-text);
+      --liwe3-button-hover: var(--liwe3-light-error-500-hover);
+      --liwe3-button-active: var(--liwe3-light-error-500-active);
+      --liwe3-button-500: var(--liwe3-light-error-text);
+      --liwe3-button-border: var(--liwe3-light-error-500-border);
+      /* button danger backward-compatibility*/
+      --button-error-background: var(--liwe3-light-error-color);
+      --button-error-hover: var(--liwe3-light-error-500-hover);
+      --button-error-active: var(--liwe3-light-error-500-active);
+      --button-error-text: var(--liwe3-light-error-500-text);
+      --button-error-border: var(--liwe3-light-error-500-border);
+    }
+
+    &.error:disabled,
+    &.danger:disabled {
+      --liwe3-button-background: var(--liwe3-light-error-500-disabled);
+      --liwe3-button-color: var(--liwe3-light-error-500-disabled-text);
+      /* button danger backward-compatibility*/
+      --button-error-disabled-background: var(--liwe3-light-error-500-disabled);
+      --button-error-disabled-text: var(--liwe3-light-error-500-disabled-text);
+    }
+
+    &.error:active,
+    &.danger:active {
+      --liwe3-button-background: var(--liwe3-light-error-500-active);
+      --liwe3-button-color: var(--liwe3-light-error-500-active-text);
+      /* button danger backward-compatibility*/
+      --button-error-active-background: var(--liwe3-light-error-500-active);
+      --button-error-active-text: var(--liwe3-light-error-500-active-text);
+    }
+
+    &.error:hover:not(:disabled),
+    &.danger:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-light-error-500-hover);
+      /* button danger backward-compatibility*/
+      --button-error-hover-background: var(--liwe3-light-error-500-hover);
+    }
+  }
+
+  .table,
+  .liwe3-light-tabs {
+    --table-font-size: 0.8rem;
+    --table-font-family: var(--liwe3-main-font-family);
+    --shadow: var(--liwe3-light-dark-800);
+  }
+
+  .liwe3-tabs {
+    min-width: 100%;
+    min-height: 100%;
+
+    .mode1 {
+      --paper: var(--liwe3-light-mode1-50);
+      --label: var(--liwe3-light-mode1-50-text);
+    }
+
+    .mode2 {
+      --paper: var(--liwe3-light-mode2-50);
+      --label: var(--liwe3-light-mode2-50-text);
+    }
+
+    .mode3 {
+      --paper: var(--liwe3-light-mode3-50);
+      --label: var(--liwe3-light-mode3-50-text);
+    }
+
+    .mode4 {
+      --paper: var(--liwe3-light-mode4-50);
+      --label: var(--liwe3-light-mode4-50-text);
+    }
+  }
+}
+
+/* WIP arranging colors for dark theme. Waiting to complete light theme first */
+.liwe3-dark-theme {
+  /* default values */
+  --liwe3-primary-color: var(--liwe3-dark-mode1-500);
+  --liwe3-lighter-primary-color: var(--liwe3-dark-mode1-300);
+  --liwe3-darker-primary-color: var(--liwe3-dark-mode1-700);
+  --liwe3-secondary-color: var(--liwe3-dark-mode2-500);
+  --liwe3-lighter-secondary-color: var(--liwe3-dark-mode2-300);
+  --liwe3-darker-secondary-color: var(--liwe3-dark-mode2-700);
+  --liwe3-tertiary-color: var(--liwe3-dark-mode3-500);
+  --liwe3-lighter-tertiary-color: var(--liwe3-dark-mode3-300);
+  --liwe3-darker-tertiary-color: var(--liwe3-dark-mode3-700);
+  --liwe3-accent-color: var(--liwe3-dark-mode4-500);
+  --liwe3-lighter-accent-color: var(--liwe3-dark-mode4-300);
+  --liwe3-darker-accent-color: var(--liwe3-dark-mode4-700);
+  --liwe3-background: var(--liwe3-dark-background-color);
+  --liwe3-color: var(--liwe3-dark-text-color);
+  --liwe3-link-color: var(--liwe3-dark-link-color);
+  --liwe3-link-hover-color: var(--liwe3-dark-link-500-hover);
+  --liwe3-link-active-color: var(--liwe3-dark-link-500-active);
+  --liwe3-link-visited-color: var(--liwe3-dark-link-500-active);
+  --liwe3-link-disabled-color: var(--liwe3-dark-link-500-disabled);
+  --liwe3-info-color: var(--liwe3-dark-info);
+  --liwe3-success-color: var(--liwe3-dark-success);
+  --liwe3-warning-color: var(--liwe3-dark-warning);
+  --liwe3-error-color: var(--liwe3-dark-error);
+  --liwe3-paper: var(--liwe3-dark-mode3-400);
+  --liwe3-lighter-paper: var(--liwe3-dark-mode3-200);
+  --liwe3-darker-paper: var(--liwe3-dark-mode3-500);
+  --liwe3-border-color: var(--liwe3-dark-mode1-500-border);
+
+  /* FORM ELEMENTS */
+  /* button default */
+  --liwe3-button-background: var(--liwe3-dark-mode1-500);
+  --liwe3-button-hover: var(--liwe3-dark-mode1-500-hover);
+  --liwe3-button-active: var(--liwe3-dark-mode1-500-active);
+  --liwe3-button-color: var(--liwe3-dark-mode1-500-text);
+  --liwe3-button-border: var(--liwe3-dark-mode1-500-border);
+  /* button default backward-compatibility*/
+  --button-mode1-background: var(--liwe3-dark-mode1-500);
+  --button-mode1-hover: var(--liwe3-dark-mode1-500-hover);
+  --button-mode1-active: var(--liwe3-dark-mode1-500-active);
+  --button-mode1-text: var(--liwe3-dark-mode1-500-text);
+  --button-mode1-border: var(--liwe3-dark-mode1-500-border);
+
+  /* button secondary */
+  .liwe3-button {
+    &.mode2 {
+      --liwe3-button-background: var(--liwe3-dark-mode2-500);
+      --liwe3-button-hover: var(--liwe3-dark-mode2-500-hover);
+      --liwe3-button-active: var(--liwe3-dark-mode2-500-active);
+      --liwe3-button-color: var(--liwe3-dark-mode2-500-text);
+      --liwe3-button-border: var(--liwe3-dark-mode2-500-border);
+      /* button secondary backward-compatibility*/
+      --button-mode2-background: var(--liwe3-dark-mode2-500);
+      --button-mode2-hover: var(--liwe3-dark-mode2-500-hover);
+      --button-mode2-active: var(--liwe3-dark-mode2-500-active);
+      --button-mode2-text: var(--liwe3-dark-mode2-500-text);
+      --button-mode2-border: var(--liwe3-dark-mode2-500-border);
+    }
+
+    &.mode2:disabled {
+      --liwe3-button-background: var(--liwe3-dark-mode2-500-disabled);
+      --liwe3-button-color: var(--liwe3-dark-mode2-500-disabled-text);
+      /* button secondary backward-compatibility*/
+      --button-mode2-disabled-background: var(--liwe3-dark-mode2-500-disabled);
+      --button-mode2-disabled-text: var(--liwe3-dark-mode2-500-disabled-text);
+    }
+
+    &.mode2:active {
+      --liwe3-button-background: var(--liwe3-dark-mode2-500-active);
+      --liwe3-button-color: var(--liwe3-dark-mode2-500-active-text);
+      /* button secondary backward-compatibility*/
+      --button-mode2-active-background: var(--liwe3-dark-mode2-500-active);
+      --button-mode2-active-text: var(--liwe3-dark-mode2-500-active-text);
+    }
+
+    &.mode2:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-dark-mode2-500-hover);
+      /* button secondary backward-compatibility*/
+      --button-mode2-hover-background: var(--liwe3-dark-mode2-500-hover);
+    }
+
+    /* button tertiary */
+    &.mode3 {
+      --liwe3-button-background: var(--liwe3-dark-mode3-500);
+      --liwe3-button-hover: var(--liwe3-dark-mode3-500-hover);
+      --liwe3-button-active: var(--liwe3-dark-mode3-500-active);
+      --liwe3-button-color: var(--liwe3-dark-mode3-500-text);
+      --liwe3-button-border: var(--liwe3-dark-mode3-500-border);
+      /* button tertiary backward-compatibility*/
+      --button-mode3-background: var(--liwe3-dark-mode3-500);
+      --button-mode3-hover: var(--liwe3-dark-mode3-500-hover);
+      --button-mode3-active: var(--liwe3-dark-mode3-500-active);
+      --button-mode3-text: var(--liwe3-dark-mode3-500-text);
+      --button-mode3-border: var(--liwe3-dark-mode3-500-border);
+    }
+
+    &.mode3:disabled {
+      --liwe3-button-background: var(--liwe3-dark-mode3-500-disabled);
+      --liwe3-button-color: var(--liwe3-dark-mode3-500-disabled-text);
+      /* button tertiary backward-compatibility*/
+      --button-mode3-disabled-background: var(--liwe3-dark-mode3-500-disabled);
+      --button-mode3-disabled-text: var(--liwe3-dark-mode3-500-disabled-text);
+    }
+
+    &.mode3:active {
+      --liwe3-button-background: var(--liwe3-dark-mode3-500-active);
+      --liwe3-button-color: var(--liwe3-dark-mode3-500-active-text);
+      /* button tertiary backward-compatibility*/
+      --button-mode3-active-background: var(--liwe3-dark-mode3-500-active);
+      --button-mode3-active-text: var(--liwe3-dark-mode3-500-active-text);
+    }
+
+    &.mode3:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-dark-mode3-500-hover);
+      /* button tertiary backward-compatibility*/
+      --button-mode3-hover-background: var(--liwe3-dark-mode3-500-hover);
+    }
+
+    /* button accent */
+    &.mode4 {
+      --liwe3-button-background: var(--liwe3-dark-mode4-500);
+      --liwe3-button-hover: var(--liwe3-dark-mode4-500-hover);
+      --liwe3-button-active: var(--liwe3-dark-mode4-500-active);
+      --liwe3-button-color: var(--liwe3-dark-mode4-500-text);
+      --liwe3-button-border: var(--liwe3-dark-mode4-500-border);
+      /* button accent backward-compatibility*/
+      --button-mode4-background: var(--liwe3-dark-mode4-500);
+      --button-mode4-hover: var(--liwe3-dark-mode4-500-hover);
+      --button-mode4-active: var(--liwe3-dark-mode4-500-active);
+      --button-mode4-text: var(--liwe3-dark-mode4-500-text);
+      --button-mode4-border: var(--liwe3-dark-mode4-500-border);
+    }
+
+    &.mode4:disabled {
+      --liwe3-button-background: var(--liwe3-dark-mode4-500-disabled);
+      --liwe3-button-color: var(--liwe3-dark-mode4-500-disabled-text);
+      /* button accent backward-compatibility*/
+      --button-mode4-disabled-background: var(--liwe3-dark-mode4-500-disabled);
+      --button-mode4-disabled-text: var(--liwe3-dark-mode4-500-disabled-text);
+    }
+
+    &.mode4:active {
+      --liwe3-button-background: var(--liwe3-dark-mode4-500-active);
+      --liwe3-button-color: var(--liwe3-dark-mode4-500-active-text);
+      /* button accent backward-compatibility*/
+      --button-mode4-active-background: var(--liwe3-dark-mode4-500-active);
+      --button-mode4-active-text: var(--liwe3-dark-mode4-500-active-text);
+    }
+
+    &.mode4:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-dark-mode4-500-hover);
+      /* button accent backward-compatibility*/
+      --button-mode4-hover-background: var(--liwe3-dark-mode4-500-hover);
+    }
+
+    /* button info */
+    &.info {
+      --liwe3-button-background: var(--liwe3-info-color);
+      --liwe3-button-hover: var(--liwe3-dark-info-500-hover);
+      --liwe3-button-active: var(--liwe3-dark-info-500-active);
+      --liwe3-button-500: var(--liwe3-dark-info-text);
+      --liwe3-button-border: var(--liwe3-dark-info-500-border);
+      /* button info backward-compatibility*/
+      --button-info-background: var(--liwe3-dark-info-color);
+      --button-info-hover: var(--liwe3-dark-info-500-hover);
+      --button-info-active: var(--liwe3-dark-info-500-active);
+      --button-info-text: var(--liwe3-dark-info-500-text);
+      --button-info-border: var(--liwe3-dark-info-500-border);
+    }
+
+    &.info:disabled {
+      --liwe3-button-background: var(--liwe3-dark-info-500-disabled);
+      --liwe3-button-color: var(--liwe3-dark-info-500-disabled-text);
+      /* button info backward-compatibility*/
+      --button-info-disabled-background: var(--liwe3-dark-info-500-disabled);
+      --button-info-disabled-text: var(--liwe3-dark-info-500-disabled-text);
+    }
+
+    &.info:active {
+      --liwe3-button-background: var(--liwe3-dark-info-500-active);
+      --liwe3-button-color: var(--liwe3-dark-info-500-active-text);
+      /* button info backward-compatibility*/
+      --button-info-active-background: var(--liwe3-dark-info-500-active);
+      --button-info-active-text: var(--liwe3-dark-info-500-active-text);
+    }
+
+    &.info:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-dark-info-500-hover);
+      /* button info backward-compatibility*/
+      --button-info-hover-background: var(--liwe3-dark-info-500-hover);
+    }
+
+    /* button success */
+    &.success {
+      --liwe3-button-background: var(--liwe3-dark-success);
+      --liwe3-button-hover: var(--liwe3-dark-success-500-hover);
+      --liwe3-button-active: var(--liwe3-dark-success-500-active);
+      --liwe3-button-500: var(--liwe3-dark-success-text);
+      --liwe3-button-border: var(--liwe3-dark-success-500-border);
+      /* button success backward-compatibility*/
+      --button-success-background: var(--liwe3-dark-success-color);
+      --button-success-hover: var(--liwe3-dark-success-500-hover);
+      --button-success-active: var(--liwe3-dark-success-500-active);
+      --button-success-text: var(--liwe3-dark-success-500-text);
+      --button-success-border: var(--liwe3-dark-success-500-border);
+    }
+
+    &.success:disabled {
+      --liwe3-button-background: var(--liwe3-dark-success-500-disabled);
+      --liwe3-button-color: var(--liwe3-dark-success-500-disabled-text);
+      /* button success backward-compatibility*/
+      --button-success-disabled-background: var(--liwe3-dark-success-500-disabled);
+      --button-success-disabled-text: var(--liwe3-dark-success-500-disabled-text);
+    }
+
+    &.success:active {
+      --liwe3-button-background: var(--liwe3-dark-success-500-active);
+      --liwe3-button-color: var(--liwe3-dark-success-500-active-text);
+      /* button success backward-compatibility*/
+      --button-success-active-background: var(--liwe3-dark-success-500-active);
+      --button-success-active-text: var(--liwe3-dark-success-500-active-text);
+    }
+
+    &.success:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-dark-success-500-hover);
+      /* button success backward-compatibility*/
+      --button-success-hover-background: var(--liwe3-dark-success-500-hover);
+    }
+
+    /* button warning */
+    &.warning {
+      --liwe3-button-background: var(--liwe3-dark-warning);
+      --liwe3-button-hover: var(--liwe3-dark-warning-500-hover);
+      --liwe3-button-active: var(--liwe3-dark-warning-500-active);
+      --liwe3-button-500: var(--liwe3-dark-warning-500-text);
+      --liwe3-button-border: var(--liwe3-dark-warning-500-border);
+      /* button warning backward-compatibility*/
+      --button-warning-background: var(--liwe3-dark-warning-color);
+      --button-warning-hover: var(--liwe3-dark-warning-500-hover);
+      --button-warning-active: var(--liwe3-dark-warning-500-active);
+      --button-warning-text: var(--liwe3-dark-warning-500-text);
+      --button-warning-border: var(--liwe3-dark-warning-500-border);
+    }
+
+    &.warning:disabled {
+      --liwe3-button-background: var(--liwe3-dark-warning-500-disabled);
+      --liwe3-button-color: var(--liwe3-dark-warning-500-disabled-text);
+      /* button warning backward-compatibility*/
+      --button-warning-disabled-background: var(--liwe3-dark-warning-500-disabled);
+      --button-warning-disabled-text: var(--liwe3-dark-warning-500-disabled-text);
+    }
+
+    &.warning:active {
+      --liwe3-button-background: var(--liwe3-dark-warning-500-active);
+      --liwe3-button-color: var(--liwe3-dark-warning-500-active-text);
+      /* button warning backward-compatibility*/
+      --button-warning-active-background: var(--liwe3-dark-warning-500-active);
+      --button-warning-active-text: var(--liwe3-dark-warning-500-active-text);
+    }
+
+    &.warning:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-dark-warning-500-hover);
+      /* button warning backward-compatibility*/
+      --button-warning-hover-background: var(--liwe3-dark-warning-500-hover);
+    }
+
+    /* button danger */
+    &.error,
+    &.danger {
+      --liwe3-button-background: var(--liwe3-dark-error);
+      --liwe3-button-hover: var(--liwe3-dark-error-500-hover);
+      --liwe3-button-active: var(--liwe3-dark-error-500-active);
+      --liwe3-button-500: var(--liwe3-dark-error-text);
+      --liwe3-button-border: var(--liwe3-dark-error-500-border);
+      /* button danger backward-compatibility*/
+      --button-error-background: var(--liwe3-dark-error-color);
+      --button-error-hover: var(--liwe3-dark-error-500-hover);
+      --button-error-active: var(--liwe3-dark-error-500-active);
+      --button-error-text: var(--liwe3-dark-error-500-text);
+      --button-error-border: var(--liwe3-dark-error-500-border);
+    }
+
+    &.error:disabled,
+    &.danger:disabled {
+      --liwe3-button-background: var(--liwe3-dark-error-500-disabled);
+      --liwe3-button-color: var(--liwe3-dark-error-500-disabled-text);
+      /* button danger backward-compatibility*/
+      --button-error-disabled-background: var(--liwe3-dark-error-500-disabled);
+      --button-error-disabled-text: var(--liwe3-dark-error-500-disabled-text);
+    }
+
+    &.error:active,
+    &.danger:active {
+      --liwe3-button-background: var(--liwe3-dark-error-500-active);
+      --liwe3-button-color: var(--liwe3-dark-error-500-active-text);
+      /* button danger backward-compatibility*/
+      --button-error-active-background: var(--liwe3-dark-error-500-active);
+      --button-error-active-text: var(--liwe3-dark-error-500-active-text);
+    }
+
+    &.error:hover:not(:disabled),
+    &.danger:hover:not(:disabled) {
+      --liwe3-button-background: var(--liwe3-dark-error-500-hover);
+      /* button danger backward-compatibility*/
+      --button-error-hover-background: var(--liwe3-dark-error-500-hover);
+    }
+  }
+
+  .table,
+  .liwe3-dark-tabs {
+    --table-font-size: 0.8rem;
+    --table-font-family: var(--liwe3-main-font-family);
+    --shadow: var(--liwe3-dark-dark-800);
+  }
+
+  .liwe3-tabs {
+    .mode1 {
+      --paper: var(--liwe3-dark-mode1-50);
+      --label: var(--liwe3-dark-mode1-50-text);
+    }
+
+    .mode2 {
+      --paper: var(--liwe3-dark-mode2-50);
+      --label: var(--liwe3-dark-mode2-50-text);
+    }
+
+    .mode3 {
+      --paper: var(--liwe3-dark-mode3-50);
+      --label: var(--liwe3-dark-mode3-50-text);
+    }
+
+    .mode4 {
+      --paper: var(--liwe3-dark-mode4-50);
+      --label: var(--liwe3-dark-mode4-50-text);
+    }
+  }
+}
+
+.liwe3-button {
+  &.dark {
+    --liwe3-button-background: var(--liwe3-dark-800);
+    --liwe3-button-hover: var(--liwe3-dark-600-hover);
+    --liwe3-button-active: var(--liwe3-dark-900-active);
+    --liwe3-button-color: var(--liwe3-dark-100);
+    --liwe3-button-border: var(--liwe3-dark-800-border);
+    /* button dark backward-compatibility*/
+    --button-dark-background: var(--liwe3-dark-800);
+    --button-dark-hover: var(--liwe3-dark-600-hover);
+    --button-dark-active: var(--liwe3-dark-900-active);
+    --button-dark-text: var(--liwe3-dark-100);
+    --button-dark-border: var(--liwe3-dark-800-border);
+  }
+}
+
+/* BROWSER RESET RULES */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  outline: none;
+  border: none;
+  font: inherit;
+}
+
+/* end reset rules */
+html {
+  position: relative;
+  width: 100%;
+  font-size: var(--liwe3-font-size);
+}
+
+body {
+  width: 100%;
+  background-color: var(--liwe3-background);
+  font-family: var(--liwe3-font-family);
+  font-size: var(--liwe3-font-size);
+  font-weight: var(--liwe3-font-weight);
+  color: var(--liwe3-color);
+}
+
+/* Typography */
+a {
+  color: var(--liwe3-link-color);
+  text-decoration: none;
+}
+
+a:active,
+a:focus,
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  color: var(--liwe3-link-active-color);
+}
+
+a:hover {
+  color: var(--liwe3-link-hover-color);
+}
+
+a:disabled {
+  color: var(--liwe3-link-disabled-color);
+}
+
+a:visited {
+  color: var(--liwe3-link-visited-color);
+}
+
+h1,
+h2 {
+  font-family: var(--liwe3-secondary-font-family);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  margin: var(--liwe3-space-2) 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+h3 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+h4 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+h5 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+h6 {
+  font-size: 1rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: var(--liwe3-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+a {
+  font-size: 1rem;
+  font-weight: var(--liwe3-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+li {
+  font-size: 1rem;
+  font-weight: var(--liwe3-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+blockquote {
+  font-size: 1rem;
+  font-weight: var(--liwe3-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+small {
+  font-size: 0.875rem;
+  font-weight: var(--liwe3-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+code {
+  font-size: 1rem;
+  font-weight: var(--liwe3-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+pre {
+  font-size: 1rem;
+  font-weight: var(--liwe3-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+kbd {
+  font-size: 1rem;
+  font-weight: var(--liwe3-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+strong {
+  font-size: 1rem;
+  font-weight: calc((var(--liwe3-font-weight) /2) * 3);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+input {
+  font-size: var(--liwe3-font-size);
+  font-weight: var(--liwe3-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+input::placeholder {
+  font-size: 1rem;
+  font-weight: var(--liwe3-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+button {
+  padding: var(--liwe3-button-padding-y) var(--liwe3-button-padding-x);
+  border-width: var(--liwe3-border-width);
+  border-style: var(--liwe3-border-style);
+  border-color: var(--liwe3-button-border);
+  border-radius: var(--liwe3-border-radius);
+  background-color: var(--liwe3-button-background);
+  /*color: var(--liwe3-button-color);*/
+  font-size: var(--liwe3-font-size);
+  user-select: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--liwe3-button-hover);
+  color: var(--liwe3-button-color);
+}
+
+.liwe3-lead {
+  font-size: 1.25rem;
+  font-weight: calc((var(--liwe3-font-weight) /2) * 2.5);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+/* LAYOUT */
+/* flex */
+.liwe3-container-fluid {
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+.liwe3-container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.liwe3-flex-start {
+  justify-content: flex-start !important;
+}
+
+.liwe3-flex-end {
+  justify-content: flex-end !important;
+}
+
+.liwe3-flex-center {
+  justify-content: center !important;
+}
+
+.liwe3-flex-between {
+  justify-content: space-between !important;
+}
+
+.liwe3-flex-around {
+  justify-content: space-around !important;
+}
+
+.liwe3-flex-evenly {
+  justify-content: space-evenly !important;
+}
+
+.liwe3-flex-top {
+  align-items: flex-start !important;
+}
+
+.liwe3-flex-bottom {
+  align-items: flex-end !important;
+}
+
+.liwe3-flex-middle {
+  align-items: center !important;
+}
+
+.liwe3-flex-stretch {
+  align-items: stretch !important;
+}
+
+.liwe3-flex-baseline {
+  align-items: baseline !important;
+}
+
+.liwe3-fullwidth {
+  min-width: 100%;
+  width: 100%;
+}
+
+.liwe3-round {
+  border-radius: 50%;
+}
+
+.liwe3-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: -0;
+  width: 100%;
+}
+
+.liwe3-p1 {
+  padding: var(--liwe3-space-1) !important;
+}
+
+.liwe3-p2 {
+  padding: var(--liwe3-space-1) !important;
+}
+
+.liwe3-p3 {
+  padding: var(--liwe3-space-1) !important;
+}
+
+.liwe3-p4 {
+  padding: var(--liwe3-space-1) !important;
+}
+
+.liwe3-m1 {
+  padding: var(--liwe3-space-1) !important;
+}
+
+.liwe3-m2 {
+  padding: var(--liwe3-space-1) !important;
+}
+
+.liwe3-m3 {
+  padding: var(--liwe3-space-1) !important;
+}
+
+.liwe3-m4 {
+  padding: var(--liwe3-space-1) !important;
+}
+
+.liwe3-p1,
+.liwe3-p2,
+.liwe3-p3,
+.liwe3-p4 {
+  &.x {
+    padding: var(--liwe3-space-1) !important;
+    padding: var(--liwe3-space-1) !important;
+  }
+
+  &.y {
+    padding: var(--liwe3-space-1) !important;
+    padding: var(--liwe3-space-1) !important;
+  }
+}
+
+.liwe3-m1,
+.liwe3-m2,
+.liwe3-m3,
+.liwe3-m4 {
+  &.x {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  &.y {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+}
+
+.liwe3-row .liwe3-col {
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 0) {
+  .liwe3-col-xs1 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs1 {
+    margin-left: calc((100 / 12 * 1) * 1%) !important;
+  }
+
+  .liwe3-col-xs2 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs2 {
+    margin-left: calc((100 / 12 * 2) * 1%) !important;
+  }
+
+  .liwe3-col-xs3 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs3 {
+    margin-left: calc((100 / 12 * 3) * 1%) !important;
+  }
+
+  .liwe3-col-xs4 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs4 {
+    margin-left: calc((100 / 12 * 4) * 1%) !important;
+  }
+
+  .liwe3-col-xs5 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs5 {
+    margin-left: calc((100 / 12 * 5) * 1%) !important;
+  }
+
+  .liwe3-col-xs6 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs6 {
+    margin-left: calc((100 / 12 * 6) * 1%) !important;
+  }
+
+  .liwe3-col-xs7 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs7 {
+    margin-left: calc((100 / 12 * 7) * 1%) !important;
+  }
+
+  .liwe3-col-xs8 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs8 {
+    margin-left: calc((100 / 12 * 8) * 1%) !important;
+  }
+
+  .liwe3-col-xs9 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs9 {
+    margin-left: calc((100 / 12 * 9) * 1%) !important;
+  }
+
+  .liwe3-col-xs10 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs10 {
+    margin-left: calc((100 / 12 * 10) * 1%) !important;
+  }
+
+  .liwe3-col-xs11 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs11 {
+    margin-left: calc((100 / 12 * 11) * 1%) !important;
+  }
+
+  .liwe3-col-xs12 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xs12 {
+    margin-left: calc((100 / 12 * 12) * 1%) !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .liwe3-col-sm1 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm1 {
+    margin-left: calc((100 / 12 * 1) * 1%) !important;
+  }
+
+  .liwe3-col-sm2 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm2 {
+    margin-left: calc((100 / 12 * 2) * 1%) !important;
+  }
+
+  .liwe3-col-sm3 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm3 {
+    margin-left: calc((100 / 12 * 3) * 1%) !important;
+  }
+
+  .liwe3-col-sm4 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm4 {
+    margin-left: calc((100 / 12 * 4) * 1%) !important;
+  }
+
+  .liwe3-col-sm5 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm5 {
+    margin-left: calc((100 / 12 * 5) * 1%) !important;
+  }
+
+  .liwe3-col-sm6 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm6 {
+    margin-left: calc((100 / 12 * 6) * 1%) !important;
+  }
+
+  .liwe3-col-sm7 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm7 {
+    margin-left: calc((100 / 12 * 7) * 1%) !important;
+  }
+
+  .liwe3-col-sm8 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm8 {
+    margin-left: calc((100 / 12 * 8) * 1%) !important;
+  }
+
+  .liwe3-col-sm9 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm9 {
+    margin-left: calc((100 / 12 * 9) * 1%) !important;
+  }
+
+  .liwe3-col-sm10 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm10 {
+    margin-left: calc((100 / 12 * 10) * 1%) !important;
+  }
+
+  .liwe3-col-sm11 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm11 {
+    margin-left: calc((100 / 12 * 11) * 1%) !important;
+  }
+
+  .liwe3-col-sm12 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-sm12 {
+    margin-left: calc((100 / 12 * 12) * 1%) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .liwe3-col-md1 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md1 {
+    margin-left: calc((100 / 12 * 1) * 1%) !important;
+  }
+
+  .liwe3-col-md2 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md2 {
+    margin-left: calc((100 / 12 * 2) * 1%) !important;
+  }
+
+  .liwe3-col-md3 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md3 {
+    margin-left: calc((100 / 12 * 3) * 1%) !important;
+  }
+
+  .liwe3-col-md4 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md4 {
+    margin-left: calc((100 / 12 * 4) * 1%) !important;
+  }
+
+  .liwe3-col-md5 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md5 {
+    margin-left: calc((100 / 12 * 5) * 1%) !important;
+  }
+
+  .liwe3-col-md6 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md6 {
+    margin-left: calc((100 / 12 * 6) * 1%) !important;
+  }
+
+  .liwe3-col-md7 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md7 {
+    margin-left: calc((100 / 12 * 7) * 1%) !important;
+  }
+
+  .liwe3-col-md8 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md8 {
+    margin-left: calc((100 / 12 * 8) * 1%) !important;
+  }
+
+  .liwe3-col-md9 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md9 {
+    margin-left: calc((100 / 12 * 9) * 1%) !important;
+  }
+
+  .liwe3-col-md10 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md10 {
+    margin-left: calc((100 / 12 * 10) * 1%) !important;
+  }
+
+  .liwe3-col-md11 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md11 {
+    margin-left: calc((100 / 12 * 11) * 1%) !important;
+  }
+
+  .liwe3-col-md12 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-md12 {
+    margin-left: calc((100 / 12 * 12) * 1%) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .liwe3-col-lg1 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg1 {
+    margin-left: calc((100 / 12 * 1) * 1%) !important;
+  }
+
+  .liwe3-col-lg2 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg2 {
+    margin-left: calc((100 / 12 * 2) * 1%) !important;
+  }
+
+  .liwe3-col-lg3 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg3 {
+    margin-left: calc((100 / 12 * 3) * 1%) !important;
+  }
+
+  .liwe3-col-lg4 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg4 {
+    margin-left: calc((100 / 12 * 4) * 1%) !important;
+  }
+
+  .liwe3-col-lg5 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg5 {
+    margin-left: calc((100 / 12 * 5) * 1%) !important;
+  }
+
+  .liwe3-col-lg6 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg6 {
+    margin-left: calc((100 / 12 * 6) * 1%) !important;
+  }
+
+  .liwe3-col-lg7 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg7 {
+    margin-left: calc((100 / 12 * 7) * 1%) !important;
+  }
+
+  .liwe3-col-lg8 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg8 {
+    margin-left: calc((100 / 12 * 8) * 1%) !important;
+  }
+
+  .liwe3-col-lg9 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg9 {
+    margin-left: calc((100 / 12 * 9) * 1%) !important;
+  }
+
+  .liwe3-col-lg10 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg10 {
+    margin-left: calc((100 / 12 * 10) * 1%) !important;
+  }
+
+  .liwe3-col-lg11 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg11 {
+    margin-left: calc((100 / 12 * 11) * 1%) !important;
+  }
+
+  .liwe3-col-lg12 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-lg12 {
+    margin-left: calc((100 / 12 * 12) * 1%) !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .liwe3-col-xl1 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl1 {
+    margin-left: calc((100 / 12 * 1) * 1%) !important;
+  }
+
+  .liwe3-col-xl2 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl2 {
+    margin-left: calc((100 / 12 * 2) * 1%) !important;
+  }
+
+  .liwe3-col-xl3 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl3 {
+    margin-left: calc((100 / 12 * 3) * 1%) !important;
+  }
+
+  .liwe3-col-xl4 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl4 {
+    margin-left: calc((100 / 12 * 4) * 1%) !important;
+  }
+
+  .liwe3-col-xl5 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl5 {
+    margin-left: calc((100 / 12 * 5) * 1%) !important;
+  }
+
+  .liwe3-col-xl6 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl6 {
+    margin-left: calc((100 / 12 * 6) * 1%) !important;
+  }
+
+  .liwe3-col-xl7 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl7 {
+    margin-left: calc((100 / 12 * 7) * 1%) !important;
+  }
+
+  .liwe3-col-xl8 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl8 {
+    margin-left: calc((100 / 12 * 8) * 1%) !important;
+  }
+
+  .liwe3-col-xl9 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl9 {
+    margin-left: calc((100 / 12 * 9) * 1%) !important;
+  }
+
+  .liwe3-col-xl10 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl10 {
+    margin-left: calc((100 / 12 * 10) * 1%) !important;
+  }
+
+  .liwe3-col-xl11 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl11 {
+    margin-left: calc((100 / 12 * 11) * 1%) !important;
+  }
+
+  .liwe3-col-xl12 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xl12 {
+    margin-left: calc((100 / 12 * 12) * 1%) !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .liwe3-col-xxl1 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 1) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl1 {
+    margin-left: calc((100 / 12 * 1) * 1%) !important;
+  }
+
+  .liwe3-col-xxl2 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 2) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl2 {
+    margin-left: calc((100 / 12 * 2) * 1%) !important;
+  }
+
+  .liwe3-col-xxl3 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 3) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl3 {
+    margin-left: calc((100 / 12 * 3) * 1%) !important;
+  }
+
+  .liwe3-col-xxl4 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 4) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl4 {
+    margin-left: calc((100 / 12 * 4) * 1%) !important;
+  }
+
+  .liwe3-col-xxl5 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 5) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl5 {
+    margin-left: calc((100 / 12 * 5) * 1%) !important;
+  }
+
+  .liwe3-col-xxl6 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 6) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl6 {
+    margin-left: calc((100 / 12 * 6) * 1%) !important;
+  }
+
+  .liwe3-col-xxl7 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 7) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl7 {
+    margin-left: calc((100 / 12 * 7) * 1%) !important;
+  }
+
+  .liwe3-col-xxl8 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 8) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl8 {
+    margin-left: calc((100 / 12 * 8) * 1%) !important;
+  }
+
+  .liwe3-col-xxl9 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 9) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl9 {
+    margin-left: calc((100 / 12 * 9) * 1%) !important;
+  }
+
+  .liwe3-col-xxl10 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 10) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl10 {
+    margin-left: calc((100 / 12 * 10) * 1%) !important;
+  }
+
+  .liwe3-col-xxl11 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 11) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl11 {
+    margin-left: calc((100 / 12 * 11) * 1%) !important;
+  }
+
+  .liwe3-col-xxl12 {
+    flex: 0 0 calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-width: calc((((100 - (0 * (12 - 1))) / 12) * 12) * 1%);
+    max-height: calc((100 - (0 *2)) * 1%);
+    margin: calc(0 * 1%) calc(0 * 1%);
+  }
+
+  .liwe3-offset-xxl12 {
+    margin-left: calc((100 / 12 * 12) * 1%) !important;
+  }
+}
+
+.liwe3-col1 {
+  flex: 0 0 calc(((100 / 12) * 1) * 1%);
+  max-width: calc(((100 / 12 * 1) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col2 {
+  flex: 0 0 calc(((100 / 12) * 2) * 1%);
+  max-width: calc(((100 / 12 * 2) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col3 {
+  flex: 0 0 calc(((100 / 12) * 3) * 1%);
+  max-width: calc(((100 / 12 * 3) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col4 {
+  flex: 0 0 calc(((100 / 12) * 4) * 1%);
+  max-width: calc(((100 / 12 * 4) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col5 {
+  flex: 0 0 calc(((100 / 12) * 5) * 1%);
+  max-width: calc(((100 / 12 * 5) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col6 {
+  flex: 0 0 calc(((100 / 12) * 6) * 1%);
+  max-width: calc(((100 / 12 * 6) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col7 {
+  flex: 0 0 calc(((100 / 12) * 7) * 1%);
+  max-width: calc(((100 / 12 * 7) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col8 {
+  flex: 0 0 calc(((100 / 12) * 8) * 1%);
+  max-width: calc(((100 / 12 * 8) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col9 {
+  flex: 0 0 calc(((100 / 12) * 9) * 1%);
+  max-width: calc(((100 / 12 * 9) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col10 {
+  flex: 0 0 calc(((100 / 12) * 10) * 1%);
+  max-width: calc(((100 / 12 * 10) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col11 {
+  flex: 0 0 calc(((100 / 12) * 11) * 1%);
+  max-width: calc(((100 / 12 * 11) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col12 {
+  flex: 0 0 calc(((100 / 12) * 12) * 1%);
+  max-width: calc(((100 / 12 * 12) - (0 *2)) * 1%);
+  max-height: calc((100 - (0 *2)) * 1%);
+  margin: 0 0;
+  /* these are used to make all cols the same height */
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.liwe3-col-offset1 {
+  margin-left: 8.333333%;
+}
+
+.liwe3-col-offset2 {
+  margin-left: 16.666667%;
+}
+
+.liwe3-col-offset3 {
+  margin-left: 25%;
+}
+
+.liwe3-col-offset4 {
+  margin-left: 33.333333%;
+}
+
+.liwe3-col-offset5 {
+  margin-left: 41.666667%;
+}
+
+.liwe3-col-offset6 {
+  margin-left: 50%;
+}
+
+.liwe3-col-offset7 {
+  margin-left: 58.333333%;
+}
+
+.liwe3-col-offset8 {
+  margin-left: 66.666667%;
+}
+
+.liwe3-col-offset9 {
+  margin-left: 75%;
+}
+
+.liwe3-col-offset10 {
+  margin-left: 83.333333%;
+}
+
+.liwe3-col-offset11 {
+  margin-left: 91.666667%;
+}
+
+.liwe3-spaced-1 {
+  margin: var(--liwe3-space-1);
+}
+
+.liwe3-spaced-hor-1 {
+  margin: 0 var(--liwe3-space-1);
+}
+
+.liwe3-spaced-ver-1 {
+  margin: var(--liwe3-space-1) 0;
+}
+
+.liwe3-spaced-2 {
+  margin: var(--liwe3-space-2);
+}
+
+.liwe3-spaced-hor-2 {
+  margin: 0 var(--liwe3-space-2);
+}
+
+.liwe3-spaced-ver-2 {
+  margin: var(--liwe3-space-2) 0;
+}
+
+.liwe3-spaced-3 {
+  margin: var(--liwe3-space-3);
+}
+
+.liwe3-spaced-hor-3 {
+  margin: 0 var(--liwe3-space-3);
+}
+
+.liwe3-spaced-ver-3 {
+  margin: var(--liwe3-space-3) 0;
+}
+
+.liwe3-spaced-4 {
+  margin: var(--liwe3-space-4);
+}
+
+.liwe3-spaced-hor-4 {
+  margin: 0 var(--liwe3-space-4);
+}
+
+.liwe3-spaced-ver-4 {
+  margin: var(--liwe3-space-4) 0;
+}
+
+.liwe3-bordered-section {
+  border: 1px solid var(--liwe3-darker-secondary-color);
+  border-radius: var(--liwe3-border-radius);
+  padding: var(--liwe3-space-2) var(--liwe3-space-3);
+}
+
+/* colors */
+.liwe3-bg-main {
+  background-color: var(--liwe3-main-bg-color) !important;
+}
+
+.liwe3-bg-primary {
+  background-color: var(--liwe3-primary-color) !important;
+}
+
+.liwe3-bg-primary-dark {
+  background-color: var(--liwe3-darker-primary-color) !important;
+}
+
+.liwe3-bg-primary-light {
+  background-color: var(--liwe3-lighter-primary-color) !important;
+}
+
+.liwe3-bg-primary-comp {
+  background-color: var(--liwe3-comp-primary-color) !important;
+}
+
+.liwe3-bg-secondary {
+  background-color: var(--liwe3-secondary-color) !important;
+}
+
+.liwe3-bg-secondary-dark {
+  background-color: var(--liwe3-darker-secondary-color) !important;
+}
+
+.liwe3-bg-secondary-light {
+  background-color: var(--liwe3-lighter-secondary-color) !important;
+}
+
+.liwe3-bg-secondary-comp {
+  background-color: var(--liwe3-comp-secondary-color) !important;
+}
+
+.liwe3-bg-light {
+  background-color: var(--liwe3-lighter-secondary-color) !important;
+}
+
+.liwe3-bg-success {
+  background-color: var(--liwe3-success-color) !important;
+}
+
+.liwe3-bg-danger {
+  background-color: var(--liwe3-error-color) !important;
+}
+
+.liwe3-bg-warning {
+  background-color: var(--liwe3-warning-color) !important;
+}
+
+.liwe3-bg-info {
+  background-color: var(--liwe3-info-color) !important;
+}
+
+.liwe3-bg-light {
+  background-color: var(--liwe3-light-color) !important;
+}
+
+.liwe3-bg-dark {
+  background-color: var(--liwe3-dark-color) !important;
+}
+
+.liwe3-bg-alternative {
+  background-color: var(--liwe3-alternative-color) !important;
+}
+
+.liwe3-txt-primary {
+  color: var(--liwe3-primary-color) !important;
+}
+
+.liwe3-txt-primary-dark {
+  color: var(--liwe3-darker-primary-color) !important;
+}
+
+.liwe3-txt-primary-light {
+  color: var(--liwe3-lighter-primary-color) !important;
+}
+
+.liwe3-txt-primary-comp {
+  color: var(--liwe3-comp-primary-color) !important;
+}
+
+.liwe3-txt-secondary {
+  color: var(--liwe3-secondary-color) !important;
+}
+
+.liwe3-txt-secondary-dark {
+  color: var(--liwe3-darker-secondary-color) !important;
+}
+
+.liwe3-txt-secondary-light {
+  color: var(--liwe3-lighter-secondary-color) !important;
+}
+
+.liwe3-txt-secondary-comp {
+  color: var(--liwe3-comp-secondary-color) !important;
+}
+
+.liwe3-txt-light {
+  color: var(--liwe3-light-color) !important;
+}
+
+.liwe3-txt-dark {
+  color: var(--liwe3-dark-color) !important;
+}
+
+.liwe3-txt-success {
+  color: var(--liwe3-success-color) !important;
+}
+
+.liwe3-txt-error,
+.liwe3-txt-danger {
+  color: var(--liwe3-error-color) !important;
+}
+
+.liwe3-txt-warning {
+  color: var(--liwe3-warning-color) !important;
+}
+
+.liwe3-txt-info {
+  color: var(--liwe3-info-color) !important;
+}
+
+.liwe-txt-alternative {
+  color: var(--liwe3-alternative-color) !important;
+}
+
+@media (max-width: 0) {
+  .liwe3-container {
+    max-width: calc(0 - 1rem);
+  }
+}
+
+@media (min-width: 640px) {
+  .liwe3-container {
+    max-width: calc(640px - 1rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .liwe3-container {
+    max-width: calc(768px - 1rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .liwe3-container {
+    max-width: calc(1024px - 1rem);
+  }
+}
+
+@media (min-width: 1280px) {
+  .liwe3-container {
+    max-width: calc(1280px - 2rem);
+  }
+}
+
+@media (min-width: 1536px) {
+  .liwe3-container {
+    max-width: calc(1536px - 2rem);
+  }
+}
+
+@media (min-width: 1930px) {
+  .liwe3-container {
+    max-width: 1930px;
+  }
+}
+
+/* COLORS */
+.liwe3-paper {
+  background-color: var(--liwe3-paper);
+  color: var(--liwe3-color);
+  padding: var(--liwe3-space-3);
+  border-radius: var(--liwe3-border-radius);
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.liwe3-scheme-primary {
+  background-color: var(--liwe3-primary-color);
+  color: var(--liwe3-default-color);
+}
+
+.liwe3-scheme-secondary {
+  background-color: var(--liwe3-secondary-color);
+  color: var(--liwe3-default-color);
+}
+
+.liwe3-scheme-success {
+  background-color: var(--liwe3-success-color);
+  color: var(--liwe3-secondary-color);
+}
+
+.liwe3-scheme-danger {
+  background-color: var(--liwe3-error-color);
+  color: var(--liwe3-default-color);
+}
+
+.liwe3-scheme-warning {
+  background-color: var(--liwe3-warning-color);
+  color: var(--liwe3-default-color);
+}
+
+.liwe3-scheme-info {
+  background-color: var(--liwe3-info-color);
+  color: var(--liwe3-default-color);
+}
+
+.liwe3-scheme-dark {
+  background-color: var(--liwe3-dark-color);
+  color: var(--liwe3-light-color);
+}
+
+.liwe3-scheme-light {
+  background-color: var(--liwe3-light-color);
+  color: var(--liwe3-dark-color);
+}
+
+.liwe3-scheme-alternative {
+  background-color: var(--liwe3-alternative-color);
+  color: var(--liwe3-default-color);
+}
+
+/* FORMS ELEMENTS */
+.liwe3-form-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.liwe3-form-hint {
+  display: none;
+  font-size: 0.875rem;
+  font-weight: var(--liwe3-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+  color: var(--liwe3-light-color);
+}
+
+.liwe3-form-hint.show {
+  display: block;
+}
+
+.hide-input,
+.radio-group input[type=radio],
+.liwe3-form-switch input[type=checkbox] {
+  position: absolute;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  overflow: hidden;
+  box-shadow: unset !important;
+}
+
+.hide-input:focus,
+.radio-group input[type=radio]:focus,
+.liwe3-form-switch input[type=checkbox]:focus {
+  box-shadow: unset !important;
+}
+
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list]) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: unset;
+  font-size: clamp(12px, var(--liwe3-font-size), 20px);
+  min-height: clamp(10px, (var(--liwe3-font-size)), 60px);
+  border-radius: var(--liwe3-border-radius);
+  /*padding: var(--liwe3-input-padding-y) calc(var(--liwe3-input-padding-y) * 3);*/
+  padding: var(--liwe3-input-padding-y) var(--liwe3-input-padding-x);
+  padding-block: clamp(1px, var(--liwe3-input-padding-y) * 2.5, 15px);
+  /*padding-inline: clamp(5px, var(--liwe3-input-padding-y) * 4, 20px);*/
+  padding-inline: clamp(5px, var(--liwe3-input-padding-x) * 4, 50px);
+  color: var(--liwe3-form-text-color);
+  background-color: var(--liwe3-form-bg);
+  box-shadow: 0 0 0 var(--liwe3-border-width) var(--liwe3-form-border-color);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  display: inline-block;
+  font-weight: 500;
+  transition: filter 0.3s linear, box-shadow 0.35s ease-in-out, background-color 0.35s ease-in-out;
+  max-width: 100%;
+}
+
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list])[disabled] {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.6;
+  color: color-mix(in srgb, var(--liwe3-form-text-color) 85%, transparent);
+}
+
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list]):focus,
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list]).focus,
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list]):focus-within,
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list]):focus-visible {
+  background-color: var(--liwe3-form-focus-bg);
+  outline: unset;
+  box-shadow: 0 0 var(--liwe3-form-border-blur) calc(var(--liwe3-border-width-focus) + var(--liwe3-border-width)) var(--liwe3-border-focus-color);
+}
+
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list])::-webkit-inner-spin-button {
+  margin-right: 0;
+  padding: 10px 5px;
+}
+
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list]):invalid,
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list]).invalid {
+  box-shadow: 0 0 0 clamp(1px, var(--liwe3-border-width-focus) + var(--liwe3-border-width), 5px) var(--liwe3-form-error);
+  color: var(--liwe3-form-error);
+}
+
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list]):invalid::-moz-placeholder,
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list]).invalid::-moz-placeholder {
+  color: var(--liwe3-form-error);
+}
+
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list]):invalid::placeholder,
+.liwe3-form:is([type=text],
+  [type=email],
+  [type=url],
+  [type=password],
+  [type=number],
+  [type=date],
+  [type=datetime-local],
+  [type=month],
+  [type=search],
+  [type=tel],
+  [type=time],
+  [type=week],
+  [type=file],
+  select[multiple],
+  textarea,
+  select,
+  input[list]).invalid::placeholder {
+  color: var(--liwe3-form-error);
+}
+
+.liwe3-form:is(textarea, select[multiple]) {
+  line-height: 1.2;
+  scrollbar-width: thin;
+  border-radius: clamp(0px, var(--liwe3-border-radius), 15px);
+  position: relative;
+  min-height: 50px;
+}
+
+.liwe3-form:is(textarea, select[multiple])::-webkit-scrollbar {
+  background: transparent;
+  width: 8px;
+  height: 8px;
+}
+
+.liwe3-form:is(textarea, select[multiple])::-webkit-scrollbar-thumb {
+  background: var(--liwe3-form-text-placeholder-color);
+  border-radius: 50em;
+}
+
+.liwe3-form:is(textarea, select[multiple])::-webkit-scrollbar-corner,
+.liwe3-form:is(textarea, select[multiple])::-webkit-resizer {
+  display: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.liwe3-form:is(textarea):hover,
+.liwe3-form:is(textarea):focus {
+  background-image: linear-gradient(315deg, var(--liwe3-form-text-color) 50%, transparent 50%);
+  background-position: calc(100% - 8px) calc(100% - 8px);
+  background-size: 8px 8px;
+  background-repeat: no-repeat;
+}
+
+.liwe3-form:is(input, textarea)::-moz-placeholder {
+  color: color-mix(in srgb, var(--liwe3-form-text-placeholder-color) 75%, transparent);
+  font-weight: 200;
+}
+
+.liwe3-form:is(input, textarea)::placeholder {
+  color: color-mix(in srgb, var(--liwe3-form-text-placeholder-color) 75%, transparent);
+  font-weight: 200;
+}
+
+.liwe3-form:is(select[multiple]) {
+  line-height: 20px;
+}
+
+.liwe3-form:is(select[multiple]) option {
+  padding: 3px 5px;
+  margin: 1px 0;
+}
+
+.liwe3-form:is(select[multiple]) option:checked {
+  background-color: var(--liwe3-form-accent);
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form:is([type=date], [type=datetime-local], [type=month], [type=time], [type=week])::-webkit-datetime-edit {
+  color: var(--liwe3-form-text-color);
+}
+
+.liwe3-form:focus-within::-webkit-calendar-picker-indicator {
+  opacity: 0.8;
+}
+
+.liwe3-form::-webkit-calendar-picker-indicator {
+  opacity: 0.4;
+  cursor: pointer;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+  scale: 1.2;
+}
+
+.liwe3-form::-webkit-calendar-picker-indicator:hover {
+  opacity: 0.8;
+}
+
+.liwe3-form::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+.liwe3-form::-webkit-date-and-time-value {
+  min-height: 1.5em;
+}
+
+.liwe3-form:is(input[list])::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
+.liwe3-form:is(select:not([multiple]), input[list]) {
+  padding-right: clamp(30px, var(--liwe3-input-padding-y) * 9, 60px);
+  background-image: linear-gradient(45deg, transparent 50%, color-mix(in srgb, var(--liwe3-form-text-placeholder-color) 70%, transparent) 50%), linear-gradient(135deg, color-mix(in srgb, var(--liwe3-form-text-placeholder-color) 70%, transparent) 50%, transparent 50%);
+  background-position: calc(100% - clamp(15px, var(--liwe3-input-padding-y) + 13px, 25px)) 50%, calc(100% - clamp(10px, var(--liwe3-input-padding-y) + 8px, 20px)) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+.liwe3-form:is(textarea) {
+  resize: vertical;
+  min-height: clamp(50px, 3rem, 99999px);
+}
+
+.liwe3-form[type=search]::-webkit-search-decoration,
+.liwe3-form[type=search]::-webkit-search-cancel-button,
+.liwe3-form[type=search]::-webkit-search-results-button,
+.liwe3-form[type=search]::-webkit-search-results-decoration {
+  display: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  opacity: 0 !important;
+}
+
+.liwe3-form[type=checkbox],
+.liwe3-form[type=radio] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  display: inline-block;
+  vertical-align: middle;
+  background-origin: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  flex-shrink: 0;
+  height: clamp(16px, var(--liwe3-form-checkbox-width), 40px);
+  width: clamp(16px, var(--liwe3-form-checkbox-width), 40px);
+  cursor: pointer;
+  border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 8px);
+  margin: 0;
+  background-color: var(--liwe3-form-accent);
+  background-size: 0;
+  border-color: transparent;
+  box-shadow: unset;
+  transition: background-size 0.15s ease-in-out, box-shadow 0.3s linear;
+}
+
+.liwe3-form[type=checkbox]:focus-visible,
+.liwe3-form[type=radio]:focus-visible {
+  outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+  outline-offset: 2px;
+}
+
+.liwe3-form[type=checkbox][disabled],
+.liwe3-form[type=radio][disabled] {
+  cursor: default;
+  opacity: 0.5;
+  box-shadow: unset;
+}
+
+.liwe3-form[type=checkbox] {
+  position: relative;
+}
+
+.liwe3-form[type=checkbox]:before {
+  content: "";
+  transition: scale 0.2s ease-in-out;
+  border-left: 0 solid var(--liwe3-form-accent-color);
+  border-bottom: 0 solid var(--liwe3-form-accent-color);
+  border-left-width: clamp(2px, var(--liwe3-border-width), 3px);
+  border-bottom-width: clamp(2px, var(--liwe3-border-width), 3px);
+  position: absolute;
+  width: clamp(10px, var(--liwe3-form-checkbox-width) / 2, 28px);
+  height: clamp(6px, var(--liwe3-form-checkbox-width) / 4, 23px);
+  top: 50%;
+  left: 50%;
+  transform: rotate(-50deg) translateY(-60%) translateX(-40%);
+  transform-origin: left top;
+  scale: 0;
+}
+
+.liwe3-form[type=checkbox]:checked {
+  border-color: transparent;
+  box-shadow: unset;
+}
+
+.liwe3-form[type=checkbox]:checked:before {
+  scale: 1;
+}
+
+.liwe3-form[type=radio] {
+  border-radius: 100%;
+  height: clamp(16px, var(--liwe3-form-checkbox-width) - 4px, 40px);
+  width: clamp(16px, var(--liwe3-form-checkbox-width) - 4px, 40px);
+  position: relative;
+}
+
+.liwe3-form[type=radio]:before {
+  transition: scale 0.25s ease-in-out;
+  content: "";
+  height: clamp(8px, var(--liwe3-form-checkbox-width) - 16px, 15px);
+  width: clamp(8px, var(--liwe3-form-checkbox-width) - 16px, 15px);
+  border-radius: 100%;
+  background: var(--liwe3-form-accent-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  scale: 0;
+  transform-origin: top left;
+}
+
+.liwe3-form[type=radio]:checked:before {
+  scale: 1;
+}
+
+.liwe3-form-switch {
+  --switch-width: clamp(15px, calc(var(--liwe3-form-checkbox-width) - 6px), 30px);
+  overflow: hidden;
+  padding: 4px;
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+.liwe3-form-switch input[type=checkbox]+label {
+  cursor: pointer;
+  width: calc(var(--switch-width) * 2.3);
+  height: calc(var(--switch-width) + 4px);
+  max-width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: calc(var(--liwe3-border-radius) + 2px);
+  position: relative;
+  vertical-align: bottom;
+  background-color: color-mix(in srgb, var(--liwe3-form-bg) 90%, #000);
+  transition: background 0.2s ease-in-out;
+}
+
+.liwe3-form-switch input[type=checkbox]+label:after {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  left: 2px;
+  width: var(--switch-width);
+  height: var(--switch-width);
+  top: 2px;
+  background-color: var(--liwe3-form-text-placeholder-color);
+  border-radius: var(--liwe3-border-radius);
+  box-sizing: border-box;
+  transition: left 0.2s ease-in-out;
+}
+
+.liwe3-form-switch input[type=checkbox]:checked+label {
+  background-color: var(--liwe3-form-accent);
+}
+
+.liwe3-form-switch input[type=checkbox]:checked+label:after {
+  left: calc(100% - (var(--switch-width) + 2px));
+  background-color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-switch:has(:focus-visible):focus-within label {
+  outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+  outline-offset: 2px;
+}
+
+.liwe3-form-switch:has([disabled]) {
+  opacity: 0.5;
+}
+
+.liwe3-form::-webkit-calendar-picker-indicator:focus-visible {
+  outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+  outline-offset: 2px;
+  border-radius: clamp(0px, var(--liwe3-border-radius) / 2, 5px);
+}
+
+.liwe3-form-switch-small {
+  --switch-width: clamp(10px, calc(var(--liwe3-form-checkbox-width) - 15px), 20px);
+}
+
+.liwe3-form-switch-big {
+  --switch-width: clamp(20px, calc(var(--liwe3-form-checkbox-width) - 2px), 40px);
+}
+
+.radio-group {
+  border-radius: var(--liwe3-border-radius);
+  overflow: hidden;
+  background: var(--liwe3-form-bg);
+  padding: clamp(3px, (var(--liwe3-input-padding-y)), 8px);
+  display: inline-flex !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  color: var(--liwe3-form-text-color);
+}
+
+.radio-group input[type=radio]:checked+label {
+  color: var(--liwe3-form-accent-color);
+  background: var(--liwe3-form-accent);
+}
+
+.radio-group input[type=radio]:focus+label {
+  box-shadow: 0 0 0 1px var(--form-color) !important;
+}
+
+.radio-group:has(:focus-visible):focus-within {
+  outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+  outline-offset: 2px;
+}
+
+.radio-group label {
+  color: var(--gray-65);
+  cursor: pointer;
+  padding-block: clamp(3px, var(--liwe3-input-padding-y) + 3px, 10px);
+  padding-inline: clamp(10px, var(--liwe3-input-padding-y) * 4, 20px);
+  transition: background 0.1s ease-in-out, color 0.2s linear;
+  border-radius: calc(var(--liwe3-border-radius) - 2px);
+  white-space: nowrap;
+  font-size: clamp(12px, var(--liwe3-font-size) - 1px, 20px);
+}
+
+.radio-group label:hover {
+  color: var(--gray-90);
+}
+
+.radio-group.radio-group-small {
+  padding: clamp(3px, var(--liwe3-input-padding-y) - 1px, 6px);
+}
+
+.radio-group.radio-group-small label {
+  padding-block: clamp(3px, (var(--liwe3-input-padding-y)), 5px);
+  padding-inline: clamp(10px, var(--liwe3-input-padding-y) + 10px, 15px);
+  font-size: clamp(12px, var(--liwe3-font-size) - 3px, 18px);
+}
+
+input.liwe3-form:-webkit-autofill {
+  box-shadow: inset 0 0 0 100px var(--liwe3-form-bg);
+}
+
+input.liwe3-form:-webkit-autofill:focus {
+  box-shadow: inset 0 0 0 100px var(--liwe3-form-bg), 0 0 var(--liwe3-form-border-blur) calc(var(--liwe3-border-width-focus) + var(--liwe3-border-width)) var(--liwe3-border-focus-color);
+}
+
+input[type=range].liwe3-form {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 10px 0;
+  width: 100%;
+  background: unset;
+  outline: none;
+}
+
+input[type=range].liwe3-form::-webkit-slider-runnable-track {
+  height: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+  background: var(--liwe3-form-bg);
+  border: var(--liwe3-border-width) solid color-mix(in srgb, var(--liwe3-form-bg) 97%, #000000);
+  border-radius: clamp(0px, var(--liwe3-border-radius) / 2, 20px);
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+input[type=range].liwe3-form::-webkit-slider-runnable-track:focus {
+  outline: 0;
+}
+
+input[type=range].liwe3-form::-webkit-slider-runnable-track:focus-visible {
+  outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+  outline-offset: 2px;
+}
+
+input[type=range].liwe3-form::-moz-range-track {
+  height: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+  background: var(--liwe3-form-bg);
+  border: var(--liwe3-border-width) solid color-mix(in srgb, var(--liwe3-form-bg) 97%, #000000);
+  border-radius: clamp(0px, var(--liwe3-border-radius) / 2, 20px);
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+input[type=range].liwe3-form::-moz-range-track:focus {
+  outline: 0;
+}
+
+input[type=range].liwe3-form::-moz-range-track:focus-visible {
+  outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+  outline-offset: 2px;
+}
+
+input[type=range].liwe3-form::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  height: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+  width: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+  cursor: pointer;
+  border-radius: clamp(0px, var(--liwe3-border-radius) / 2.5, 20px);
+  background: var(--liwe3-form-accent);
+  margin-top: calc(0px - var(--liwe3-border-width));
+  scale: 1.4;
+}
+
+input[type=range].liwe3-form::-moz-range-thumb {
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  height: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+  width: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+  cursor: pointer;
+  border-radius: clamp(0px, var(--liwe3-border-radius) / 2.5, 20px);
+  background: var(--liwe3-form-accent);
+  margin-top: calc(0px - var(--liwe3-border-width));
+  scale: 1.4;
+}
+
+input[type=range].liwe3-form:focus-visible::-webkit-slider-runnable-track {
+  outline: 3px solid var(--liwe3-form-text-placeholder-color);
+  outline-offset: 4px;
+}
+
+input[type=range].liwe3-form:focus-visible::-moz-range-track {
+  outline: 3px solid var(--liwe3-form-text-placeholder-color);
+  outline-offset: 4px;
+}
+
+.liwe3-form.custom-checkbox {
+  position: relative;
+  cursor: pointer;
+}
+
+.liwe3-form.custom-checkbox input[type=checkbox] {
+  position: relative;
+  cursor: pointer;
+  height: clamp(16px, var(--liwe3-form-checkbox-width) - clamp(2px, var(--liwe3-border-width), 100px), 40px);
+  width: clamp(16px, var(--liwe3-form-checkbox-width) - clamp(2px, var(--liwe3-border-width), 100px), 40px);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+.liwe3-form.custom-checkbox input[type=checkbox][disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+.liwe3-form.custom-checkbox input[type=checkbox]:focus {
+  outline: 0;
+}
+
+.liwe3-form.custom-checkbox input[type=checkbox]:focus-visible:after {
+  outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+  outline-offset: 2px;
+}
+
+.liwe3-form.custom-checkbox input[type=checkbox]:after {
+  content: "";
+  position: absolute;
+  height: clamp(16px, var(--liwe3-form-checkbox-width) - clamp(2px, var(--liwe3-border-width), 100px), 40px);
+  width: clamp(16px, var(--liwe3-form-checkbox-width) - clamp(2px, var(--liwe3-border-width), 100px), 40px);
+  cursor: pointer;
+  border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 6px);
+}
+
+.liwe3-form.custom-checkbox input[type=checkbox]:before {
+  transition: border-left-width 0.3s ease-in-out, border-bottom-width 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.1s ease-in-out;
+  content: "";
+  position: absolute;
+  height: clamp(16px, var(--liwe3-form-checkbox-width) - clamp(2px, var(--liwe3-border-width), 100px), 40px);
+  width: clamp(16px, var(--liwe3-form-checkbox-width) - clamp(2px, var(--liwe3-border-width), 100px), 40px);
+  cursor: pointer;
+  border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 6px);
+  border: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-form-accent);
+}
+
+.liwe3-form.custom-checkbox input[type=checkbox]:checked:before {
+  transform: rotate(-50deg) scale(0.99);
+  height: clamp(9px, var(--liwe3-form-checkbox-width) / 2, 20px);
+  width: clamp(15px, var(--liwe3-form-checkbox-width) / 1.2, 35px);
+  border-color: var(--liwe3-form-accent);
+  border-top-style: none;
+  border-right-style: none;
+  transform-origin: 70% 50%;
+  border-radius: 0;
+}
+
+.liwe3-form:is([type=file]) {
+  background: unset !important;
+  border: unset;
+  font-size: clamp(10px, var(--liwe3-font-size) - 2px, 20px);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 !important;
+  box-shadow: unset !important;
+  margin: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.liwe3-form:is([type=file])::file-selector-button,
+.liwe3-form:is([type=file])::-webkit-file-upload-button {
+  margin-right: 15px;
+  background-color: var(--liwe3-form-accent);
+  border: unset;
+  border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 30px);
+  padding: var(--liwe3-input-padding-y) calc(var(--liwe3-input-padding-y) * 3);
+  padding-block: clamp(5px, var(--liwe3-input-padding-y) * 2.5, 15px);
+  padding-inline: clamp(10px, var(--liwe3-input-padding-y) * 3, 20px);
+  font-size: clamp(10px, var(--liwe3-font-size) - 1px, 20px);
+  line-height: 1;
+  cursor: pointer;
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form:is([type=file]):focus-within {
+  outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+  outline-offset: 2px;
+}
+
+.liwe3-form:is([type=file]):has(:focus-within) {
+  outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+  outline-offset: 2px;
+}
+
+input[type=color].liwe3-form {
+  background-color: var(--liwe3-form-bg);
+  border: clamp(0px, var(--liwe3-border-width), 2px) solid color-mix(in srgb, var(--liwe3-form-bg) 97%, #000000);
+  border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 30px);
+  border: unset;
+  margin: 0 !important;
+  padding: 2px !important;
+  box-sizing: unset;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  inline-size: clamp(20px, (var(--liwe3-form-checkbox-width)), 55px);
+  block-size: clamp(20px, (var(--liwe3-form-checkbox-width)), 55px);
+}
+
+input[type=color].liwe3-form::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type=color].liwe3-form::-webkit-color-swatch {
+  border-color: color-mix(in srgb, var(--liwe3-form-bg) 92%, #000000);
+  border-radius: clamp(0px, var(--liwe3-border-radius) - 4px, 30px);
+  cursor: pointer;
+}
+
+input[type=color].liwe3-form:focus-visible {
+  outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+  outline-offset: 2px;
+}
+
+fieldset.liwe3-form {
+  border: clamp(1px, var(--liwe3-border-width), 1px) solid color-mix(in srgb, var(--liwe3-form-bg) 97%, #000000);
+  box-sizing: border-box;
+  border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 20px);
+  padding: var(--liwe3-input-padding-y) calc(var(--liwe3-input-padding-y) * 3);
+  padding-block: clamp(20px, var(--liwe3-input-padding-y) * 4, 35px);
+  padding-inline: clamp(10px, var(--liwe3-input-padding-y) * 3, 30px);
+  overflow: hidden;
+}
+
+fieldset.liwe3-form * {
+  max-width: 100%;
+}
+
+fieldset.liwe3-form legend {
+  color: var(--liwe3-form-legend);
+  font-weight: 300;
+  padding-inline: 20px;
+  font-size: clamp(11px, var(--liwe3-font-size) - 2px, 20px);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.liwe3-form-btn {
+  display: inline-block;
+  margin: 0;
+  color: var(--liwe3-form-btn-default-text);
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: none;
+  white-space: nowrap;
+  line-height: 1.42857;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  padding: clamp(5px, var(--liwe3-input-padding-y) * 2, 10px) clamp(10px, var(--liwe3-input-padding-y) * 6, 50px);
+  font-size: clamp(12px, var(--liwe3-font-size) - 1px, 20px);
+  transition: background 0.1s linear, box-shadow 0.15s linear, color 0.1s linear;
+  flex-shrink: 0;
+  text-decoration: none;
+  border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 30px);
+  background-color: var(--liwe3-form-btn-default);
+  box-sizing: border-box;
+  min-width: 90px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.liwe3-form-btn:hover {
+  background-color: color-mix(in srgb, var(--liwe3-form-btn-default) 80%, #fff);
+}
+
+.liwe3-form-btn:active {
+  background-color: color-mix(in srgb, var(--liwe3-form-btn-default) 97%, #000);
+}
+
+.liwe3-form-btn:focus-visible {
+  outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+  outline-offset: 2px;
+}
+
+.liwe3-form-btn[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.liwe3-form-btn.liwe3-form-btn-xl {
+  padding-block: clamp(10px, var(--liwe3-input-padding-y) * 2.7, 20px);
+  padding-inline: clamp(15px, var(--liwe3-input-padding-y) * 6, 50px);
+  font-size: clamp(12px, var(--liwe3-font-size) + 1px, 20px);
+  min-width: 120px;
+}
+
+.liwe3-form-btn.liwe3-form-btn-l {
+  padding-block: clamp(10px, var(--liwe3-input-padding-y) * 2.5, 13px);
+  padding-inline: clamp(15px, var(--liwe3-input-padding-y) * 5.5, 40px);
+  min-width: 70px;
+}
+
+.liwe3-form-btn.liwe3-form-btn-sm {
+  padding-block: clamp(5px, var(--liwe3-input-padding-y) - 10px, 7px);
+  padding-inline: clamp(10px, var(--liwe3-input-padding-y) * 3, 20px);
+  font-size: clamp(10px, var(--liwe3-font-size) - 3px, 20px);
+  border-radius: clamp(0px, var(--liwe3-border-radius) - 4px, 30px);
+  min-width: 50px;
+}
+
+.liwe3-form-btn.liwe3-form-btn-primary {
+  background-color: var(--liwe3-form-btn-primary);
+  color: var(--liwe3-form-primary-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-primary:hover {
+  background-color: color-mix(in srgb, var(--liwe3-form-btn-primary) 80%, #fff);
+}
+
+.liwe3-form-btn.liwe3-form-btn-primary:active {
+  background-color: color-mix(in srgb, var(--liwe3-form-btn-primary) 80%, #000);
+}
+
+.liwe3-form-btn.liwe3-form-btn-secondary {
+  background-color: var(--liwe3-form-btn-secondary);
+  color: var(--liwe3-form-secondary-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-secondary:hover {
+  background-color: color-mix(in srgb, var(--liwe3-form-btn-secondary) 80%, #fff);
+}
+
+.liwe3-form-btn.liwe3-form-btn-secondary:active {
+  background-color: color-mix(in srgb, var(--liwe3-form-btn-secondary) 80%, #000);
+}
+
+.liwe3-form-btn.liwe3-form-btn-info {
+  background-color: var(--liwe3-form-btn-info);
+  color: var(--liwe3-form-info-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-info:hover {
+  background-color: color-mix(in srgb, var(--liwe3-form-btn-info) 80%, #fff);
+}
+
+.liwe3-form-btn.liwe3-form-btn-info:active {
+  background-color: color-mix(in srgb, var(--liwe3-form-btn-info) 80%, #000);
+}
+
+.liwe3-form-btn.liwe3-form-btn-error {
+  background-color: var(--liwe3-form-error);
+  color: var(--liwe3-form-error-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-error:hover {
+  background-color: color-mix(in srgb, var(--liwe3-form-error) 90%, #fff);
+}
+
+.liwe3-form-btn.liwe3-form-btn-error:active {
+  background-color: color-mix(in srgb, var(--liwe3-form-error) 80%, #000);
+}
+
+.liwe3-form-btn.liwe3-form-btn-accent {
+  background-color: var(--liwe3-form-accent);
+  color: var(--liwe3-form-accent-color-btn);
+}
+
+.liwe3-form-btn.liwe3-form-btn-accent:hover {
+  background-color: color-mix(in srgb, var(--liwe3-form-accent) 90%, #fff);
+}
+
+.liwe3-form-btn.liwe3-form-btn-accent:active {
+  background-color: color-mix(in srgb, var(--liwe3-form-accent) 80%, #000);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined {
+  margin: 0;
+  background-color: transparent;
+  color: var(--liwe3-form-border-color);
+  border: clamp(2px, var(--liwe3-border-width), 4px) solid var(--liwe3-form-border-color);
+  padding-block: clamp(5px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 2 - clamp(2px, var(--liwe3-border-width), 4px), 10px - clamp(2px, var(--liwe3-border-width), 4px));
+  padding-inline: clamp(10px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 6 - clamp(2px, var(--liwe3-border-width), 4px), 50px - clamp(2px, var(--liwe3-border-width), 4px));
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-xl {
+  padding-block: clamp(10px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 2.7 - clamp(2px, var(--liwe3-border-width), 4px), 20px - clamp(2px, var(--liwe3-border-width), 4px));
+  padding-inline: clamp(15px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 6 - clamp(2px, var(--liwe3-border-width), 4px), 50px - clamp(2px, var(--liwe3-border-width), 4px));
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-l {
+  padding-block: clamp(10px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 2.5 - clamp(2px, var(--liwe3-border-width), 4px), 13px - clamp(2px, var(--liwe3-border-width), 4px));
+  padding-inline: clamp(15px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 5.5 - clamp(2px, var(--liwe3-border-width), 4px), 40px - clamp(2px, var(--liwe3-border-width), 4px));
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-sm {
+  padding-block: clamp(5px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) - 10px - clamp(2px, var(--liwe3-border-width), 4px), 7px - clamp(2px, var(--liwe3-border-width), 4px));
+  padding-inline: clamp(10px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 3 - clamp(2px, var(--liwe3-border-width), 4px), 20px - clamp(2px, var(--liwe3-border-width), 4px));
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-primary {
+  background-color: unset;
+  border-color: var(--liwe3-form-btn-primary);
+  color: var(--liwe3-form-btn-primary);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-primary:hover {
+  background-color: var(--liwe3-form-btn-primary);
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-primary:active {
+  background-color: color-mix(in srgb, var(--liwe3-form-btn-primary) 80%, #fff);
+  border-color: color-mix(in srgb, var(--liwe3-form-btn-primary) 80%, #fff);
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-secondary {
+  background-color: unset;
+  border-color: var(--liwe3-form-btn-secondary);
+  color: var(--liwe3-form-btn-secondary);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-secondary:hover {
+  background-color: var(--liwe3-form-btn-secondary);
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-secondary:active {
+  background-color: color-mix(in srgb, var(--liwe3-form-btn-secondary) 80%, #fff);
+  border-color: color-mix(in srgb, var(--liwe3-form-btn-secondary) 80%, #fff);
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-info {
+  background-color: unset;
+  border-color: var(--liwe3-form-btn-info);
+  color: var(--liwe3-form-btn-info);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-info:hover {
+  background-color: var(--liwe3-form-btn-info);
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-info:active {
+  background-color: color-mix(in srgb, var(--liwe3-form-btn-info) 80%, #fff);
+  border-color: color-mix(in srgb, var(--liwe3-form-btn-info) 80%, #fff);
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-error {
+  background-color: unset;
+  border-color: var(--liwe3-form-error);
+  color: var(--liwe3-form-error);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-error:hover {
+  background-color: var(--liwe3-form-error);
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-error:active {
+  background-color: color-mix(in srgb, var(--liwe3-form-error) 80%, #fff);
+  border-color: color-mix(in srgb, var(--liwe3-form-error) 80%, #fff);
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-accent {
+  background-color: unset;
+  border-color: var(--liwe3-form-accent);
+  color: var(--liwe3-form-accent);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-accent:hover {
+  background-color: var(--liwe3-form-accent);
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-accent:active {
+  background-color: color-mix(in srgb, var(--liwe3-form-accent) 80%, #fff);
+  border-color: color-mix(in srgb, var(--liwe3-form-accent) 80%, #fff);
+  color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-link {
+  background-color: transparent !important;
+  border: unset !important;
+  color: var(--liwe3-form-accent);
+}
+
+.liwe3-form-btn.liwe3-form-btn-rounded {
+  border-radius: 50em;
+}
+
+.liwe3-form-btn.liwe3-form-btn-block {
+  display: block;
+  width: 100%;
+}
+
+button:disabled {
+  filter: brightness(0.9);
+}

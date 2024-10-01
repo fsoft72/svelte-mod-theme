@@ -3,23 +3,26 @@
 	import Checkbox from '$liwe3/components/Checkbox.svelte';
 	import { downloadFile } from '$liwe3/utils/utils';
 	import { themeSetMode, exportThemeCss } from '../theme';
-	import { theme, themeModes, themeSetDarkMode, themeSetModeColor } from '../theme_store';
+	import { storeTheme } from '$modules/theme/store.svelte';
+
+	const store = storeTheme;
+	const themeModes = storeTheme.modesAvailable();
 
 	const setColor = (mode: string, color: string) => {
-		themeSetModeColor($theme.theme, mode, color);
+		storeTheme.setModeColor(store.mode, mode, color);
 	};
 
 	const setDarkMode = (darkMode: boolean) => {
-		themeSetDarkMode(darkMode);
+		storeTheme.setDarkMode(darkMode);
 		themeSetMode(darkMode ? 'dark' : 'light');
 	};
 
 	const exportJSON = () => {
 		const data = {
-			light: $theme.light,
-			dark: $theme.dark,
-			vars: $theme.vars,
-			mode: $theme.theme,
+			light: store.theme.light,
+			dark: store.theme.dark,
+			vars: store.theme.vars,
+			mode: store.mode,
 		};
 		const json = JSON.stringify(data, null, 2);
 		downloadFile(json, 'theme.json', 'application/json');
@@ -36,7 +39,7 @@
 		<div class="liwe3-col4">
 			<div class="theme-selector">
 				<Checkbox
-					checked={$theme.theme === 'dark'}
+					checked={store.mode === 'dark'}
 					onchange={(e: any) => setDarkMode(e.target?.checked)}
 					label="Dark mode"
 				/>
@@ -50,17 +53,17 @@
 					<div class="liwe3-col2">
 						<span>{mode} </span>
 						<span>
-							{#if $theme.theme === 'dark'}
+							{#if store.mode === 'dark'}
 								<input
 									type="color"
 									onchange={(e: any) => setColor(mode, e.target?.value)}
-									value={$theme.dark[mode]}
+									value={store.theme.dark[mode]}
 								/>
 							{:else}
 								<input
 									type="color"
 									onchange={(e: any) => setColor(mode, e.target?.value)}
-									value={$theme.light[mode]}
+									value={store.theme.light[mode]}
 								/>
 							{/if}
 						</span>

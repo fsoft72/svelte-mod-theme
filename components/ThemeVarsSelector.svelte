@@ -1,11 +1,15 @@
 <script lang="ts">
-	import { theme, themeLayoutUnits, themeSetLayoutVar, themeResetLayoutVars } from '../theme_store';
+	import { storeTheme } from '../store.svelte';
 	import Input from '$liwe3/components/Input.svelte';
 	import { keys } from '$liwe3/utils/utils';
 	import { ArrowUturnLeft } from 'svelte-hero-icons';
 	import Button from '$liwe3/components/Button.svelte';
 
 	type AllowedUnits = 'px' | 'rem' | '%' | 'number' | 'string';
+
+	const theme = storeTheme.theme;
+	const themeLayoutUnits = storeTheme.layoutUnits();
+
 	const formatValue = {
 		clean: (name: string, value: string) => {
 			const val = value ? value.replace(themeLayoutUnits[name], '').trim() : '';
@@ -17,12 +21,12 @@
 	};
 
 	const setVar = (rule: string, value: string) => {
-		themeSetLayoutVar(rule, value);
+		storeTheme.setLayoutVar(rule, value);
 	};
 
 	const resetVars = () => {
 		confirm("Are you sure you want to reset the variables?") ?
-		themeResetLayoutVars() : null;
+		storeTheme.resetLayoutVars() : null;
 	};
 
 	const onVarChange = (e: Event, rule: AllowedUnits) => {
@@ -46,7 +50,7 @@
 									step=".05"
 									min="0"
 									onchange={ (e) => onVarChange(e, rule as AllowedUnits)}
-									value={formatValue.clean(rule, $theme.vars[rule])}
+									value={formatValue.clean(rule, theme.vars[rule])}
 									label={`${rule} (${themeLayoutUnits[rule]})`}
 								/>
 							{:else if themeLayoutUnits[rule] == 'px'}
@@ -55,14 +59,14 @@
 									step="1"
 									min="0"
 									onchange={ (e) => onVarChange(e, rule as AllowedUnits)}
-									value={formatValue.clean(rule, $theme.vars[rule])}
+									value={formatValue.clean(rule, theme.vars[rule])}
 									label={`${rule} (${themeLayoutUnits[rule]})`}
 								/>
 							{:else if themeLayoutUnits[rule] == 'string'}
 								<Input
 									type="text"
 									onchange={ (e) => onVarChange(e, rule as AllowedUnits)}
-									value={formatValue.clean(rule, $theme.vars[rule])}
+									value={formatValue.clean(rule, theme.vars[rule])}
 									label={`${rule} (${themeLayoutUnits[rule]})`}
 								/>
 							{:else if themeLayoutUnits[rule] == '%'}
@@ -73,7 +77,7 @@
 									max="100"
 									class="slider"
 									onchange={ (e) => onVarChange(e, rule as AllowedUnits) }
-									value={formatValue.clean(rule, $theme.vars[rule])}
+									value={formatValue.clean(rule, theme.vars[rule])}
 								/>
 							{/if}
 						</span>

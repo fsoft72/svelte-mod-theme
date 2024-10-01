@@ -55,7 +55,6 @@
   --liwe3-form-checkbox-width: 26px;
 }
 
-/* WIP arranging colors for light theme starting wicth mode1 */
 .liwe3-light-theme {
   /* default values */
   --liwe3-primary-color: var(--liwe3-light-mode1-500);
@@ -402,7 +401,6 @@
   }
 }
 
-/* WIP arranging colors for dark theme. Waiting to complete light theme first */
 .liwe3-dark-theme {
   /* default values */
   --liwe3-primary-color: var(--liwe3-dark-mode1-500);
@@ -2850,9 +2848,9 @@ button:hover:not(:disabled) {
   cursor: pointer;
   border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 8px);
   margin: 0;
-  background-color: var(--liwe3-form-accent);
+  background-color: var(--liwe3-form-bg);
   background-size: 0;
-  border-color: transparent;
+  border: clamp(1px, var(--liwe3-border-width), 3px) solid var(--liwe3-form-border-color);
   box-shadow: unset;
   transition: background-size 0.15s ease-in-out, box-shadow 0.3s linear;
 }

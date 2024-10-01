@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Select from 'svelte-select';
-
 	import Button from '$liwe3/components/Button.svelte';
 	import Input from '$liwe3/components/Input.svelte';
 	import Tabs from '$liwe3/components/Tabs.svelte';
@@ -18,10 +17,13 @@
 	import DraggableTree from '$liwe3/components/DraggableTree.svelte';
 	import ElementList from '$liwe3/components/ElementList.svelte';
 	import TagInput from '$liwe3/components/TagInput.svelte';
-	import { theme, themeModes } from '../theme_store';
 	import ThemeColorSelector from './ThemeColorSelector.svelte';
 	import ThemeVarsSelector from './ThemeVarsSelector.svelte';
 	import Checkbox from '$liwe3/components/Checkbox.svelte';
+	import { storeTheme } from '../store.svelte';
+
+	const theme = storeTheme.mode;
+	const themeModes = storeTheme.modesAvailable();
 
 	const ranges = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50];
 	const fields: DataGridField[] = [
@@ -108,10 +110,10 @@
 	let showModal = $state(false);
 </script>
 
-<div class={`container liwe3-${$theme.theme}-theme`}>
+<div class={`container liwe3-${theme}-theme`}>
 	<div class="liwe3-row">
 		<div class="liwe3-col">
-			<h1>Theme Configurator {$theme.theme}</h1>
+			<h1>Theme Configurator {theme}</h1>
 		</div>
 	</div>
 	<ThemeColorSelector />
@@ -142,7 +144,7 @@
 							<div
 								class={val === 500 ? 'liwe3-col3' : 'liwe3-col1'}
 								style={`background-color: var(--liwe3-${
-									$theme.theme ? $theme.theme : 'dark'
+									theme ? theme : 'dark'
 								}-${name}-${val});`}
 							>
 								<div class="color-text"><p>{val}</p></div>
@@ -150,6 +152,24 @@
 						{/each}
 					</div>
 				{/each}
+					<div class="liwe3-row color">
+						<div class="liwe3-col12"><b>Paper</b></div>
+						<div class="liwe3-col3" style="background-color: var(--liwe3-lighter-paper);">
+							<div class="color-text">
+								<p>Lighter</p>
+							</div>
+						</div>
+						<div class="liwe3-col3" style="background-color: var(--liwe3-paper);">
+							<div class="color-text">
+								<p>Default</p>
+							</div>
+						</div>
+						<div class="liwe3-col3" style="background-color: var(--liwe3-darker-paper);">
+							<div class="color-text ">
+								<p>Darker</p>
+							</div>
+						</div>
+					</div>
 			</Tab>
 			<Tab id="buttons" title="Buttons">
 				<div class="liwe3-row color">
@@ -185,16 +205,21 @@
 						{/each}
 					</div>
 					<div class="liwe3-row">
-						{#each ['search', 'checkbox'] as type}
 							<Input
 								{mode}
 								divClass="liwe3-col2"
 								class=""
 								label="Input"
 								placeholder={mode}
-								{type}
+								type={'search'}
 							/>
-						{/each}
+							<Checkbox
+								{mode}
+								divClass="liwe3-col2"
+								class=""
+								label="Input"
+								placeholder={mode}
+							/>
 						<div class="liwe3-col2 p5">
 							<div class={`${mode} liwe3-form-switch liwe3-form-custom-switch`}>
 								<Checkbox id={`switch-${mode}`} />
@@ -257,26 +282,23 @@
 									<Select class="mode3" items={['mode1', 'mode2', 'mode3', 'mode4']} />
 								</div>
 								<div class="liwe3-col6">
-									<Input
+									<Checkbox
 										mode="mode3"
 										class=""
 										label="Subscribe to newsletter"
 										placeholder={mode}
-										type="checkbox"
 									/>
-									<Input
+									<Checkbox
 										mode="mode3"
 										class=""
 										label="I accept the terms and conditions"
 										placeholder={mode}
-										type="checkbox"
 									/>
-									<Input
+									<Checkbox
 										mode="mode3"
 										class=""
 										label="This is a checkbox"
 										placeholder={mode}
-										type="checkbox"
 									/>
 								</div>
 								<div class="liwe3-col6 input-container">

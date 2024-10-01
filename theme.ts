@@ -1,7 +1,7 @@
 import { rgbHexToInt } from '$liwe3/utils/utils';
 import chroma from 'chroma-js';
-import { theme, themeModeSet, themeSetModeColors, themeSetLayoutVars } from './theme_store';
-import { get } from 'svelte/store';
+//import { theme, themeModeSet, themeSetModeColors, themeSetLayoutVars } from './theme_store';
+import { storeTheme } from './store.svelte';
 import { browser } from '$app/environment';
 
 const CSS_ID_PREFIX = 'liwe3-colors-';
@@ -539,26 +539,27 @@ export const themeCreate = ( colorsDefinitions: ThemeColorsDefinitions ) => {
 };
 
 export const themeCreateDefault = ( themeData: ThemeDataType ) => {
-	const themeStore = get( theme );
+	const themeStore = storeTheme.theme;
 
 	if ( browser ) {
 		// check if the user has saved a theme in local storage
 		const lightTheme = localStorage.getItem( `liwe3-light-theme` );
 		if ( lightTheme )
-			themeSetModeColors( 'light', JSON.parse( lightTheme ) );
-		else if ( themeData.light ) themeSetModeColors( 'light', themeData.light );
+			storeTheme.setModeColors( 'light', JSON.parse( lightTheme ) );
+		else if ( themeData.light ) storeTheme.setModeColors( 'light', themeData.light );
 
 		const darkTheme = localStorage.getItem( `liwe3-dark-theme` );
 		if ( darkTheme )
-			themeSetModeColors( 'dark', JSON.parse( darkTheme ) );
-		else if ( themeData.dark ) themeSetModeColors( 'dark', themeData.dark );
+			storeTheme.setModeColors( 'dark', JSON.parse( darkTheme ) );
+		else if ( themeData.dark ) storeTheme.setModeColors( 'dark', themeData.dark );
 
 		const layoutVars = localStorage.getItem( `liwe3-layout-vars` );
 		if ( layoutVars )
-			themeSetLayoutVars( JSON.parse( layoutVars ) );
-		else if ( themeData.vars ) themeSetLayoutVars( themeData.vars );
+			storeTheme.setLayoutVars( JSON.parse( layoutVars ) );
+		else if ( themeData.vars ) storeTheme.setLayoutVars( themeData.vars );
 
-		const themeMode = localStorage.getItem( `liwe3-theme-mode` ) || themeData.mode || 'light';
+		let themeMode = localStorage.getItem( `liwe3-theme-mode` );
+		if ( !themeMode ) themeMode = themeData.mode || 'light';
 		themeSetMode( themeMode == 'dark' ? 'dark' : 'light' );
 
 		themeCreate( {
@@ -579,6 +580,6 @@ export const themeSetMode = ( mode: 'light' | 'dark' ) => {
 
 		localStorage.setItem( `liwe3-theme-mode`, mode );
 
-		themeModeSet( mode );
+		storeTheme.modeSet( mode );
 	}
 };

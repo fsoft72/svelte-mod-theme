@@ -110,7 +110,7 @@
 	let showModal = $state(false);
 </script>
 
-<div class={`container liwe3-${theme}-theme`}>
+<div class="container">
 	<div class="liwe3-row">
 		<div class="liwe3-col">
 			<h1>Theme Configurator {theme}</h1>
@@ -143,9 +143,7 @@
 						{#each ranges as val}
 							<div
 								class={val === 500 ? 'liwe3-col3' : 'liwe3-col1'}
-								style={`background-color: var(--liwe3-${
-									theme ? theme : 'dark'
-								}-${name}-${val});`}
+								style={`background-color: var(--liwe3-${name}-${val});`}
 							>
 								<div class="color-text"><p>{val}</p></div>
 							</div>
@@ -197,7 +195,6 @@
 							<Input
 								{mode}
 								divClass="liwe3-col2"
-								class=""
 								label="Input"
 								placeholder={mode}
 								{type}
@@ -208,7 +205,6 @@
 							<Input
 								{mode}
 								divClass="liwe3-col2"
-								class=""
 								label="Input"
 								placeholder={mode}
 								type={'search'}
@@ -216,7 +212,6 @@
 							<Checkbox
 								{mode}
 								divClass="liwe3-col2"
-								class=""
 								label="Input"
 								placeholder={mode}
 							/>

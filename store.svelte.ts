@@ -68,7 +68,7 @@ const themeLayoutUnits: Record<string, string> = {
 	'input-padding-x': 'rem'
 };
 
-const toLocaleStorage = ( key: string, value: Record<string, string> | string ) => {
+const toLocalStorage = ( key: string, value: Record<string, string> | string ) => {
 	if ( !browser )
 		return;
 	const stringValue = JSON.stringify( value );
@@ -122,7 +122,7 @@ export const storeTheme: StoreThemeType = $state( {
 	},
 	setModeColors: ( mode: ThemeModeType, color: Record<string, string> ) => {
 		storeTheme.theme[ mode ] = color;
-		toLocaleStorage( `liwe3-${ mode }-theme`, color );
+		toLocalStorage( `liwe3-${ mode }-theme`, color );
 	},
 	setModeColor: ( type: ThemeModeType, mode: string, color: string ) => {
 		if ( !storeTheme.theme[ type ][ mode ] ) {
@@ -131,7 +131,7 @@ export const storeTheme: StoreThemeType = $state( {
 		}
 		storeTheme.theme[ type ][ mode ] = color;
 		themeCreate( { [ type ]: storeTheme.theme[ type ] } );
-		toLocaleStorage( `liwe3-${ type }-theme`, storeTheme.theme[ type ] );
+		toLocalStorage( `liwe3-${ type }-theme`, storeTheme.theme[ type ] );
 	},
 	setLayoutVars: ( vars: Record<string, string> ) => {
 		if ( !storeTheme.theme.vars ) {
@@ -139,7 +139,7 @@ export const storeTheme: StoreThemeType = $state( {
 			return;
 		}
 		storeTheme.theme.vars = vars;
-		toLocaleStorage( 'liwe3-layout-vars', storeTheme.theme.vars );
+		toLocalStorage( 'liwe3-layout-vars', storeTheme.theme.vars );
 	},
 	setLayoutVar: ( name: string, value: string ) => {
 		if ( !storeTheme.theme.vars[ name ] ) {
@@ -148,12 +148,12 @@ export const storeTheme: StoreThemeType = $state( {
 		}
 		storeTheme.theme.vars[ name ] = value;
 		themeCreate( { vars: storeTheme.theme.vars } );
-		toLocaleStorage( 'liwe3-layout-vars', storeTheme.theme.vars );
+		toLocalStorage( 'liwe3-layout-vars', storeTheme.theme.vars );
 	},
 	resetLayoutVars: () => {
 		const vars = { ...defaultLayoutVars };
 		storeTheme.theme.vars = vars;
 		themeCreate( { vars: vars } );
-		toLocaleStorage( 'liwe3-layout-vars', vars );
+		toLocalStorage( 'liwe3-layout-vars', vars );
 	}
 } );

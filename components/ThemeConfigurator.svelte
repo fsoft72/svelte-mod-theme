@@ -22,7 +22,6 @@
 	import Checkbox from '$liwe3/components/Checkbox.svelte';
 	import { storeTheme } from '../store.svelte';
 
-	const theme = storeTheme.mode;
 	const themeModes = storeTheme.modesAvailable();
 
 	const ranges = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50];
@@ -113,7 +112,7 @@
 <div class="container">
 	<div class="liwe3-row">
 		<div class="liwe3-col">
-			<h1>Theme Configurator {theme}</h1>
+			<h1>Theme Configurator {storeTheme.mode}</h1>
 		</div>
 	</div>
 	<ThemeColorSelector />
@@ -150,24 +149,24 @@
 						{/each}
 					</div>
 				{/each}
-					<div class="liwe3-row color">
-						<div class="liwe3-col12"><b>Paper</b></div>
-						<div class="liwe3-col3" style="background-color: var(--liwe3-lighter-paper);">
-							<div class="color-text">
-								<p>Lighter</p>
-							</div>
-						</div>
-						<div class="liwe3-col3" style="background-color: var(--liwe3-paper);">
-							<div class="color-text">
-								<p>Default</p>
-							</div>
-						</div>
-						<div class="liwe3-col3" style="background-color: var(--liwe3-darker-paper);">
-							<div class="color-text ">
-								<p>Darker</p>
-							</div>
+				<div class="liwe3-row color">
+					<div class="liwe3-col12"><b>Paper</b></div>
+					<div class="liwe3-col3" style="background-color: var(--liwe3-lighter-paper);">
+						<div class="color-text">
+							<p>Lighter</p>
 						</div>
 					</div>
+					<div class="liwe3-col3" style="background-color: var(--liwe3-paper);">
+						<div class="color-text">
+							<p>Default</p>
+						</div>
+					</div>
+					<div class="liwe3-col3" style="background-color: var(--liwe3-darker-paper);">
+						<div class="color-text">
+							<p>Darker</p>
+						</div>
+					</div>
+				</div>
 			</Tab>
 			<Tab id="buttons" title="Buttons">
 				<div class="liwe3-row color">
@@ -192,29 +191,12 @@
 				{#each themeModes as mode}
 					<div class="liwe3-row">
 						{#each ['text', 'number', 'password', 'email', 'url', 'tel'] as type}
-							<Input
-								{mode}
-								divClass="liwe3-col2"
-								label="Input"
-								placeholder={mode}
-								{type}
-							/>
+							<Input {mode} divClass="liwe3-col2" label="Input" placeholder={mode} {type} />
 						{/each}
 					</div>
 					<div class="liwe3-row">
-							<Input
-								{mode}
-								divClass="liwe3-col2"
-								label="Input"
-								placeholder={mode}
-								type={'search'}
-							/>
-							<Checkbox
-								{mode}
-								divClass="liwe3-col2"
-								label="Input"
-								placeholder={mode}
-							/>
+						<Input {mode} divClass="liwe3-col2" label="Input" placeholder={mode} type={'search'} />
+						<Checkbox {mode} divClass="liwe3-col2" label="Input" placeholder={mode} />
 						<div class="liwe3-col2 p5">
 							<div class={`${mode} liwe3-form-switch liwe3-form-custom-switch`}>
 								<Checkbox id={`switch-${mode}`} />
@@ -289,12 +271,7 @@
 										label="I accept the terms and conditions"
 										placeholder={mode}
 									/>
-									<Checkbox
-										mode="mode3"
-										class=""
-										label="This is a checkbox"
-										placeholder={mode}
-									/>
+									<Checkbox mode="mode3" class="" label="This is a checkbox" placeholder={mode} />
 								</div>
 								<div class="liwe3-col6 input-container">
 									<label class="label" for="textarea1">Textarea</label>

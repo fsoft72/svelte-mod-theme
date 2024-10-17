@@ -4,6 +4,7 @@
 	import { downloadFile } from '$liwe3/utils/utils';
 	import { themeSetMode, exportThemeCss } from '../theme';
 	import { storeTheme } from '$modules/theme/store.svelte';
+	import ThemeColors from './ThemeColors.svelte';
 
 	const store = storeTheme;
 	const themeModes = storeTheme.modesAvailable();
@@ -38,37 +39,13 @@
 	<div class="liwe3-row">
 		<div class="liwe3-col4">
 			<div class="theme-selector">
-				<Checkbox
-					checked={store.mode === 'dark'}
-					onchange={(e: any) => setDarkMode(e.target?.checked)}
-					label="Dark mode"
-				/>
 				<Button mode="info" onclick={exportJSON}>Export JSON</Button>
 				<Button mode="info" onclick={exportCSS}>Export CSS</Button>
 			</div>
 		</div>
 		<div class="liwe3-col8 tweekers">
 			<div class="liwe3-row">
-				{#each themeModes as mode}
-					<div class="liwe3-col2">
-						<span>{mode} </span>
-						<span>
-							{#if store.mode === 'dark'}
-								<input
-									type="color"
-									onchange={(e: any) => setColor(mode, e.target?.value)}
-									value={store.theme.dark[mode]}
-								/>
-							{:else}
-								<input
-									type="color"
-									onchange={(e: any) => setColor(mode, e.target?.value)}
-									value={store.theme.light[mode]}
-								/>
-							{/if}
-						</span>
-					</div>
-				{/each}
+				<ThemeColors />
 			</div>
 		</div>
 	</div>

@@ -328,6 +328,7 @@ const injectColors = ( name: string, colors: Record<string, string> ) => {
 					--liwe3-form-radius: var(--liwe3-border-radius);
 				}
 				.liwe3-form-radio-group {
+					border-radius: var(--liwe3-border-radius);
 					max-width: fit-content;
 				}
 				.svelte-select {

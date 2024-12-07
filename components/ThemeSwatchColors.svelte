@@ -78,7 +78,7 @@
         const x = Math.cos(angle) * radius;
         const y = Math.sin(angle) * radius;
         const bgColor = storeTheme.mode === 'dark' ? storeTheme.theme.dark[mode] : storeTheme.theme.light[mode];
-        return `top: calc(50% + ${y}px); left: calc(50% + ${x}px); background-color: ${bgColor}`;
+        return `top: calc(42% + ${y}px); left: calc(42% + ${x}px); background-color: ${bgColor}`;
     };
 
     const calcValuesPosition = (idx: number): string => {
@@ -86,7 +86,7 @@
         const radius = 75;
         const x = Math.cos(angle) * radius;
         const y = Math.sin(angle) * radius;
-        return `top: calc(50% + ${y}px); left: calc(50% + ${x}px);`;
+        return `top: calc(42% + ${y}px); left: calc(30% + ${x}px);`;
     };
 
     const closeSwatch = () => {
@@ -117,6 +117,7 @@
 />
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="themeswatch" bind:this={swatch} onmousedown={startDrag} >
+    <div class="themeswatch-close-bg" class:closed={!isOpen}></div>
     <div class="themeswatch-close" class:closed={!isOpen}>
         {#if (isOpen)}
             <button class="btn-close" onclick={closeSwatch} aria-label="Close theme swatch">
@@ -218,6 +219,15 @@
 		z-index: 1000;
         transition: all 0.3s ease-in-out;
 
+        .themeswatch-close-bg {
+            position: absolute;
+            top: 31%;
+            left: 51%;
+            width: 45px;
+            height: 45px;
+            background-color: var(--liwe3-darker-paper);
+            border-radius: 50%;
+        }
         .themeswatch-close {
             display: flex;
             justify-content: center;
@@ -256,10 +266,10 @@
             }
         }
 
+        .themeswatch-close-bg.closed,
         .themeswatch-close.closed {
-            position: relative;
-            top: 0;
-            left: 0;
+            top: 13px;
+            left: 13px;
         }
 
         .control {
@@ -284,10 +294,9 @@
             position: absolute;
             width: 300px;
             height: 300px;
-            min-width: 300px;
-            min-height: 300px;
-            top: -15px;
-            left: -15px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
 		}
 
 		.swatch {
@@ -312,12 +321,11 @@
 
 		.values-container {
             position: absolute;
-            width: 250px;
-            height: 250px;
-            min-width: 250px;
-            min-height: 250px;
-            top: 18px;
-            left: -5px;
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
 		}
 
         .values {

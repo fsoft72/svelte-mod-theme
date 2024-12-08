@@ -4,9 +4,10 @@
 	interface ThemeSwitcherProps {
 		lightTheme?: string;
 		darkTheme?: string;
+		onclick?: (theme: string, e: any) => void;
 	}
 
-	let { lightTheme = 'liwe3-light-theme', darkTheme = 'liwe3-dark-theme' }: ThemeSwitcherProps =
+	let { lightTheme = 'liwe3-light-theme', darkTheme = 'liwe3-dark-theme', onclick }: ThemeSwitcherProps =
 		$props();
 
 	let is_dark = $state(false);
@@ -30,6 +31,8 @@
 		classes.splice(classes.indexOf(fromClass), 1);
 		// add the new theme
 		classes.push(toClass);
+
+		onclick && onclick(toClass, e);
 
 		body?.setAttribute('class', classes.join(' '));
 	};

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Checkbox from '$liwe3/components/Checkbox.svelte';
 	import Input from '$liwe3/components/Input.svelte';
+    import ThemeSwitcher from './ThemeSwitcher.svelte';
 	import { themeSetMode } from '../theme';
 	import { storeTheme } from '$modules/theme/store.svelte';
     import { onMount } from 'svelte';
@@ -14,12 +14,14 @@
 
     let isDragging:boolean = $state(false);
     let isOpen:boolean = $state(true);
+
     let offset:{x:number, y:number} = {x: 0, y: 0};
-
     let swatch:HTMLDivElement;
-    const pageBody = document.querySelector('body');
 
-    const layoutUnits = [ 'font-size', 'font-weight', 'border-radius', 'border-width' ];
+    const pageBody = document.querySelector('body');
+    const lightTheme = 'liwe3-light-theme';
+    const darkTheme = 'liwe3-dark-theme';
+    const shownLayoutUnits = [ 'font-size', 'font-weight', 'border-radius', 'border-width' ];
 
 
     const startDrag = (e:MouseEvent) => {
@@ -67,11 +69,6 @@
 		storeTheme.setModeColor(storeTheme.mode, mode, color);
 	};
 
-	const setDarkMode = (darkMode: boolean) => {
-		storeTheme.setDarkMode(darkMode);
-		themeSetMode(darkMode ? 'dark' : 'light');
-	};
-
     const calcSwatchPosition = (idx: number, mode: string): string => {
         const angle = (idx / themeModes.length) * 360 * (Math.PI / 180);
         const radius = 140;
@@ -82,7 +79,7 @@
     };
 
     const calcValuesPosition = (idx: number): string => {
-        const angle = (idx / layoutUnits.length) * 360 * (Math.PI / 180);
+        const angle = (idx / shownLayoutUnits.length) * 360 * (Math.PI / 180);
         const radius = 75;
         const x = Math.cos(angle) * radius;
         const y = Math.sin(angle) * radius;
@@ -90,25 +87,30 @@
     };
 
     const closeSwatch = () => {
-        const closeStyle = { width: '80px', height: '80px', rotate: '270deg' };
+        const closeStyle = { width: '80px', height: '80px', rotate: '270deg', boxShadow: '-3px 8px 12px 2px rgba(0, 0, 0, 0.5)' };
+
         swatch.style.rotate = closeStyle.rotate;
         swatch.style.width = closeStyle.width;
         swatch.style.height = closeStyle.height;
+        swatch.style.boxShadow = closeStyle.boxShadow;
         isOpen = false;
     };
 
-    const openSwatch = () => {
-        const startStyle = { left: '400px', top: '400px', width: '340px', height: '340px', rotate: '0deg' };
-        swatch.style.left = startStyle.left;
-        swatch.style.top = startStyle.top;
+    const openSwatch = ( init?: boolean ) => {
+        const startStyle = { left: '400px', top: '400px', width: '340px', height: '340px', rotate: '0deg', boxShadow: '3px 8px 12px 2px rgba(0, 0, 0, 0.5)' };
+        if( init ) {
+            swatch.style.left = startStyle.left;
+            swatch.style.top = startStyle.top;
+        }
         swatch.style.width = startStyle.width;
         swatch.style.height = startStyle.height;
         swatch.style.rotate = startStyle.rotate;
+        swatch.style.boxShadow = startStyle.boxShadow;
         isOpen = true;
     };
 
     onMount(() => {
-        openSwatch();
+        openSwatch( true);
     });
 </script>
 <svelte:window
@@ -117,6 +119,9 @@
 />
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="themeswatch" bind:this={swatch} onmousedown={startDrag} >
+    <div class="themeswatch-switcher" class:closed={!isOpen}>
+        <ThemeSwitcher onclick={(theme, e ) => themeSetMode( theme === darkTheme ? 'dark' : 'light' ) }/>
+    </div>
     <div class="themeswatch-close-bg" class:closed={!isOpen}></div>
     <div class="themeswatch-close" class:closed={!isOpen}>
         {#if (isOpen)}
@@ -124,7 +129,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
             </button>
         {:else}
-            <button class="btn-open" onclick={openSwatch} aria-label="Open theme swatch">
+            <button class="btn-open" onclick={() => openSwatch()} aria-label="Open theme swatch">
                 <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"><path d="M200-200v-240h80v160h160v80H200Zm480-320v-160H520v-80h240v240h-80Z"/></svg>
             </button>
         {/if}
@@ -160,7 +165,7 @@
 		{/each}
     </div>
 	<div class="values-container">
-        {#each layoutUnits as rule, idx}
+        {#each shownLayoutUnits as rule, idx}
             <div class="values" style={`${calcValuesPosition(idx)}`}>
                     {#if ['rem', 'number'].includes(themeLayoutUnits[rule])}
                         <Input
@@ -216,8 +221,24 @@
         border: 10px solid var(--liwe3-darker-paper);
 		background-color: var(--liwe3-paper);
 		overflow: hidden;
-		z-index: 1000;
+        box-shadow: 3px 8px 12px 2px rgba(0, 0, 0, 0.5);
+		z-index: 9998;
         transition: all 0.3s ease-in-out;
+
+        .themeswatch-switcher {
+            display: block;
+            position: absolute;
+            top: 56%;
+            left: 30%;
+            padding: 5px 8px;
+            background-color: var(--liwe3-darker-paper);
+            border-radius: 15px;
+            z-index: 9999;
+        }
+
+        .themeswatch-switcher.closed {
+            display: none;
+        }
 
         .themeswatch-close-bg {
             position: absolute;
@@ -241,7 +262,7 @@
             background-color: var(--liwe3-accent-color);
             border-radius: 50%;
             fill: var(--liwe3-paper);
-            z-index: 1002;
+            z-index: 9999;
 
             .btn-close {
                 display: flex;

@@ -4,7 +4,6 @@
 	import { themeSetMode } from '../theme';
 	import { storeTheme } from '$modules/theme/store.svelte';
     import { onMount } from 'svelte';
-	import { page } from '$app/stores';
 
 	type AllowedUnits = 'px' | 'rem' | '%' | 'number' | 'string';
 
@@ -44,7 +43,7 @@
     const endDrag = () => {
         if ( pageBody ) pageBody.style.userSelect = 'auto';
         isDragging = false;
-    };
+    }
 
 	const formatValue = {
 		clean: (name: string, value: string) => {
@@ -97,6 +96,9 @@
     };
 
     const openSwatch = ( init?: boolean ) => {
+
+        if( isDragging ) return;
+
         const startStyle = { left: '400px', top: '400px', width: '340px', height: '340px', rotate: '0deg', boxShadow: '3px 8px 12px 2px rgba(0, 0, 0, 0.5)' };
         if( init ) {
             swatch.style.left = startStyle.left;
@@ -110,7 +112,7 @@
     };
 
     onMount(() => {
-        openSwatch( true);
+        openSwatch( true );
     });
 </script>
 <svelte:window
@@ -223,7 +225,15 @@
 		overflow: hidden;
         box-shadow: 3px 8px 12px 2px rgba(0, 0, 0, 0.5);
 		z-index: 9998;
-        transition: all 0.3s ease-in-out;
+        transition:
+            width  0.3s ease-in-out,
+            height  0.3s ease-in-out,
+            transform  0.3s ease-in-out,
+            rotate  0.3s ease-in-out,
+            box-shadow  0.3s ease-in-out,
+            top 0.05s linear,
+            left 0.05s linear
+        ;
 
         .themeswatch-switcher {
             display: block;

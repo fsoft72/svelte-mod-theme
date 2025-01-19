@@ -1076,15 +1076,15 @@ button:hover:not(:disabled) {
 }
 
 .liwe3-p2 {
-  padding: var(--liwe3-space-1) !important;
+  padding: var(--liwe3-space-2) !important;
 }
 
 .liwe3-p3 {
-  padding: var(--liwe3-space-1) !important;
+  padding: var(--liwe3-space-3) !important;
 }
 
 .liwe3-p4 {
-  padding: var(--liwe3-space-1) !important;
+  padding: var(--liwe3-space-4) !important;
 }
 
 .liwe3-m1 {
@@ -1092,15 +1092,15 @@ button:hover:not(:disabled) {
 }
 
 .liwe3-m2 {
-  padding: var(--liwe3-space-1) !important;
+  padding: var(--liwe3-space-2) !important;
 }
 
 .liwe3-m3 {
-  padding: var(--liwe3-space-1) !important;
+  padding: var(--liwe3-space-3) !important;
 }
 
 .liwe3-m4 {
-  padding: var(--liwe3-space-1) !important;
+  padding: var(--liwe3-space-4) !important;
 }
 
 .liwe3-p1,
@@ -1108,13 +1108,13 @@ button:hover:not(:disabled) {
 .liwe3-p3,
 .liwe3-p4 {
   &.x {
-    padding: var(--liwe3-space-1) !important;
-    padding: var(--liwe3-space-1) !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
   }
 
   &.y {
-    padding: var(--liwe3-space-1) !important;
-    padding: var(--liwe3-space-1) !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
 }
 

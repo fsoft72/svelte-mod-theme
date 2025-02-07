@@ -33,14 +33,33 @@
 		const css = exportThemeCss();
 		downloadFile(css, 'theme.css', 'text/css');
 	};
+
+	const clearStorege = () => {
+		if (confirm('Are you sure you want to clear the storage?')) {
+			window.localStorage.removeItem('liwe3-layout-vars');
+			window.localStorage.removeItem('liwe3-dark-theme');
+			window.localStorage.removeItem('liwe3-light-theme');
+			window.localStorage.removeItem('liwe3-theme-mode');
+			location.reload();
+		}
+	};
 </script>
 
 <div class="container">
 	<div class="liwe3-row">
 		<div class="liwe3-col4">
-			<div class="theme-selector">
-				<Button mode="info" onclick={exportJSON}>Export JSON</Button>
-				<Button mode="info" onclick={exportCSS}>Export CSS</Button>
+			<div class="liwe3-row">
+				<div class="liwe3-col12">
+					<div class="theme-selector">
+						<Button mode="info" onclick={exportJSON}>Export JSON</Button>
+						<Button mode="info" onclick={exportCSS}>Export CSS</Button>
+					</div>
+				</div>
+				<div class="liwe3-col12">
+					<div class="theme-selector liwe3-m4">
+						<Button mode="warning" onclick={clearStorege}>Clear storage</Button>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="liwe3-col8 tweekers">

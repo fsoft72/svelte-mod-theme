@@ -34,7 +34,7 @@
 		downloadFile(css, 'theme.css', 'text/css');
 	};
 
-	const clearStorege = () => {
+	const clearLocalStorage = () => {
 		if (confirm('Are you sure you want to clear the storage?')) {
 			window.localStorage.removeItem('liwe3-layout-vars');
 			window.localStorage.removeItem('liwe3-dark-theme');
@@ -57,7 +57,7 @@
 				</div>
 				<div class="liwe3-col12">
 					<div class="theme-selector liwe3-m4">
-						<Button mode="warning" onclick={clearStorege}>Clear storage</Button>
+						<Button mode="warning" onclick={clearLocalStorage}>Clear storage</Button>
 					</div>
 				</div>
 			</div>

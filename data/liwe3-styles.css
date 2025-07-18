@@ -1,9 +1,18 @@
-@import url('./liwe3-theme.css');
-/*@import url('./liwe3-colors.css');*/
-@import url('./liwe3-grid.css');
-@import url('./liwe3-typography.css');
-@import url('./liwe3-forms.css');
-@import url('./liwe3-buttons.css');
+/*
+  This is the main CSS file for the Liwe3 theme.
+  It imports other CSS files that define colors, grid, typography, forms, and buttons.
+  The goal is to keep the main file clean and modular by separating concerns into different files.
+  The other modules can be imported as needed, but they must be in this order to ensure proper styling.
+  1. liwe3-fonts.css - defines the font faces used in the theme.
+  2. liwe3-theme.css - defines the overall theme styles, including colors and spacing.
+  4. liwe3-typography.css - defines typography styles, including headings and body text.
+  3. liwe3-grid.css - defines the grid system used for layout.
+  5. liwe3-forms.css - defines styles for form elements like inputs, selects, and textareas.
+  6. liwe3-buttons.css - defines styles for buttons, including primary, secondary, and disabled states.
+  * Presets - defines a set of predefined styles that can be applied to components.*
+  7. liwe3-buttons-preset.css - defines a set of predefined button styles that can be applied to buttons.
+  8. liwe3-colors-presets.css - defines a set of predefined color schemes that can be applied to components.
+*/
 
 /* Base HTML / body styles */
 html {

@@ -895,3 +895,59 @@ input[type=color].liwe3-form:focus-visible {
     opacity: 0.5;
     pointer-events: none;
 }
+
+.liwe3-light-theme {
+    --liwe3-form-border-width-focus: calc(var(--liwe3-border-width)*2);
+    --liwe3-form-bg: var(--liwe3-light-mode3);
+    --liwe3-form-text-color: var(--liwe3-light-mode3-500-text);
+    --liwe3-form-accent: var(--liwe3-light-mode4);
+    --liwe3-form-accent-color: var(--liwe3-light-mode4-700);
+    --liwe3-form-border-color: var(--liwe3-light-mode3-200-border);
+    --liwe3-form-focus-bg: var(--liwe3-light-mode3-500-hover);
+    --liwe3-form-error: var(--liwe3-light-error-500);
+
+    /* Custom switch */
+    .liwe3-form-custom-switch {
+        --liwe3-form-text-placeholder-color: var(--liwe3-light-mode3-700-text);
+        --liwe3-form-radius: var(--liwe3-border-radius);
+    }
+
+    .liwe3-form-custom-btn {
+        --liwe3-form-btn-primary: var(--liwe3-light-mode3);
+        --liwe3-form-btn-default-text: var(--liwe3-light-mode3-500-text);
+        --liwe3-form-radius: var(--liwe3-border-radius);
+    }
+
+    .liwe3-form-radio-group {
+        border-radius: var(--liwe3-border-radius);
+        max-width: fit-content;
+    }
+}
+
+.liwe3-dark-theme {
+    --liwe3-form-border-width-focus: calc(var(--liwe3-border-width)*2);
+    --liwe3-form-bg: var(--liwe3-dark-mode3);
+    --liwe3-form-text-color: var(--liwe3-dark-mode3-500-text);
+    --liwe3-form-accent: var(--liwe3-dark-mode4);
+    --liwe3-form-accent-color: var(--liwe3-dark-mode4-700);
+    --liwe3-form-border-color: var(--liwe3-dark-mode3-200-border);
+    --liwe3-form-focus-bg: var(--liwe3-dark-mode3-500-hover);
+    --liwe3-form-error: var(--liwe3-dark-error-500);
+
+    /* Custom switch */
+    .liwe3-form-custom-switch {
+        --liwe3-form-text-placeholder-color: var(--liwe3-dark-mode3-700-text);
+        --liwe3-form-radius: var(--liwe3-border-radius);
+    }
+
+    .liwe3-form-custom-btn {
+        --liwe3-form-btn-primary: var(--liwe3-dark-mode3);
+        --liwe3-form-btn-default-text: var(--liwe3-dark-mode3-500-text);
+        --liwe3-form-radius: var(--liwe3-border-radius);
+    }
+
+    .liwe3-form-radio-group {
+        border-radius: var(--liwe3-border-radius);
+        max-width: fit-content;
+    }
+}

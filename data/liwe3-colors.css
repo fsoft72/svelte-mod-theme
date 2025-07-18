@@ -1,0 +1,182 @@
+/* colors */
+.liwe3-bg-main {
+    background-color: var(--liwe3-main-bg-color) !important;
+}
+
+.liwe3-bg-primary {
+    background-color: var(--liwe3-primary-color) !important;
+}
+
+.liwe3-bg-primary-dark {
+    background-color: var(--liwe3-darker-primary-color) !important;
+}
+
+.liwe3-bg-primary-light {
+    background-color: var(--liwe3-lighter-primary-color) !important;
+}
+
+.liwe3-bg-primary-comp {
+    background-color: var(--liwe3-comp-primary-color) !important;
+}
+
+.liwe3-bg-secondary {
+    background-color: var(--liwe3-secondary-color) !important;
+}
+
+.liwe3-bg-secondary-dark {
+    background-color: var(--liwe3-darker-secondary-color) !important;
+}
+
+.liwe3-bg-secondary-light {
+    background-color: var(--liwe3-lighter-secondary-color) !important;
+}
+
+.liwe3-bg-secondary-comp {
+    background-color: var(--liwe3-comp-secondary-color) !important;
+}
+
+.liwe3-bg-light {
+    background-color: var(--liwe3-lighter-secondary-color) !important;
+}
+
+.liwe3-bg-success {
+    background-color: var(--liwe3-success-color) !important;
+}
+
+.liwe3-bg-danger {
+    background-color: var(--liwe3-error-color) !important;
+}
+
+.liwe3-bg-warning {
+    background-color: var(--liwe3-warning-color) !important;
+}
+
+.liwe3-bg-info {
+    background-color: var(--liwe3-info-color) !important;
+}
+
+.liwe3-bg-light {
+    background-color: var(--liwe3-light-color) !important;
+}
+
+.liwe3-bg-dark {
+    background-color: var(--liwe3-dark-color) !important;
+}
+
+.liwe3-bg-alternative {
+    background-color: var(--liwe3-alternative-color) !important;
+}
+
+.liwe3-txt-primary {
+    color: var(--liwe3-primary-color) !important;
+}
+
+.liwe3-txt-primary-dark {
+    color: var(--liwe3-darker-primary-color) !important;
+}
+
+.liwe3-txt-primary-light {
+    color: var(--liwe3-lighter-primary-color) !important;
+}
+
+.liwe3-txt-primary-comp {
+    color: var(--liwe3-comp-primary-color) !important;
+}
+
+.liwe3-txt-secondary {
+    color: var(--liwe3-secondary-color) !important;
+}
+
+.liwe3-txt-secondary-dark {
+    color: var(--liwe3-darker-secondary-color) !important;
+}
+
+.liwe3-txt-secondary-light {
+    color: var(--liwe3-lighter-secondary-color) !important;
+}
+
+.liwe3-txt-secondary-comp {
+    color: var(--liwe3-comp-secondary-color) !important;
+}
+
+.liwe3-txt-light {
+    color: var(--liwe3-light-color) !important;
+}
+
+.liwe3-txt-dark {
+    color: var(--liwe3-dark-color) !important;
+}
+
+.liwe3-txt-success {
+    color: var(--liwe3-success-color) !important;
+}
+
+.liwe3-txt-error,
+.liwe3-txt-danger {
+    color: var(--liwe3-error-color) !important;
+}
+
+.liwe3-txt-warning {
+    color: var(--liwe3-warning-color) !important;
+}
+
+.liwe3-txt-info {
+    color: var(--liwe3-info-color) !important;
+}
+
+.liwe-txt-alternative {
+    color: var(--liwe3-alternative-color) !important;
+}
+
+.liwe3-paper {
+    background-color: var(--liwe3-paper);
+    color: var(--liwe3-color);
+    padding: var(--liwe3-space-3);
+    border-radius: var(--liwe3-border-radius);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.liwe3-scheme-primary {
+    background-color: var(--liwe3-primary-color);
+    color: var(--liwe3-default-color);
+}
+
+.liwe3-scheme-secondary {
+    background-color: var(--liwe3-secondary-color);
+    color: var(--liwe3-default-color);
+}
+
+.liwe3-scheme-success {
+    background-color: var(--liwe3-success-color);
+    color: var(--liwe3-secondary-color);
+}
+
+.liwe3-scheme-danger {
+    background-color: var(--liwe3-error-color);
+    color: var(--liwe3-default-color);
+}
+
+.liwe3-scheme-warning {
+    background-color: var(--liwe3-warning-color);
+    color: var(--liwe3-default-color);
+}
+
+.liwe3-scheme-info {
+    background-color: var(--liwe3-info-color);
+    color: var(--liwe3-default-color);
+}
+
+.liwe3-scheme-dark {
+    background-color: var(--liwe3-dark-color);
+    color: var(--liwe3-light-color);
+}
+
+.liwe3-scheme-light {
+    background-color: var(--liwe3-light-color);
+    color: var(--liwe3-dark-color);
+}
+
+.liwe3-scheme-alternative {
+    background-color: var(--liwe3-alternative-color);
+    color: var(--liwe3-default-color);
+}

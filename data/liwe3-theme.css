@@ -1,0 +1,195 @@
+@font-face {
+    src: url("/fonts/Roboto/Roboto-Regular.ttf");
+    font-family: 'Primary';
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    src: url("/fonts/Roboto/Roboto-Bold.ttf");
+    font-family: 'Primary';
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    src: url("/fonts/Roboto/Roboto-Italic.ttf");
+    font-family: 'Primary';
+    font-style: italic;
+    font-weight: 400;
+}
+
+@font-face {
+    src: url("/fonts/Roboto/Roboto-Medium.ttf");
+    font-family: 'Secondary';
+    font-style: normal;
+    font-weight: 400 700;
+}
+
+:root {
+    --liwe3-main-font-family: Primary;
+    --liwe3-font-family: var(--liwe3-main-font-family);
+    --liwe3-secondary-font-family: Secondary;
+    --liwe3-space-1: 0.25rem;
+    --liwe3-space-2: 0.5rem;
+    --liwe3-space-3: 1rem;
+    --liwe3-space-4: 2rem;
+    --liwe3-breakpoint-xs: 0;
+    --liwe3-breakpoint-sm: 640px;
+    --liwe3-breakpoint-md: 768px;
+    --liwe3-breakpoint-lg: 1024px;
+    --liwe3-breakpoint-xl: 1280px;
+    --liwe3-breakpoint-xxl: 1536px;
+    --liwe3-breakpoint-4k: 1930px;
+    --liwe3-font-weight: 400;
+    --liwe3-font-size: 20px;
+    --liwe3-border-radius: 0.15rem;
+    --liwe3-border-width: 1px;
+    --liwe3-border-style: solid;
+    --liwe3-button-padding-y: 0.25rem;
+    --liwe3-button-padding-x: 0.1rem;
+    --liwe3-input-padding-y: 0.15rem;
+    --liwe3-input-padding-x: 0.15rem;
+    --liwe3-form-checkbox-width: 26px;
+    /* open-props */
+    --radius-1: var(--liwe3-border-radius);
+    --radius-2: calc(var(--liwe3-border-radius) * 2);
+    --radius-3: calc(var(--liwe3-border-radius) * 3);
+    --radius-4: calc(var(--liwe3-border-radius) * 4);
+    --radius-5: calc(var(--liwe3-border-radius) * 5);
+    --radius-6: calc(var(--liwe3-border-radius) * 6);
+    --border-size-1: var(--liwe3-border-width);
+    --border-size-2: calc(var(--liwe3-border-width) * 2);
+    --border-size-3: calc(var(--liwe3-border-width) * 3);
+    --font-size-1: var(--liwe3-font-size);
+    --font-size-2: calc(var(--liwe3-font-size) * 1.2);
+    --font-size-3: calc(var(--liwe3-font-size) * 1.4);
+    --font-size-4: calc(var(--liwe3-font-size) * 1.6);
+    --font-size-5: calc(var(--liwe3-font-size) * 1.8);
+    --font-size-6: calc(var(--liwe3-font-size) * 2);
+    --font-size-7: calc(var(--liwe3-font-size) * 2.2);
+    --font-size-8: calc(var(--liwe3-font-size) * 2.4);
+}
+
+.liwe3-light-theme {
+    /* default values */
+    --liwe3-primary-color: var(--liwe3-light-mode1-500);
+    --liwe3-lighter-primary-color: var(--liwe3-light-mode1-300);
+    --liwe3-darker-primary-color: var(--liwe3-light-mode1-700);
+    --liwe3-secondary-color: var(--liwe3-light-mode2-500);
+    --liwe3-lighter-secondary-color: var(--liwe3-light-mode2-300);
+    --liwe3-darker-secondary-color: var(--liwe3-light-mode2-700);
+    --liwe3-tertiary-color: var(--liwe3-light-mode3-500);
+    --liwe3-lighter-tertiary-color: var(--liwe3-light-mode3-300);
+    --liwe3-darker-tertiary-color: var(--liwe3-light-mode3-700);
+    --liwe3-accent-color: var(--liwe3-light-mode4-500);
+    --liwe3-lighter-accent-color: var(--liwe3-light-mode4-300);
+    --liwe3-darker-accent-color: var(--liwe3-light-mode4-700);
+    --liwe3-background: var(--liwe3-light-background-color);
+    --liwe3-color: var(--liwe3-light-text-color);
+    --liwe3-link-color: var(--liwe3-light-link-color);
+    --liwe3-link-hover-color: var(--liwe3-light-link-500-hover);
+    --liwe3-link-active-color: var(--liwe3-light-link-500-active);
+    --liwe3-link-visited-color: var(--liwe3-light-link-500-active);
+    --liwe3-link-disabled-color: var(--liwe3-light-link-500-disabled);
+    --liwe3-info-color: var(--liwe3-light-info);
+    --liwe3-success-color: var(--liwe3-light-success);
+    --liwe3-warning-color: var(--liwe3-light-warning);
+    --liwe3-error-color: var(--liwe3-light-error);
+    --liwe3-paper: var(--liwe3-light-mode3-400);
+    --liwe3-lighter-paper: var(--liwe3-light-mode3-200);
+    --liwe3-darker-paper: var(--liwe3-light-mode3-500);
+    --liwe3-border-color: var(--liwe3-light-mode1-500-border);
+
+    .table,
+    .liwe3-light-tabs {
+        --table-font-size: 0.8rem;
+        --table-font-family: var(--liwe3-main-font-family);
+        --shadow: var(--liwe3-light-dark-800);
+    }
+
+    .liwe3-tabs {
+        min-width: 100%;
+        min-height: 100%;
+
+        .mode1 {
+            --paper: var(--liwe3-light-mode1-50);
+            --label: var(--liwe3-light-mode1-50-text);
+        }
+
+        .mode2 {
+            --paper: var(--liwe3-light-mode2-50);
+            --label: var(--liwe3-light-mode2-50-text);
+        }
+
+        .mode3 {
+            --paper: var(--liwe3-light-mode3-50);
+            --label: var(--liwe3-light-mode3-50-text);
+        }
+
+        .mode4 {
+            --paper: var(--liwe3-light-mode4-50);
+            --label: var(--liwe3-light-mode4-50-text);
+        }
+    }
+}
+
+.liwe3-dark-theme {
+    /* default values */
+    --liwe3-primary-color: var(--liwe3-dark-mode1-500);
+    --liwe3-lighter-primary-color: var(--liwe3-dark-mode1-300);
+    --liwe3-darker-primary-color: var(--liwe3-dark-mode1-700);
+    --liwe3-secondary-color: var(--liwe3-dark-mode2-500);
+    --liwe3-lighter-secondary-color: var(--liwe3-dark-mode2-300);
+    --liwe3-darker-secondary-color: var(--liwe3-dark-mode2-700);
+    --liwe3-tertiary-color: var(--liwe3-dark-mode3-500);
+    --liwe3-lighter-tertiary-color: var(--liwe3-dark-mode3-300);
+    --liwe3-darker-tertiary-color: var(--liwe3-dark-mode3-700);
+    --liwe3-accent-color: var(--liwe3-dark-mode4-500);
+    --liwe3-lighter-accent-color: var(--liwe3-dark-mode4-300);
+    --liwe3-darker-accent-color: var(--liwe3-dark-mode4-700);
+    --liwe3-background: var(--liwe3-dark-background-color);
+    --liwe3-color: var(--liwe3-dark-text-color);
+    --liwe3-link-color: var(--liwe3-dark-link-color);
+    --liwe3-link-hover-color: var(--liwe3-dark-link-500-hover);
+    --liwe3-link-active-color: var(--liwe3-dark-link-500-active);
+    --liwe3-link-visited-color: var(--liwe3-dark-link-500-active);
+    --liwe3-link-disabled-color: var(--liwe3-dark-link-500-disabled);
+    --liwe3-info-color: var(--liwe3-dark-info);
+    --liwe3-success-color: var(--liwe3-dark-success);
+    --liwe3-warning-color: var(--liwe3-dark-warning);
+    --liwe3-error-color: var(--liwe3-dark-error);
+    --liwe3-paper: var(--liwe3-dark-mode3-400);
+    --liwe3-lighter-paper: var(--liwe3-dark-mode3-200);
+    --liwe3-darker-paper: var(--liwe3-dark-mode3-500);
+    --liwe3-border-color: var(--liwe3-dark-mode1-500-border);
+
+    .table,
+    .liwe3-dark-tabs {
+        --table-font-size: 0.8rem;
+        --table-font-family: var(--liwe3-main-font-family);
+        --shadow: var(--liwe3-dark-dark-800);
+    }
+
+    .liwe3-tabs {
+        .mode1 {
+            --paper: var(--liwe3-dark-mode1-50);
+            --label: var(--liwe3-dark-mode1-50-text);
+        }
+
+        .mode2 {
+            --paper: var(--liwe3-dark-mode2-50);
+            --label: var(--liwe3-dark-mode2-50-text);
+        }
+
+        .mode3 {
+            --paper: var(--liwe3-dark-mode3-50);
+            --label: var(--liwe3-dark-mode3-50-text);
+        }
+
+        .mode4 {
+            --paper: var(--liwe3-dark-mode4-50);
+            --label: var(--liwe3-dark-mode4-50-text);
+        }
+    }
+}

@@ -1,0 +1,897 @@
+/* FORMS ELEMENTS */
+/* base styles for forms elements */
+input {
+    font-size: var(--liwe3-font-size);
+    font-weight: var(--liwe3-font-weight);
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-align: left;
+}
+
+input::placeholder {
+    font-size: 1rem;
+    font-weight: var(--liwe3-font-weight);
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-align: left;
+}
+
+button {
+    padding: var(--liwe3-button-padding-y) var(--liwe3-button-padding-x);
+    border-width: var(--liwe3-border-width);
+    border-style: var(--liwe3-border-style);
+    border-color: var(--liwe3-button-border);
+    border-radius: var(--liwe3-border-radius);
+    background-color: var(--liwe3-button-background);
+    /*color: var(--liwe3-button-color);*/
+    font-size: var(--liwe3-font-size);
+    user-select: none;
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+    filter: brightness(0.9);
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--liwe3-button-hover);
+    color: var(--liwe3-button-color);
+}
+
+/* liwe3-form styles */
+.liwe3-form-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.liwe3-form-hint {
+    display: none;
+    font-size: 0.875rem;
+    font-weight: var(--liwe3-font-weight);
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-align: left;
+    color: var(--liwe3-light-color);
+}
+
+.liwe3-form-hint.show {
+    display: block;
+}
+
+.hide-input,
+.radio-group input[type=radio],
+.liwe3-form-switch input[type=checkbox] {
+    position: absolute;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    overflow: hidden;
+    box-shadow: unset !important;
+}
+
+.hide-input:focus,
+.radio-group input[type=radio]:focus,
+.liwe3-form-switch input[type=checkbox]:focus {
+    box-shadow: unset !important;
+}
+
+/* form input types selector */
+.liwe3-form-container input:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file]),
+.liwe3-form-container select,
+.liwe3-form-container select[multiple],
+.liwe3-form-container textarea,
+.liwe3-form:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file],
+    select[multiple],
+    textarea,
+    select,
+    input[list]) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: unset;
+    font-size: clamp(12px, var(--liwe3-font-size), 20px);
+    min-height: clamp(10px, (var(--liwe3-font-size)), 60px);
+    border-radius: var(--liwe3-border-radius);
+    /*padding: var(--liwe3-input-padding-y) calc(var(--liwe3-input-padding-y) * 3);*/
+    padding: var(--liwe3-input-padding-y) var(--liwe3-input-padding-x);
+    padding-block: clamp(1px, var(--liwe3-input-padding-y) * 2.5, 15px);
+    /*padding-inline: clamp(5px, var(--liwe3-input-padding-y) * 4, 20px);*/
+    padding-inline: clamp(5px, var(--liwe3-input-padding-x) * 4, 50px);
+    color: var(--liwe3-form-text-color);
+    background-color: var(--liwe3-form-bg);
+    box-shadow: 0 0 0 var(--liwe3-border-width) var(--liwe3-form-border-color);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    display: inline-block;
+    font-weight: 500;
+    transition: filter 0.3s linear, box-shadow 0.35s ease-in-out, background-color 0.35s ease-in-out;
+    max-width: 100%;
+}
+
+/* disabled states */
+.liwe3-form-container input:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file]),
+.liwe3-form-container select,
+.liwe3-form-container select[multiple],
+.liwe3-form-container textarea,
+.liwe3-form:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file],
+    select[multiple],
+    textarea,
+    select,
+    input[list])[disabled] {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.6;
+    color: color-mix(in srgb, var(--liwe3-form-text-color) 85%, transparent);
+}
+
+/* focus states */
+.liwe3-form-container input:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file],
+    input[list]):is(:focus, :focus-within, :focus-visible),
+.liwe3-form-container select:is(:focus, :focus-within, :focus-visible),
+.liwe3-form-container select[multiple]:is(:focus, :focus-within, :focus-visible),
+.liwe3-form-container textarea:is(:focus, :focus-within, :focus-visible),
+.liwe3-form:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file],
+    select[multiple],
+    textarea,
+    select,
+    input[list]):is(:focus, :focus-within, :focus-visible) {
+    background-color: var(--liwe3-form-focus-bg);
+    outline: unset;
+    box-shadow: 0 0 var(--liwe3-form-border-blur) calc(var(--liwe3-border-width-focus) + var(--liwe3-border-width)) var(--liwe3-border-focus-color);
+}
+
+/* invalid states */
+.liwe3-form-container input:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file],
+    input[list]):is(:invalid, .invalid),
+.liwe3-form-container select[multiple]:is(:invalid, .invalid),
+.liwe3-form-container textarea:is(:invalid, .invalid),
+.liwe3-form-container select:is(:invalid, .invalid),
+.liwe3-form:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file],
+    select[multiple],
+    textarea,
+    select,
+    input[list]):is(:invalid, .invalid) {
+    box-shadow: 0 0 0 clamp(1px, var(--liwe3-border-width-focus) + var(--liwe3-border-width), 5px) var(--liwe3-form-error);
+    color: var(--liwe3-form-error);
+}
+
+/* placeholder styles */
+.liwe3-form-container input:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file],
+    input[list]):is(:invalid, .invalid)::-moz-placeholder,
+.liwe3-form-container textarea:is(:invalid, .invalid)::-moz-placeholder,
+.liwe3-form-container select:is(:invalid, .invalid)::-moz-placeholder,
+.liwe3-form-container select[multiple]:is(:invalid, .invalid)::-moz-placeholder,
+.liwe3-form:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file],
+    select[multiple],
+    textarea,
+    select,
+    input[list]):is(:invalid, .invalid)::-moz-placeholder {
+    color: var(--liwe3-form-error);
+}
+
+.liwe3-form-container input:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file],
+    input[list]):is(:invalid, .invalid)::placeholder,
+.liwe3-form-container textarea:is(:invalid, .invalid)::placeholder,
+.liwe3-form-container select:is(:invalid, .invalid)::placeholder,
+.liwe3-form-container select[multiple]:is(:invalid, .invalid)::placeholder .liwe3-form:is([type=text],
+    [type=email],
+    [type=url],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=datetime-local],
+    [type=month],
+    [type=search],
+    [type=tel],
+    [type=time],
+    [type=week],
+    [type=file],
+    select[multiple],
+    textarea,
+    select,
+    input[list]):is(:invalid, .invalid)::placeholder {
+    color: var(--liwe3-form-error);
+}
+
+/* textarea and select[multiple] styles */
+.liwe3-form-container textarea,
+.liwe3-form-container select[multiple],
+.liwe3-form:is(textarea, select[multiple]) {
+    line-height: 1.2;
+    scrollbar-width: thin;
+    border-radius: clamp(0px, var(--liwe3-border-radius), 15px);
+    position: relative;
+    min-height: 50px;
+}
+
+/* webkit scrollbar styles */
+.liwe3-form-container textarea::-webkit-scrollbar,
+.liwe3-form-container select[multiple]::-webkit-scrollbar,
+.liwe3-form:is(textarea, select[multiple])::-webkit-scrollbar {
+    background: transparent;
+    width: 8px;
+    height: 8px;
+}
+
+.liwe3-form-container textarea::-webkit-scrollbar-thumb,
+.liwe3-form-container select[multiple]::-webkit-scrollbar-thumb,
+.liwe3-form:is(textarea, select[multiple])::-webkit-scrollbar-thumb {
+    background: var(--liwe3-form-text-placeholder-color);
+    border-radius: 50em;
+}
+
+.liwe3-form-container textarea::-webkit-scrollbar-corner,
+.liwe3-form_container textarea::-webkit-resizer,
+.liwe3-form-container select[multiple]::-webkit-scrollbar-corner,
+.liwe3-form-container select[multiple]::-webkit-resizer,
+.liwe3-form:is(textarea, select[multiple])::-webkit-scrollbar-corner,
+.liwe3-form:is(textarea, select[multiple])::-webkit-resizer {
+    display: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* textarea hover/focus */
+.liwe3-form-container textarea:is(:hover, :focus),
+.liwe3-form:is(textarea):is(:hover, :focus) {
+    background-image: linear-gradient(315deg, var(--liwe3-form-text-color) 50%, transparent 50%);
+    background-position: calc(100% - 8px) calc(100% - 8px);
+    background-size: 8px 8px;
+    background-repeat: no-repeat;
+}
+
+/* placeholder styles for input and textarea */
+.liwe3-form-container input::-moz-placeholder,
+.liwe3-form-container textarea::-moz-placeholder,
+.liwe3-form:is(input, textarea)::-moz-placeholder {
+    color: color-mix(in srgb, var(--liwe3-form-text-placeholder-color) 75%, transparent);
+    font-weight: 200;
+}
+
+.liwe3-form-container input::placeholder,
+.liwe3-form-container textarea::placeholder,
+.liwe3-form:is(input, textarea)::placeholder {
+    color: color-mix(in srgb, var(--liwe3-form-text-placeholder-color) 75%, transparent);
+    font-weight: 200;
+}
+
+/* date/time input styles */
+.liwe3-form-container input:is([type=date], [type=datetime-local], [type=month], [type=time], [type=week])::-webkit-datetime-edit,
+.liwe3-form:is([type=date], [type=datetime-local], [type=month], [type=time], [type=week])::-webkit-datetime-edit {
+    color: var(--liwe3-form-text-color);
+}
+
+/* calendar picker styles */
+.liwe3-form-container input:focus-within::-webkit-calendar-picker-indicator,
+.liwe3-form:focus-within::-webkit-calendar-picker-indicator {
+    opacity: 0.8;
+}
+
+.liwe3-form-container input::-webkit-calendar-picker-indicator,
+.liwe3-form::-webkit-calendar-picker-indicator {
+    opacity: 0.4;
+    cursor: pointer;
+    -webkit-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+    scale: 1.2;
+}
+
+.liwe3-form-container input::-webkit-calendar-picker-indicator:hover,
+.liwe3-form::-webkit-calendar-picker-indicator:hover {
+    opacity: 0.8;
+}
+
+.liwe3-form-container input::-webkit-calendar-picker-indicator:focus-visible,
+.liwe3-form::-webkit-calendar-picker-indicator:focus-visible {
+    outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+    outline-offset: 2px;
+    border-radius: clamp(0px, var(--liwe3-border-radius) / 2, 5px);
+}
+
+/* webkit datetime styles */
+.liwe3-form-container input::-webkit-datetime-edit-fields-wrapper,
+.liwe3-form::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+}
+
+.liwe3-form-container input::-webkit-date-and-time-value,
+.liwe3-form::-webkit-date-and-time-value {
+    min-height: 1.5em;
+}
+
+/* search input styles */
+.liwe3-form-container input[type=search]::-webkit-search-decoration,
+.liwe3-form-container input[type=search]::-webkit-search-cancel-button,
+.liwe3-form-container input[type=search]::-webkit-search-results-button,
+.liwe3-form-container input[type=search]::-webkit-search-results-decoration,
+.liwe3-form[type=search]::-webkit-search-decoration,
+.liwe3-form[type=search]::-webkit-search-cancel-button,
+.liwe3-form[type=search]::-webkit-search-results-button,
+.liwe3-form[type=search]::-webkit-search-results-decoration {
+    display: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    opacity: 0 !important;
+}
+
+/* checkbox and radio base styles */
+.liwe3-form-container input:is([type=checkbox], [type=radio]),
+.liwe3-form:is([type=checkbox], [type=radio]) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    display: inline-block;
+    vertical-align: middle;
+    background-origin: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    flex-shrink: 0;
+    height: clamp(16px, var(--liwe3-form-checkbox-width), 40px);
+    width: clamp(16px, var(--liwe3-form-checkbox-width), 40px);
+    cursor: pointer;
+    border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 8px);
+    margin: 0;
+    background-color: var(--liwe3-form-bg);
+    background-size: 0;
+    border: clamp(1px, var(--liwe3-border-width), 3px) solid var(--liwe3-form-border-color);
+    box-shadow: unset;
+    transition: background-size 0.15s ease-in-out, box-shadow 0.3s linear;
+}
+
+.liwe3-form-container input:is([type=checkbox], [type=radio]):focus-visible,
+.liwe3-form:is([type=checkbox], [type=radio]):focus-visible {
+    outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+    outline-offset: 2px;
+}
+
+/* checkbox specific styles */
+.liwe3-form-container input[type=checkbox],
+.liwe3-form[type=checkbox] {
+    position: relative;
+}
+
+.liwe3-form-container input[type=checkbox]:before,
+.liwe3-form[type=checkbox]:before {
+    content: "";
+    transition: scale 0.2s ease-in-out;
+    border-left: 0 solid var(--liwe3-form-accent-color);
+    border-bottom: 0 solid var(--liwe3-form-accent-color);
+    border-left-width: clamp(2px, var(--liwe3-border-width), 3px);
+    border-bottom-width: clamp(2px, var(--liwe3-border-width), 3px);
+    position: absolute;
+    width: clamp(10px, var(--liwe3-form-checkbox-width) / 2, 28px);
+    height: clamp(6px, var(--liwe3-form-checkbox-width) / 4, 23px);
+    top: 50%;
+    left: 50%;
+    transform: rotate(-50deg) translateY(-60%) translateX(-40%);
+    transform-origin: left top;
+    scale: 0;
+}
+
+.liwe3-form-container input[type=checkbox]:checked,
+.liwe3-form[type=checkbox]:checked {
+    /* border-color: transparent; */
+    box-shadow: unset;
+}
+
+.liwe3-form-container input[type=checkbox]:checked:before,
+.liwe3-form[type=checkbox]:checked:before {
+    scale: 1;
+}
+
+/* radio specific styles */
+.liwe3-form-container input[type=radio],
+.liwe3-form[type=radio] {
+    border-radius: 100%;
+    height: clamp(16px, var(--liwe3-form-checkbox-width) - 4px, 40px);
+    width: clamp(16px, var(--liwe3-form-checkbox-width) - 4px, 40px);
+    position: relative;
+}
+
+.liwe3-form-container input[type=radio]:before,
+.liwe3-form[type=radio]:before {
+    transition: scale 0.25s ease-in-out;
+    content: "";
+    height: clamp(8px, var(--liwe3-form-checkbox-width) - 16px, 15px);
+    width: clamp(8px, var(--liwe3-form-checkbox-width) - 16px, 15px);
+    border-radius: 100%;
+    background: var(--liwe3-form-accent-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    scale: 0;
+    transform-origin: top left;
+}
+
+.liwe3-form-container input[type=radio]:checked:before,
+.liwe3-form[type=radio]:checked:before {
+    scale: 1;
+}
+
+.liwe3-form-switch {
+    --switch-width: clamp(15px, calc(var(--liwe3-form-checkbox-width) - 6px), 30px);
+    overflow: hidden;
+    padding: 4px;
+    display: inline-flex;
+    align-items: flex-start;
+}
+
+.liwe3-form-switch input[type=checkbox]+label {
+    cursor: pointer;
+    width: calc(var(--switch-width) * 2.3);
+    height: calc(var(--switch-width) + 4px);
+    max-width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: calc(var(--liwe3-border-radius) + 2px);
+    position: relative;
+    vertical-align: bottom;
+    background-color: color-mix(in srgb, var(--liwe3-form-bg) 90%, #000);
+    transition: background 0.2s ease-in-out;
+}
+
+.liwe3-form-switch input[type=checkbox]+label:after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    left: 2px;
+    width: var(--switch-width);
+    height: var(--switch-width);
+    top: 2px;
+    background-color: var(--liwe3-form-text-placeholder-color);
+    border-radius: var(--liwe3-border-radius);
+    box-sizing: border-box;
+    transition: left 0.2s ease-in-out;
+}
+
+.liwe3-form-switch input[type=checkbox]:checked+label {
+    background-color: var(--liwe3-form-accent);
+}
+
+.liwe3-form-switch input[type=checkbox]:checked+label:after {
+    left: calc(100% - (var(--switch-width) + 2px));
+    background-color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-switch:has(:focus-visible):focus-within label {
+    outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+    outline-offset: 2px;
+}
+
+.liwe3-form-switch:has([disabled]) {
+    opacity: 0.5;
+}
+
+.liwe3-form::-webkit-calendar-picker-indicator:focus-visible {
+    outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+    outline-offset: 2px;
+    border-radius: clamp(0px, var(--liwe3-border-radius) / 2, 5px);
+}
+
+.liwe3-form-switch-small {
+    --switch-width: clamp(10px, calc(var(--liwe3-form-checkbox-width) - 15px), 20px);
+}
+
+.liwe3-form-switch-big {
+    --switch-width: clamp(20px, calc(var(--liwe3-form-checkbox-width) - 2px), 40px);
+}
+
+.radio-group {
+    border-radius: var(--liwe3-border-radius);
+    overflow: hidden;
+    background: var(--liwe3-form-bg);
+    padding: clamp(3px, (var(--liwe3-input-padding-y)), 8px);
+    display: inline-flex !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    color: var(--liwe3-form-text-color);
+}
+
+.radio-group input[type=radio]:checked+label {
+    color: var(--liwe3-form-accent-color);
+    background: var(--liwe3-form-accent);
+}
+
+.radio-group input[type=radio]:focus+label {
+    box-shadow: 0 0 0 1px var(--form-color) !important;
+}
+
+.radio-group:has(:focus-visible):focus-within {
+    outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+    outline-offset: 2px;
+}
+
+.radio-group label {
+    color: var(--gray-65);
+    cursor: pointer;
+    padding-block: clamp(3px, var(--liwe3-input-padding-y) + 3px, 10px);
+    padding-inline: clamp(10px, var(--liwe3-input-padding-y) * 4, 20px);
+    transition: background 0.1s ease-in-out, color 0.2s linear;
+    border-radius: calc(var(--liwe3-border-radius) - 2px);
+    white-space: nowrap;
+    font-size: clamp(12px, var(--liwe3-font-size) - 1px, 20px);
+}
+
+.radio-group label:hover {
+    color: var(--gray-90);
+}
+
+.radio-group.radio-group-small {
+    padding: clamp(3px, var(--liwe3-input-padding-y) - 1px, 6px);
+}
+
+.radio-group.radio-group-small label {
+    padding-block: clamp(3px, (var(--liwe3-input-padding-y)), 5px);
+    padding-inline: clamp(10px, var(--liwe3-input-padding-y) + 10px, 15px);
+    font-size: clamp(12px, var(--liwe3-font-size) - 3px, 18px);
+}
+
+input.liwe3-form:-webkit-autofill {
+    box-shadow: inset 0 0 0 100px var(--liwe3-form-bg);
+}
+
+input.liwe3-form:-webkit-autofill:focus {
+    box-shadow: inset 0 0 0 100px var(--liwe3-form-bg), 0 0 var(--liwe3-form-border-blur) calc(var(--liwe3-border-width-focus) + var(--liwe3-border-width)) var(--liwe3-border-focus-color);
+}
+
+input[type=range].liwe3-form {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    background: unset;
+    outline: none;
+}
+
+/* range input styles */
+.liwe3-form-container input[type=range],
+.liwe3-form[type=range] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    background: unset;
+    outline: none;
+}
+
+.liwe3-form-container input[type=range]::-webkit-slider-runnable-track,
+.liwe3-form[type=range]::-webkit-slider-runnable-track {
+    height: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+    background: var(--liwe3-form-bg);
+    border: var(--liwe3-border-width) solid color-mix(in srgb, var(--liwe3-form-bg) 97%, #000000);
+    border-radius: clamp(0px, var(--liwe3-border-radius) / 2, 20px);
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+}
+
+input[type=range].liwe3-form::-webkit-slider-runnable-track:focus {
+    outline: 0;
+}
+
+input[type=range].liwe3-form::-webkit-slider-runnable-track:focus-visible {
+    outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+    outline-offset: 2px;
+}
+
+.liwe3-form-container input[type=range]::-moz-range-track,
+.liwe3-form[type=range]::-moz-range-track {
+    height: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+    background: var(--liwe3-form-bg);
+    border: var(--liwe3-border-width) solid color-mix(in srgb, var(--liwe3-form-bg) 97%, #000000);
+    border-radius: clamp(0px, var(--liwe3-border-radius) / 2, 20px);
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+}
+
+input[type=range].liwe3-form::-moz-range-track:focus {
+    outline: 0;
+}
+
+input[type=range].liwe3-form::-moz-range-track:focus-visible {
+    outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+    outline-offset: 2px;
+}
+
+input[type=range].liwe3-form::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    height: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+    width: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+    cursor: pointer;
+    border-radius: clamp(0px, var(--liwe3-border-radius) / 2.5, 20px);
+    background: var(--liwe3-form-accent);
+    margin-top: calc(0px - var(--liwe3-border-width));
+    scale: 1.4;
+}
+
+input[type=range].liwe3-form::-moz-range-thumb {
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    height: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+    width: clamp(10px, var(--liwe3-form-checkbox-width) / 2 + var(--liwe3-border-width), 30px);
+    cursor: pointer;
+    border-radius: clamp(0px, var(--liwe3-border-radius) / 2.5, 20px);
+    background: var(--liwe3-form-accent);
+    margin-top: calc(0px - var(--liwe3-border-width));
+    scale: 1.4;
+}
+
+input[type=range]:focus-visible::-webkit-slider-runnable-track {
+    outline: 3px solid var(--liwe3-form-text-placeholder-color);
+    outline-offset: 4px;
+}
+
+input[type=range]:focus-visible::-moz-range-track {
+    outline: 3px solid var(--liwe3-form-text-placeholder-color);
+    outline-offset: 4px;
+}
+
+/* color input styles */
+.liwe3-form-container input[type=color],
+.liwe3-form[type=color] {
+    background-color: var(--liwe3-form-bg);
+    border: clamp(0px, var(--liwe3-border-width), 2px) solid color-mix(in srgb, var(--liwe3-form-bg) 97%, #000000);
+    border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 30px);
+    border: unset;
+    margin: 0 !important;
+    padding: 2px !important;
+    box-sizing: unset;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    inline-size: clamp(20px, (var(--liwe3-form-checkbox-width)), 55px);
+    block-size: clamp(20px, (var(--liwe3-form-checkbox-width)), 55px);
+}
+
+.liwe3-form-container input[type=color]::-webkit-color-swatch-wrapper,
+input[type=color].liwe3-form::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type=color].liwe3-form::-webkit-color-swatch {
+    border-color: color-mix(in srgb, var(--liwe3-form-bg) 92%, #000000);
+    border-radius: clamp(0px, var(--liwe3-border-radius) - 4px, 30px);
+    cursor: pointer;
+}
+
+.liwe3-form-container input[type=color]:focus-visible,
+input[type=color].liwe3-form:focus-visible {
+    outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+    outline-offset: 2px;
+}
+
+/* fieldset styles */
+.liwe3-form-container fieldset,
+.liwe3-form:is(fieldset) {
+    border: clamp(1px, var(--liwe3-border-width), 1px) solid color-mix(in srgb, var(--liwe3-form-bg) 97%, #000000);
+    box-sizing: border-box;
+    border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 20px);
+    padding: var(--liwe3-input-padding-y) calc(var(--liwe3-input-padding-y) * 3);
+    padding-block: clamp(20px, var(--liwe3-input-padding-y) * 4, 35px);
+    padding-inline: clamp(10px, var(--liwe3-input-padding-y) * 3, 30px);
+    overflow: hidden;
+}
+
+.liwe3-form-container fieldset *,
+.liwe3-form:is(fieldset) * {
+    max-width: 100%;
+}
+
+.liwe3-form-container fieldset legend,
+.liwe3-form:is(fieldset) legend {
+    color: var(--liwe3-form-legend);
+    font-weight: 300;
+    padding-inline: 20px;
+    font-size: clamp(11px, var(--liwe3-font-size) - 2px, 20px);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+/* autofill styles */
+.liwe3-form-container input.liwe3-form:-webkit-autofill,
+.liwe3-form:-webkit-autofill {
+    box-shadow: inset 0 0 0 100px var(--liwe3-form-bg);
+}
+
+.liwe3-form-container input.liwe3-form:-webkit-autofill:focus,
+.liwe3-form:-webkit-autofill:focus {
+    box-shadow: inset 0 0 0 100px var(--liwe3-form-bg), 0 0 var(--liwe3-form-border-blur) calc(var(--liwe3-border-width-focus) + var(--liwe3-border-width)) var(--liwe3-border-focus-color);
+}
+
+/* button styles */
+.liwe3-form-btn {
+    display: inline-block;
+    margin: 0;
+    color: var(--liwe3-form-btn-default-text);
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: none;
+    white-space: nowrap;
+    line-height: 1.42857;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    padding: clamp(5px, var(--liwe3-input-padding-y) * 2, 10px) clamp(10px, var(--liwe3-input-padding-y) * 6, 50px);
+    font-size: clamp(12px, var(--liwe3-font-size) - 1px, 20px);
+    transition: background 0.1s linear, box-shadow 0.15s linear, color 0.1s linear;
+    flex-shrink: 0;
+    text-decoration: none;
+    border-radius: clamp(0px, var(--liwe3-border-radius) - 2px, 30px);
+    background-color: var(--liwe3-form-btn-default);
+    box-sizing: border-box;
+    min-width: 90px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.liwe3-form-btn:hover {
+    background-color: color-mix(in srgb, var(--liwe3-form-btn-default) 80%, #fff);
+}
+
+.liwe3-form-btn:active {
+    background-color: color-mix(in srgb, var(--liwe3-form-btn-default) 97%, #000);
+}
+
+.liwe3-form-btn:focus-visible {
+    outline: clamp(2px, var(--liwe3-border-width), 5px) solid var(--liwe3-border-focus-color);
+    outline-offset: 2px;
+}
+
+.liwe3-form-btn[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+}

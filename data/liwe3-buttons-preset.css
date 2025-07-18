@@ -1,0 +1,209 @@
+.liwe3-form-btn.liwe3-form-btn-xl {
+    padding-block: clamp(10px, var(--liwe3-input-padding-y) * 2.7, 20px);
+    padding-inline: clamp(15px, var(--liwe3-input-padding-y) * 6, 50px);
+    font-size: clamp(12px, var(--liwe3-font-size) + 1px, 20px);
+    min-width: 120px;
+}
+
+.liwe3-form-btn.liwe3-form-btn-l {
+    padding-block: clamp(10px, var(--liwe3-input-padding-y) * 2.5, 13px);
+    padding-inline: clamp(15px, var(--liwe3-input-padding-y) * 5.5, 40px);
+    min-width: 70px;
+}
+
+.liwe3-form-btn.liwe3-form-btn-sm {
+    padding-block: clamp(5px, var(--liwe3-input-padding-y) - 10px, 7px);
+    padding-inline: clamp(10px, var(--liwe3-input-padding-y) * 3, 20px);
+    font-size: clamp(10px, var(--liwe3-font-size) - 3px, 20px);
+    border-radius: clamp(0px, var(--liwe3-border-radius) - 4px, 30px);
+    min-width: 50px;
+}
+
+.liwe3-form-btn.liwe3-form-btn-primary {
+    background-color: var(--liwe3-form-btn-primary);
+    color: var(--liwe3-form-primary-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-primary:hover {
+    background-color: color-mix(in srgb, var(--liwe3-form-btn-primary) 80%, #fff);
+}
+
+.liwe3-form-btn.liwe3-form-btn-primary:active {
+    background-color: color-mix(in srgb, var(--liwe3-form-btn-primary) 80%, #000);
+}
+
+.liwe3-form-btn.liwe3-form-btn-secondary {
+    background-color: var(--liwe3-form-btn-secondary);
+    color: var(--liwe3-form-secondary-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-secondary:hover {
+    background-color: color-mix(in srgb, var(--liwe3-form-btn-secondary) 80%, #fff);
+}
+
+.liwe3-form-btn.liwe3-form-btn-secondary:active {
+    background-color: color-mix(in srgb, var(--liwe3-form-btn-secondary) 80%, #000);
+}
+
+.liwe3-form-btn.liwe3-form-btn-info {
+    background-color: var(--liwe3-form-btn-info);
+    color: var(--liwe3-form-info-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-info:hover {
+    background-color: color-mix(in srgb, var(--liwe3-form-btn-info) 80%, #fff);
+}
+
+.liwe3-form-btn.liwe3-form-btn-info:active {
+    background-color: color-mix(in srgb, var(--liwe3-form-btn-info) 80%, #000);
+}
+
+.liwe3-form-btn.liwe3-form-btn-error {
+    background-color: var(--liwe3-form-error);
+    color: var(--liwe3-form-error-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-error:hover {
+    background-color: color-mix(in srgb, var(--liwe3-form-error) 90%, #fff);
+}
+
+.liwe3-form-btn.liwe3-form-btn-error:active {
+    background-color: color-mix(in srgb, var(--liwe3-form-error) 80%, #000);
+}
+
+.liwe3-form-btn.liwe3-form-btn-accent {
+    background-color: var(--liwe3-form-accent);
+    color: var(--liwe3-form-accent-color-btn);
+}
+
+.liwe3-form-btn.liwe3-form-btn-accent:hover {
+    background-color: color-mix(in srgb, var(--liwe3-form-accent) 90%, #fff);
+}
+
+.liwe3-form-btn.liwe3-form-btn-accent:active {
+    background-color: color-mix(in srgb, var(--liwe3-form-accent) 80%, #000);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined {
+    margin: 0;
+    background-color: transparent;
+    color: var(--liwe3-form-border-color);
+    border: clamp(2px, var(--liwe3-border-width), 4px) solid var(--liwe3-form-border-color);
+    padding-block: clamp(5px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 2 - clamp(2px, var(--liwe3-border-width), 4px), 10px - clamp(2px, var(--liwe3-border-width), 4px));
+    padding-inline: clamp(10px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 6 - clamp(2px, var(--liwe3-border-width), 4px), 50px - clamp(2px, var(--liwe3-border-width), 4px));
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-xl {
+    padding-block: clamp(10px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 2.7 - clamp(2px, var(--liwe3-border-width), 4px), 20px - clamp(2px, var(--liwe3-border-width), 4px));
+    padding-inline: clamp(15px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 6 - clamp(2px, var(--liwe3-border-width), 4px), 50px - clamp(2px, var(--liwe3-border-width), 4px));
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-l {
+    padding-block: clamp(10px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 2.5 - clamp(2px, var(--liwe3-border-width), 4px), 13px - clamp(2px, var(--liwe3-border-width), 4px));
+    padding-inline: clamp(15px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 5.5 - clamp(2px, var(--liwe3-border-width), 4px), 40px - clamp(2px, var(--liwe3-border-width), 4px));
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-sm {
+    padding-block: clamp(5px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) - 10px - clamp(2px, var(--liwe3-border-width), 4px), 7px - clamp(2px, var(--liwe3-border-width), 4px));
+    padding-inline: clamp(10px - clamp(2px, var(--liwe3-border-width), 4px), var(--liwe3-input-padding-y) * 3 - clamp(2px, var(--liwe3-border-width), 4px), 20px - clamp(2px, var(--liwe3-border-width), 4px));
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-primary {
+    background-color: unset;
+    border-color: var(--liwe3-form-btn-primary);
+    color: var(--liwe3-form-btn-primary);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-primary:hover {
+    background-color: var(--liwe3-form-btn-primary);
+    color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-primary:active {
+    background-color: color-mix(in srgb, var(--liwe3-form-btn-primary) 80%, #fff);
+    border-color: color-mix(in srgb, var(--liwe3-form-btn-primary) 80%, #fff);
+    color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-secondary {
+    background-color: unset;
+    border-color: var(--liwe3-form-btn-secondary);
+    color: var(--liwe3-form-btn-secondary);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-secondary:hover {
+    background-color: var(--liwe3-form-btn-secondary);
+    color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-secondary:active {
+    background-color: color-mix(in srgb, var(--liwe3-form-btn-secondary) 80%, #fff);
+    border-color: color-mix(in srgb, var(--liwe3-form-btn-secondary) 80%, #fff);
+    color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-info {
+    background-color: unset;
+    border-color: var(--liwe3-form-btn-info);
+    color: var(--liwe3-form-btn-info);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-info:hover {
+    background-color: var(--liwe3-form-btn-info);
+    color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-info:active {
+    background-color: color-mix(in srgb, var(--liwe3-form-btn-info) 80%, #fff);
+    border-color: color-mix(in srgb, var(--liwe3-form-btn-info) 80%, #fff);
+    color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-error {
+    background-color: unset;
+    border-color: var(--liwe3-form-error);
+    color: var(--liwe3-form-error);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-error:hover {
+    background-color: var(--liwe3-form-error);
+    color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-error:active {
+    background-color: color-mix(in srgb, var(--liwe3-form-error) 80%, #fff);
+    border-color: color-mix(in srgb, var(--liwe3-form-error) 80%, #fff);
+    color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-accent {
+    background-color: unset;
+    border-color: var(--liwe3-form-accent);
+    color: var(--liwe3-form-accent);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-accent:hover {
+    background-color: var(--liwe3-form-accent);
+    color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-outlined.liwe3-form-btn-accent:active {
+    background-color: color-mix(in srgb, var(--liwe3-form-accent) 80%, #fff);
+    border-color: color-mix(in srgb, var(--liwe3-form-accent) 80%, #fff);
+    color: var(--liwe3-form-accent-color);
+}
+
+.liwe3-form-btn.liwe3-form-btn-link {
+    background-color: transparent !important;
+    border: unset !important;
+    color: var(--liwe3-form-accent);
+}
+
+.liwe3-form-btn.liwe3-form-btn-rounded {
+    border-radius: 50em;
+}
+
+.liwe3-form-btn.liwe3-form-btn-block {
+    display: block;
+    width: 100%;
+}

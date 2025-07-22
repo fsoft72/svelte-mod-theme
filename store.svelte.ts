@@ -1,31 +1,30 @@
 import type { Color } from '$liwe3/types/types';
-import { themeCreate } from './theme';
 import { browser } from '$app/environment';
 
-type ThemeModeType = 'light' | 'dark';
+export const THEME_PARTS = [ 'fonts', 'theme', 'styles', 'typography', 'grid', 'forms', 'buttons', 'colors', 'colors-preset', 'forms-preset', 'buttons-preset', 'svelte-select-preset' ] as const;
 
-type ThemeStore = {
+export type ThemePartsType = typeof THEME_PARTS[ number ];
+export type ThemeModeType = 'light' | 'dark';
+export type ThemeDataType = {
 	light: Record<string, string>;
 	dark: Record<string, string>;
-	vars: Record<string, string>;
+	parts?: ThemePartsType[];
 };
-
+export type ThemeDataArg = ThemeDataType & { mode?: ThemeModeType; };
 type StoreThemeType = {
 	mode: ThemeModeType;
-	theme: ThemeStore;
+	theme: ThemeDataType;
 	modesAvailable: () => Color[];
-	defaultLayoutVars: () => Record<string, string>;
-	layoutUnits: () => Record<string, string>;
 	get: ( mode: ThemeModeType ) => Record<string, string>;
 	setDarkMode: ( dark: boolean ) => void;
 	modeSet: ( mode: ThemeModeType ) => void;
 	setModeColors: ( mode: ThemeModeType, color: Record<string, string> ) => void;
 	setModeColor: ( type: ThemeModeType, mode: string, color: string ) => void;
-	setLayoutVars: ( vars: Record<string, string> ) => void;
-	setLayoutVar: ( name: string, value: string ) => void;
-	resetLayoutVars: () => void;
+	setThemeParts: ( parts: ThemePartsType[] ) => void;
+	getThemeParts: () => ThemePartsType[];
 };
 
+const defaultThemeParts: ThemePartsType[] = [ 'fonts', 'theme', 'styles', 'typography' ];
 // define default modes
 const themeModes: Color[] = [
 	'mode1',
@@ -42,33 +41,7 @@ const themeModes: Color[] = [
 	'link'
 ];
 
-const defaultLayoutVars: Record<string, string> = {
-	'font-size': '20px',
-	'font-weight': '400',
-	'line-height': '1.2rem',
-	'border-radius': '0.15rem',
-	'border-width': '1px',
-	'border-style': 'solid',
-	'button-padding-y': '0.35rem',
-	'button-padding-x': '0.5rem',
-	'input-padding-y': '0.15rem',
-	'input-padding-x': '0.15rem'
-};
-
-const themeLayoutUnits: Record<string, string> = {
-	'font-size': 'px',
-	'font-weight': 'number',
-	'line-height': 'rem',
-	'border-radius': 'rem',
-	'border-width': 'px',
-	'border-style': 'string',
-	'button-padding-y': 'rem',
-	'button-padding-x': 'rem',
-	'input-padding-y': 'rem',
-	'input-padding-x': 'rem'
-};
-
-const toLocalStorage = ( key: string, value: Record<string, string> | string ) => {
+const toLocalStorage = ( key: string, value: Record<string, string> | string[] | string ) => {
 	if ( !browser )
 		return;
 	const stringValue = JSON.stringify( value );
@@ -106,11 +79,9 @@ export const storeTheme: StoreThemeType = $state( {
 			color: '#d9d9d9',
 			link: '#f0f0ff'
 		},
-		vars: { ...defaultLayoutVars }
+		parts: defaultThemeParts
 	},
 	modesAvailable: () => themeModes,
-	defaultLayoutVars: () => defaultLayoutVars,
-	layoutUnits: () => themeLayoutUnits,
 	get: ( mode: ThemeModeType ) => {
 		return storeTheme.theme[ mode ];
 	},
@@ -130,30 +101,13 @@ export const storeTheme: StoreThemeType = $state( {
 			return;
 		}
 		storeTheme.theme[ type ][ mode ] = color;
-		themeCreate( { [ type ]: storeTheme.theme[ type ] } );
 		toLocalStorage( `liwe3-${ type }-theme`, storeTheme.theme[ type ] );
 	},
-	setLayoutVars: ( vars: Record<string, string> ) => {
-		if ( !storeTheme.theme.vars ) {
-			console.warn( 'Layout vars not found' );
-			return;
-		}
-		storeTheme.theme.vars = vars;
-		toLocalStorage( 'liwe3-layout-vars', storeTheme.theme.vars );
+	setThemeParts: ( parts: ThemePartsType[] ) => {
+		storeTheme.theme.parts = parts;
+		toLocalStorage( 'liwe3-theme-parts', parts );
 	},
-	setLayoutVar: ( name: string, value: string ) => {
-		if ( !storeTheme.theme.vars[ name ] ) {
-			console.warn( `Layout var ${ name } not found` );
-			return;
-		}
-		storeTheme.theme.vars[ name ] = value;
-		themeCreate( { vars: storeTheme.theme.vars } );
-		toLocalStorage( 'liwe3-layout-vars', storeTheme.theme.vars );
-	},
-	resetLayoutVars: () => {
-		const vars = { ...defaultLayoutVars };
-		storeTheme.theme.vars = vars;
-		themeCreate( { vars: vars } );
-		toLocalStorage( 'liwe3-layout-vars', vars );
+	getThemeParts: () => {
+		return storeTheme.theme.parts || [];
 	}
 } );

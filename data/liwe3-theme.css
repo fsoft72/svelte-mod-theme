@@ -23,6 +23,136 @@
     --liwe3-input-padding-y: 0.15rem;
     --liwe3-input-padding-x: 0.15rem;
     --liwe3-form-checkbox-width: 26px;
+
+    /* ===================================
+     BASE COLOR VARIABLES
+     Define your 4 main colors here (light and dark modes)
+     ================================== */
+    --liwe3-light-mode1: oklch(0.65 0.2 220);
+    --liwe3-light-mode2: oklch(0.6 0.15 160);
+    --liwe3-light-mode3: oklch(0.55 0.18 30);
+    --liwe3-light-mode4: oklch(0.65 0.25 320);
+
+    --liwe3-dark-mode1: oklch(0.2 0.15 220);
+    --liwe3-dark-mode2: oklch(0.25 0.1 160);
+    --liwe3-dark-mode3: oklch(0.3 0.12 30);
+    --liwe3-dark-mode4: oklch(0.15 0.2 320);
+    /* ===================================
+     LIGHT MODE COLOR PALETTES
+     ================================== */
+    --liwe3-light-mode1-50: oklch(from var(--liwe3-light-mode1) calc(l + 0.35) calc(c * 0.3) h);
+    --liwe3-light-mode1-100: oklch(from var(--liwe3-light-mode1) calc(l + 0.3) calc(c * 0.4) h);
+    --liwe3-light-mode1-200: oklch(from var(--liwe3-light-mode1) calc(l + 0.25) calc(c * 0.6) h);
+    --liwe3-light-mode1-300: oklch(from var(--liwe3-light-mode1) calc(l + 0.2) calc(c * 0.7) h);
+    --liwe3-light-mode1-400: oklch(from var(--liwe3-light-mode1) calc(l + 0.1) calc(c * 0.85) h);
+    --liwe3-light-mode1-500: var(--liwe3-light-mode1);
+    --liwe3-light-mode1-600: oklch(from var(--liwe3-light-mode1) calc(l - 0.1) calc(c * 1.1) h);
+    --liwe3-light-mode1-700: oklch(from var(--liwe3-light-mode1) calc(l - 0.2) calc(c * 1.2) h);
+    --liwe3-light-mode1-800: oklch(from var(--liwe3-light-mode1) calc(l - 0.3) calc(c * 1.1) h);
+    --liwe3-light-mode1-900: oklch(from var(--liwe3-light-mode1) calc(l - 0.4) calc(c * 0.9) h);
+    --liwe3-light-mode1-950: oklch(from var(--liwe3-light-mode1) calc(l - 0.45) calc(c * 0.7) h);
+
+    --liwe3-light-mode2-50: oklch(from var(--liwe3-light-mode2) calc(l + 0.35) calc(c * 0.3) h);
+    --liwe3-light-mode2-100: oklch(from var(--liwe3-light-mode2) calc(l + 0.3) calc(c * 0.4) h);
+    --liwe3-light-mode2-200: oklch(from var(--liwe3-light-mode2) calc(l + 0.25) calc(c * 0.6) h);
+    --liwe3-light-mode2-300: oklch(from var(--liwe3-light-mode2) calc(l + 0.2) calc(c * 0.7) h);
+    --liwe3-light-mode2-400: oklch(from var(--liwe3-light-mode2) calc(l + 0.1) calc(c * 0.85) h);
+    --liwe3-light-mode2-500: var(--liwe3-light-mode2);
+    --liwe3-light-mode2-600: oklch(from var(--liwe3-light-mode2) calc(l - 0.1) calc(c * 1.1) h);
+    --liwe3-light-mode2-700: oklch(from var(--liwe3-light-mode2) calc(l - 0.2) calc(c * 1.2) h);
+    --liwe3-light-mode2-800: oklch(from var(--liwe3-light-mode2) calc(l - 0.3) calc(c * 1.1) h);
+    --liwe3-light-mode2-900: oklch(from var(--liwe3-light-mode2) calc(l - 0.4) calc(c * 0.9) h);
+    --liwe3-light-mode2-950: oklch(from var(--liwe3-light-mode2) calc(l - 0.45) calc(c * 0.7) h);
+
+    --liwe3-light-mode3-50: oklch(from var(--liwe3-light-mode3) calc(l + 0.35) calc(c * 0.3) h);
+    --liwe3-light-mode3-100: oklch(from var(--liwe3-light-mode3) calc(l + 0.3) calc(c * 0.4) h);
+    --liwe3-light-mode3-200: oklch(from var(--liwe3-light-mode3) calc(l + 0.25) calc(c * 0.6) h);
+    --liwe3-light-mode3-300: oklch(from var(--liwe3-light-mode3) calc(l + 0.2) calc(c * 0.7) h);
+    --liwe3-light-mode3-400: oklch(from var(--liwe3-light-mode3) calc(l + 0.1) calc(c * 0.85) h);
+    --liwe3-light-mode3-500: var(--liwe3-light-mode3);
+    --liwe3-light-mode3-600: oklch(from var(--liwe3-light-mode3) calc(l - 0.1) calc(c * 1.1) h);
+    --liwe3-light-mode3-700: oklch(from var(--liwe3-light-mode3) calc(l - 0.2) calc(c * 1.2) h);
+    --liwe3-light-mode3-800: oklch(from var(--liwe3-light-mode3) calc(l - 0.3) calc(c * 1.1) h);
+    --liwe3-light-mode3-900: oklch(from var(--liwe3-light-mode3) calc(l - 0.4) calc(c * 0.9) h);
+    --liwe3-light-mode3-950: oklch(from var(--liwe3-light-mode3) calc(l - 0.45) calc(c * 0.7) h);
+
+    --liwe3-light-mode4-50: oklch(from var(--liwe3-light-mode4) calc(l + 0.35) calc(c * 0.3) h);
+    --liwe3-light-mode4-100: oklch(from var(--liwe3-light-mode4) calc(l + 0.3) calc(c * 0.4) h);
+    --liwe3-light-mode4-200: oklch(from var(--liwe3-light-mode4) calc(l + 0.25) calc(c * 0.6) h);
+    --liwe3-light-mode4-300: oklch(from var(--liwe3-light-mode4) calc(l + 0.2) calc(c * 0.7) h);
+    --liwe3-light-mode4-400: oklch(from var(--liwe3-light-mode4) calc(l + 0.1) calc(c * 0.85) h);
+    --liwe3-light-mode4-500: var(--liwe3-light-mode4);
+    --liwe3-light-mode4-600: oklch(from var(--liwe3-light-mode4) calc(l - 0.1) calc(c * 1.1) h);
+    --liwe3-light-mode4-700: oklch(from var(--liwe3-light-mode4) calc(l - 0.2) calc(c * 1.2) h);
+    --liwe3-light-mode4-800: oklch(from var(--liwe3-light-mode4) calc(l - 0.3) calc(c * 1.1) h);
+    --liwe3-light-mode4-900: oklch(from var(--liwe3-light-mode4) calc(l - 0.4) calc(c * 0.9) h);
+    --liwe3-light-mode4-950: oklch(from var(--liwe3-light-mode4) calc(l - 0.45) calc(c * 0.7) h);
+
+    /* ===================================
+     DARK MODE COLOR PALETTES
+     ================================== */
+    --liwe3-dark-mode1-50: oklch(from var(--liwe3-dark-mode1) calc(l + 0.35) calc(c * 0.3) h);
+    --liwe3-dark-mode1-100: oklch(from var(--liwe3-dark-mode1) calc(l + 0.3) calc(c * 0.4) h);
+    --liwe3-dark-mode1-200: oklch(from var(--liwe3-dark-mode1) calc(l + 0.25) calc(c * 0.6) h);
+    --liwe3-dark-mode1-300: oklch(from var(--liwe3-dark-mode1) calc(l + 0.2) calc(c * 0.7) h);
+    --liwe3-dark-mode1-400: oklch(from var(--liwe3-dark-mode1) calc(l + 0.1) calc(c * 0.85) h);
+    --liwe3-dark-mode1-500: var(--liwe3-dark-mode1);
+    --liwe3-dark-mode1-600: oklch(from var(--liwe3-dark-mode1) calc(l - 0.1) calc(c * 1.1) h);
+    --liwe3-dark-mode1-700: oklch(from var(--liwe3-dark-mode1) calc(l - 0.2) calc(c * 1.2) h);
+    --liwe3-dark-mode1-800: oklch(from var(--liwe3-dark-mode1) calc(l - 0.3) calc(c * 1.1) h);
+    --liwe3-dark-mode1-900: oklch(from var(--liwe3-dark-mode1) calc(l - 0.4) calc(c * 0.9) h);
+    --liwe3-dark-mode1-950: oklch(from var(--liwe3-dark-mode1) calc(l - 0.45) calc(c * 0.7) h);
+
+    --liwe3-dark-mode2-50: oklch(from var(--liwe3-dark-mode2) calc(l + 0.35) calc(c * 0.3) h);
+    --liwe3-dark-mode2-100: oklch(from var(--liwe3-dark-mode2) calc(l + 0.3) calc(c * 0.4) h);
+    --liwe3-dark-mode2-200: oklch(from var(--liwe3-dark-mode2) calc(l + 0.25) calc(c * 0.6) h);
+    --liwe3-dark-mode2-300: oklch(from var(--liwe3-dark-mode2) calc(l + 0.2) calc(c * 0.7) h);
+    --liwe3-dark-mode2-400: oklch(from var(--liwe3-dark-mode2) calc(l + 0.1) calc(c * 0.85) h);
+    --liwe3-dark-mode2-500: var(--liwe3-dark-mode2);
+    --liwe3-dark-mode2-600: oklch(from var(--liwe3-dark-mode2) calc(l - 0.1) calc(c * 1.1) h);
+    --liwe3-dark-mode2-700: oklch(from var(--liwe3-dark-mode2) calc(l - 0.2) calc(c * 1.2) h);
+    --liwe3-dark-mode2-800: oklch(from var(--liwe3-dark-mode2) calc(l - 0.3) calc(c * 1.1) h);
+    --liwe3-dark-mode2-900: oklch(from var(--liwe3-dark-mode2) calc(l - 0.4) calc(c * 0.9) h);
+    --liwe3-dark-mode2-950: oklch(from var(--liwe3-dark-mode2) calc(l - 0.45) calc(c * 0.7) h);
+
+    --liwe3-dark-mode3-50: oklch(from var(--liwe3-dark-mode3) calc(l + 0.35) calc(c * 0.3) h);
+    --liwe3-dark-mode3-100: oklch(from var(--liwe3-dark-mode3) calc(l + 0.3) calc(c * 0.4) h);
+    --liwe3-dark-mode3-200: oklch(from var(--liwe3-dark-mode3) calc(l + 0.25) calc(c * 0.6) h);
+    --liwe3-dark-mode3-300: oklch(from var(--liwe3-dark-mode3) calc(l + 0.2) calc(c * 0.7) h);
+    --liwe3-dark-mode3-400: oklch(from var(--liwe3-dark-mode3) calc(l + 0.1) calc(c * 0.85) h);
+    --liwe3-dark-mode3-500: var(--liwe3-dark-mode3);
+    --liwe3-dark-mode3-600: oklch(from var(--liwe3-dark-mode3) calc(l - 0.1) calc(c * 1.1) h);
+    --liwe3-dark-mode3-700: oklch(from var(--liwe3-dark-mode3) calc(l - 0.2) calc(c * 1.2) h);
+    --liwe3-dark-mode3-800: oklch(from var(--liwe3-dark-mode3) calc(l - 0.3) calc(c * 1.1) h);
+    --liwe3-dark-mode3-900: oklch(from var(--liwe3-dark-mode3) calc(l - 0.4) calc(c * 0.9) h);
+    --liwe3-dark-mode3-950: oklch(from var(--liwe3-dark-mode3) calc(l - 0.45) calc(c * 0.7) h);
+
+    --liwe3-dark-mode4-50: oklch(from var(--liwe3-dark-mode4) calc(l + 0.35) calc(c * 0.3) h);
+    --liwe3-dark-mode4-100: oklch(from var(--liwe3-dark-mode4) calc(l + 0.3) calc(c * 0.4) h);
+    --liwe3-dark-mode4-200: oklch(from var(--liwe3-dark-mode4) calc(l + 0.25) calc(c * 0.6) h);
+    --liwe3-dark-mode4-300: oklch(from var(--liwe3-dark-mode4) calc(l + 0.2) calc(c * 0.7) h);
+    --liwe3-dark-mode4-400: oklch(from var(--liwe3-dark-mode4) calc(l + 0.1) calc(c * 0.85) h);
+    --liwe3-dark-mode4-500: var(--liwe3-dark-mode4);
+    --liwe3-dark-mode4-600: oklch(from var(--liwe3-dark-mode4) calc(l - 0.1) calc(c * 1.1) h);
+    --liwe3-dark-mode4-700: oklch(from var(--liwe3-dark-mode4) calc(l - 0.2) calc(c * 1.2) h);
+    --liwe3-dark-mode4-800: oklch(from var(--liwe3-dark-mode4) calc(l - 0.3) calc(c * 1.1) h);
+    --liwe3-dark-mode4-900: oklch(from var(--liwe3-dark-mode4) calc(l - 0.4) calc(c * 0.9) h);
+    --liwe3-dark-mode4-950: oklch(from var(--liwe3-dark-mode4) calc(l - 0.45) calc(c * 0.7) h);
+
+    /* ===================================
+     NEUTRAL GRAYS (derived from mode1)
+     ================================== */
+    --liwe3-gray-50: oklch(from var(--liwe3-color-mode1) 0.97 calc(c * 0.05) h);
+    --liwe3-gray-100: oklch(from var(--liwe3-color-mode1) 0.94 calc(c * 0.08) h);
+    --liwe3-gray-200: oklch(from var(--liwe3-color-mode1) 0.89 calc(c * 0.1) h);
+    --liwe3-gray-300: oklch(from var(--liwe3-color-mode1) 0.83 calc(c * 0.12) h);
+    --liwe3-gray-400: oklch(from var(--liwe3-color-mode1) 0.68 calc(c * 0.15) h);
+    --liwe3-gray-500: oklch(from var(--liwe3-color-mode1) 0.55 calc(c * 0.18) h);
+    --liwe3-gray-600: oklch(from var(--liwe3-color-mode1) 0.45 calc(c * 0.15) h);
+    --liwe3-gray-700: oklch(from var(--liwe3-color-mode1) 0.35 calc(c * 0.12) h);
+    --liwe3-gray-800: oklch(from var(--liwe3-color-mode1) 0.25 calc(c * 0.1) h);
+    --liwe3-gray-900: oklch(from var(--liwe3-color-mode1) 0.15 calc(c * 0.08) h);
+    --liwe3-gray-950: oklch(from var(--liwe3-color-mode1) 0.08 calc(c * 0.05) h);
 }
 
 .liwe3-light-theme {

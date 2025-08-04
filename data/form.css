@@ -8,41 +8,68 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
-}
 
-.form-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg,
-            var(--liwe3-mode1-500) 0%,
-            var(--liwe3-mode1-600) 25%,
-            var(--liwe3-mode1-700) 50%,
-            var(--liwe3-mode1-800) 75%,
-            var(--liwe3-mode1-500) 100%);
-}
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg,
+                var(--liwe3-mode1-500) 0%,
+                var(--liwe3-mode1-600) 25%,
+                var(--liwe3-mode1-700) 50%,
+                var(--liwe3-mode1-800) 75%,
+                var(--liwe3-mode1-500) 100%);
+    }
 
-.form-container .title {
-    text-align: center;
-    color: var(--liwe3-text-mode1);
-    margin-bottom: 2rem;
-    font-size: 1.75rem;
-    font-weight: 700;
-}
+    .title {
+        text-align: center;
+        color: var(--liwe3-text-mode1);
+        margin-bottom: 2rem;
+        font-size: 1.75rem;
+        font-weight: 700;
+    }
 
-.form-container .subtitle {
-    text-align: center;
-    color: var(--liwe3-text-mode2);
-    margin-bottom: 2rem;
-    font-size: 1rem;
+    .subtitle {
+        text-align: center;
+        color: var(--liwe3-text-mode2);
+        margin-bottom: 2rem;
+        font-size: 1rem;
+    }
 }
 
 /* Form Group Styles */
 .form-group {
     position: relative;
+
+    &.floating {
+        position: relative;
+
+        .form-input {
+            padding-top: 1.2rem;
+            padding-bottom: 0.3rem;
+        }
+
+        label {
+            position: absolute;
+            left: 1rem;
+            top: 0.75rem;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            color: var(--liwe3-text-mode2) !important;
+            margin-bottom: 0;
+        }
+
+        .form-input:focus + label,
+        .form-input:not(:placeholder-shown) + label {
+            top: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--liwe3-mode1-500);
+        }
+    }
 }
 
 label {
@@ -54,431 +81,408 @@ label {
     transition: color 0.2s ease;
 }
 
-/* Dark mode label enhancement */
-[data-theme="dark"] label {
-    color: var(--liwe3-text-mode1) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme]) label {
-        color: var(--liwe3-text-mode1) !important;
-    }
-}
+/* Dark mode label enhancements consolidated above */
 
 label.required::after {
     content: ' *';
     color: var(--liwe3-error);
 }
 
-/* Input Base Styles */
-.form-container input,
-.form-container select,
-.form-container textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--liwe3-border-default);
-    border-radius: 8px;
-    background: var(--liwe3-surface-raised);
-    color: var(--liwe3-text-mode1);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    font-family: inherit;
+.form-container {
+    /* Input Base Styles */
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--liwe3-border-default);
+        border-radius: 8px;
+        background: var(--liwe3-surface-raised);
+        color: var(--liwe3-text-mode1);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: inherit;
+
+        &:focus {
+            outline: none;
+            border-color: var(--liwe3-mode1-500);
+            box-shadow: 0 0 0 3px var(--liwe3-focus-ring);
+            transform: translateY(-1px);
+        }
+
+        &:hover {
+            border-color: var(--liwe3-border-strong);
+        }
+    }
 }
 
-.form-container input:focus,
-.form-container select:focus,
-.form-container textarea:focus {
-    outline: none;
-    border-color: var(--liwe3-mode1-500);
-    box-shadow: 0 0 0 3px var(--liwe3-focus-ring);
-    transform: translateY(-1px);
-}
+/* Floating Label Effect - moved into .form-group nesting */
 
-.form-container input:hover,
-.form-container select:hover,
-.form-container textarea:hover {
-    border-color: var(--liwe3-border-strong);
-}
+    /* Input Variants */
+    input {
+        &.mode1 {
+            border-color: var(--liwe3-mode1-300);
 
-/* Floating Label Effect */
-.form-group.floating {
-    position: relative;
-}
+            &:focus {
+                border-color: var(--liwe3-mode1-500);
+                box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode1-500) l c h / 0.2);
+            }
+        }
 
-.form-group.floating .form-input {
-    padding-top: 1.2rem;
-    padding-bottom: 0.3rem;
-}
+        &.mode2 {
+            border-color: var(--liwe3-mode2-300);
 
-.form-group.floating label {
-    position: absolute;
-    left: 1rem;
-    top: 0.75rem;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    color: var(--liwe3-text-mode2) !important;
-    margin-bottom: 0;
-}
+            &:focus {
+                border-color: var(--liwe3-mode2-500);
+                box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode2-500) l c h / 0.2);
+            }
+        }
 
-.form-group.floating .form-input:focus+label,
-.form-group.floating .form-input:not(:placeholder-shown)+label {
-    top: 0.25rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--liwe3-mode1-500);
-}
+        &.success {
+            border-color: var(--liwe3-success);
+            background: oklch(from var(--liwe3-success) calc(l + 0.4) calc(c * 0.3) h);
+            color: var(--liwe3-success-dark);
+        }
 
-/* Input Variants */
-.form-container input.mode1 {
-    border-color: var(--liwe3-mode1-300);
-}
+        &.error {
+            border-color: var(--liwe3-error);
+            background: oklch(from var(--liwe3-error) calc(l + 0.4) calc(c * 0.3) h);
+            color: var(--liwe3-error-dark);
+        }
+    }
 
-.form-container input.mode1:focus {
-    border-color: var(--liwe3-mode1-500);
-    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode1-500) l c h / 0.2);
-}
+    /* Cascading Mode Selectors - Apply mode styling to children */
+    .form-group {
+        &.mode1 {
+            input,
+            select,
+            textarea {
+                border-color: var(--liwe3-mode1-300) !important;
 
-.form-container input.mode2 {
-    border-color: var(--liwe3-mode2-300);
-}
+                &:focus {
+                    border-color: var(--liwe3-mode1-500) !important;
+                    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode1-500) l c h / 0.2) !important;
+                }
+            }
 
-.form-container input.mode2:focus {
-    border-color: var(--liwe3-mode2-500);
-    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode2-500) l c h / 0.2);
-}
+            label,
+            legend {
+                color: var(--liwe3-mode1-600) !important;
+            }
 
-/* Cascading Mode Selectors - Apply mode styling to children */
-/* Mode 1 Cascading */
-.form-container .form-group.mode1 input,
-.form-container .form-group.mode1 select,
-.form-container .form-group.mode1 textarea {
-    border-color: var(--liwe3-mode1-300) !important;
-}
+            &.floating {
+                .form-input:focus + label,
+                .form-input:not(:placeholder-shown) + label {
+                    color: var(--liwe3-mode1-500) !important;
+                }
+            }
+        }
 
-.form-container .form-group.mode1 input:focus,
-.form-container .form-group.mode1 select:focus,
-.form-container .form-group.mode1 textarea:focus {
-    border-color: var(--liwe3-mode1-500) !important;
-    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode1-500) l c h / 0.2) !important;
-}
+        &.mode2 {
+            input,
+            select,
+            textarea {
+                border-color: var(--liwe3-mode2-300) !important;
 
-.form-container .form-group.mode1 label,
-.form-container .form-group.mode1 legend {
-    color: var(--liwe3-mode1-600) !important;
-}
+                &:focus {
+                    border-color: var(--liwe3-mode2-500) !important;
+                    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode2-500) l c h / 0.2) !important;
+                }
+            }
 
-/* Dark mode overrides for mode1 labels */
-[data-theme="dark"] .form-container .form-group.mode1 label,
-[data-theme="dark"] .form-container .form-group.mode1 legend,
-[data-theme="dark"] .form-group.mode1 label,
-[data-theme="dark"] .form-group.mode1 legend {
-    color: var(--liwe3-mode1-300) !important;
-}
+            label,
+            legend {
+                color: var(--liwe3-mode2-600) !important;
+            }
 
-.form-container .form-group.mode1.floating .form-input:focus+label,
-.form-container .form-group.mode1.floating .form-input:not(:placeholder-shown)+label {
-    color: var(--liwe3-mode1-500) !important;
-}
+            &.floating {
+                .form-input:focus + label,
+                .form-input:not(:placeholder-shown) + label {
+                    color: var(--liwe3-mode2-500) !important;
+                }
+            }
+        }
 
-/* Mode 2 Cascading */
-.form-container .form-group.mode2 input,
-.form-container .form-group.mode2 select,
-.form-container .form-group.mode2 textarea {
-    border-color: var(--liwe3-mode2-300) !important;
-}
+        &.mode3 {
+            input,
+            select,
+            textarea {
+                border-color: var(--liwe3-mode3-300) !important;
 
-.form-container .form-group.mode2 input:focus,
-.form-container .form-group.mode2 select:focus,
-.form-container .form-group.mode2 textarea:focus {
-    border-color: var(--liwe3-mode2-500) !important;
-    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode2-500) l c h / 0.2) !important;
-}
+                &:focus {
+                    border-color: var(--liwe3-mode3-500) !important;
+                    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode3-500) l c h / 0.2) !important;
+                }
+            }
 
-.form-container .form-group.mode2 label,
-.form-container .form-group.mode2 legend {
-    color: var(--liwe3-mode2-600) !important;
-}
+            label,
+            legend {
+                color: var(--liwe3-mode3-600) !important;
+            }
 
-/* Dark mode overrides for mode2 labels */
-[data-theme="dark"] .form-container .form-group.mode2 label,
-[data-theme="dark"] .form-container .form-group.mode2 legend,
-[data-theme="dark"] .form-group.mode2 label,
-[data-theme="dark"] .form-group.mode2 legend {
-    color: var(--liwe3-mode2-300) !important;
-}
+            &.floating {
+                .form-input:focus + label,
+                .form-input:not(:placeholder-shown) + label {
+                    color: var(--liwe3-mode3-500) !important;
+                }
+            }
+        }
 
-.form-container .form-group.mode2.floating .form-input:focus+label,
-.form-container .form-group.mode2.floating .form-input:not(:placeholder-shown)+label {
-    color: var(--liwe3-mode2-500) !important;
-}
+        &.mode4 {
+            input,
+            select,
+            textarea {
+                border-color: var(--liwe3-mode4-300) !important;
 
-/* Mode 3 Cascading */
-.form-container .form-group.mode3 input,
-.form-container .form-group.mode3 select,
-.form-container .form-group.mode3 textarea {
-    border-color: var(--liwe3-mode3-300) !important;
-}
+                &:focus {
+                    border-color: var(--liwe3-mode4-500) !important;
+                    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode4-500) l c h / 0.2) !important;
+                }
+            }
 
-.form-container .form-group.mode3 input:focus,
-.form-container .form-group.mode3 select:focus,
-.form-container .form-group.mode3 textarea:focus {
-    border-color: var(--liwe3-mode3-500) !important;
-    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode3-500) l c h / 0.2) !important;
-}
+            label,
+            legend {
+                color: var(--liwe3-mode4-600) !important;
+            }
 
-.form-container .form-group.mode3 label,
-.form-container .form-group.mode3 legend {
-    color: var(--liwe3-mode3-600) !important;
-}
+            &.floating {
+                .form-input:focus + label,
+                .form-input:not(:placeholder-shown) + label {
+                    color: var(--liwe3-mode4-500) !important;
+                }
+            }
+        }
+    }
 
-/* Dark mode overrides for mode3 labels */
-[data-theme="dark"] .form-container .form-group.mode3 label,
-[data-theme="dark"] .form-container .form-group.mode3 legend,
-[data-theme="dark"] .form-group.mode3 label,
-[data-theme="dark"] .form-group.mode3 legend {
-    color: var(--liwe3-mode3-300) !important;
-}
-
-.form-container .form-group.mode3.floating .form-input:focus+label,
-.form-container .form-group.mode3.floating .form-input:not(:placeholder-shown)+label {
-    color: var(--liwe3-mode3-500) !important;
-}
-
-/* Mode 4 Cascading */
-.form-container .form-group.mode4 input,
-.form-container .form-group.mode4 select,
-.form-container .form-group.mode4 textarea {
-    border-color: var(--liwe3-mode4-300) !important;
-}
-
-.form-container .form-group.mode4 input:focus,
-.form-container .form-group.mode4 select:focus,
-.form-container .form-group.mode4 textarea:focus {
-    border-color: var(--liwe3-mode4-500) !important;
-    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode4-500) l c h / 0.2) !important;
-}
-
-.form-container .form-group.mode4 label,
-.form-container .form-group.mode4 legend {
-    color: var(--liwe3-mode4-600) !important;
-}
-
-/* Dark mode overrides for mode4 labels */
-[data-theme="dark"] .form-container .form-group.mode4 label,
-[data-theme="dark"] .form-container .form-group.mode4 legend,
-[data-theme="dark"] .form-group.mode4 label,
-[data-theme="dark"] .form-group.mode4 legend {
-    color: var(--liwe3-mode4-300) !important;
-}
-
-.form-container .form-group.mode4.floating .form-input:focus+label,
-.form-container .form-group.mode4.floating .form-input:not(:placeholder-shown)+label {
-    color: var(--liwe3-mode4-500) !important;
-}
+    /* All mode cascading consolidated into the above nesting */
 
 /* Higher Level Cascading - Apply mode styling from parent containers */
-/* Mode 1 Higher Level Cascading */
-.mode1 .form-container input,
-.mode1 .form-container select,
-.mode1 .form-container textarea,
-.form-container.mode1 input,
-.form-container.mode1 select,
-.form-container.mode1 textarea {
-    border-color: var(--liwe3-mode1-300);
+.mode1 {
+    .form-container {
+        input,
+        select,
+        textarea {
+            border-color: var(--liwe3-mode1-300);
+
+            &:focus {
+                border-color: var(--liwe3-mode1-500);
+                box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode1-500) l c h / 0.2);
+            }
+        }
+
+        label,
+        legend {
+            color: var(--liwe3-mode1-600);
+        }
+
+        .form-group.floating {
+            .form-input:focus + label,
+            .form-input:not(:placeholder-shown) + label {
+                color: var(--liwe3-mode1-500);
+            }
+        }
+    }
 }
 
-.mode1 .form-container input:focus,
-.mode1 .form-container select:focus,
-.mode1 .form-container textarea:focus,
-.form-container.mode1 input:focus,
-.form-container.mode1 select:focus,
-.form-container.mode1 textarea:focus {
-    border-color: var(--liwe3-mode1-500);
-    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode1-500) l c h / 0.2);
+.form-container {
+    &.mode1 {
+        input,
+        select,
+        textarea {
+            border-color: var(--liwe3-mode1-300);
+
+            &:focus {
+                border-color: var(--liwe3-mode1-500);
+                box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode1-500) l c h / 0.2);
+            }
+        }
+
+        label,
+        legend {
+            color: var(--liwe3-mode1-600);
+        }
+
+        .form-group.floating {
+            .form-input:focus + label,
+            .form-input:not(:placeholder-shown) + label {
+                color: var(--liwe3-mode1-500);
+            }
+        }
+    }
+
+    &.mode2 {
+        input,
+        select,
+        textarea {
+            border-color: var(--liwe3-mode2-300);
+
+            &:focus {
+                border-color: var(--liwe3-mode2-500);
+                box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode2-500) l c h / 0.2);
+            }
+        }
+
+        label,
+        legend {
+            color: var(--liwe3-mode2-600);
+        }
+
+        .form-group.floating {
+            .form-input:focus + label,
+            .form-input:not(:placeholder-shown) + label {
+                color: var(--liwe3-mode2-500);
+            }
+        }
+    }
+
+    &.mode3 {
+        input,
+        select,
+        textarea {
+            border-color: var(--liwe3-mode3-300);
+
+            &:focus {
+                border-color: var(--liwe3-mode3-500);
+                box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode3-500) l c h / 0.2);
+            }
+        }
+
+        label,
+        legend {
+            color: var(--liwe3-mode3-600);
+        }
+
+        .form-group.floating {
+            .form-input:focus + label,
+            .form-input:not(:placeholder-shown) + label {
+                color: var(--liwe3-mode3-500);
+            }
+        }
+    }
+
+    &.mode4 {
+        input,
+        select,
+        textarea {
+            border-color: var(--liwe3-mode4-300);
+
+            &:focus {
+                border-color: var(--liwe3-mode4-500);
+                box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode4-500) l c h / 0.2);
+            }
+        }
+
+        label,
+        legend {
+            color: var(--liwe3-mode4-600);
+        }
+
+        .form-group.floating {
+            .form-input:focus + label,
+            .form-input:not(:placeholder-shown) + label {
+                color: var(--liwe3-mode4-500);
+            }
+        }
+    }
 }
 
-.mode1 .form-container label,
-.mode1 .form-container legend,
-.form-container.mode1 label,
-.form-container.mode1 legend {
-    color: var(--liwe3-mode1-600);
+.mode2 {
+    .form-container {
+        input,
+        select,
+        textarea {
+            border-color: var(--liwe3-mode2-300);
+
+            &:focus {
+                border-color: var(--liwe3-mode2-500);
+                box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode2-500) l c h / 0.2);
+            }
+        }
+
+        label,
+        legend {
+            color: var(--liwe3-mode2-600);
+        }
+
+        .form-group.floating {
+            .form-input:focus + label,
+            .form-input:not(:placeholder-shown) + label {
+                color: var(--liwe3-mode2-500);
+            }
+        }
+    }
 }
 
-/* Dark mode overrides for higher level mode1 cascading */
-[data-theme="dark"] .mode1 .form-container label,
-[data-theme="dark"] .mode1 .form-container legend,
-[data-theme="dark"] .form-container.mode1 label,
-[data-theme="dark"] .form-container.mode1 legend {
-    color: var(--liwe3-mode1-300);
+.mode3 {
+    .form-container {
+        input,
+        select,
+        textarea {
+            border-color: var(--liwe3-mode3-300);
+
+            &:focus {
+                border-color: var(--liwe3-mode3-500);
+                box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode3-500) l c h / 0.2);
+            }
+        }
+
+        label,
+        legend {
+            color: var(--liwe3-mode3-600);
+        }
+
+        .form-group.floating {
+            .form-input:focus + label,
+            .form-input:not(:placeholder-shown) + label {
+                color: var(--liwe3-mode3-500);
+            }
+        }
+    }
 }
 
-.mode1 .form-container .form-group.floating .form-input:focus+label,
-.mode1 .form-container .form-group.floating .form-input:not(:placeholder-shown)+label,
-.form-container.mode1 .form-group.floating .form-input:focus+label,
-.form-container.mode1 .form-group.floating .form-input:not(:placeholder-shown)+label {
-    color: var(--liwe3-mode1-500);
-}
+.mode4 {
+    .form-container {
+        input,
+        select,
+        textarea {
+            border-color: var(--liwe3-mode4-300);
 
-/* Mode 2 Higher Level Cascading */
-.mode2 .form-container input,
-.mode2 .form-container select,
-.mode2 .form-container textarea,
-.form-container.mode2 input,
-.form-container.mode2 select,
-.form-container.mode2 textarea {
-    border-color: var(--liwe3-mode2-300);
-}
+            &:focus {
+                border-color: var(--liwe3-mode4-500);
+                box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode4-500) l c h / 0.2);
+            }
+        }
 
-.mode2 .form-container input:focus,
-.mode2 .form-container select:focus,
-.mode2 .form-container textarea:focus,
-.form-container.mode2 input:focus,
-.form-container.mode2 select:focus,
-.form-container.mode2 textarea:focus {
-    border-color: var(--liwe3-mode2-500);
-    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode2-500) l c h / 0.2);
-}
+        label,
+        legend {
+            color: var(--liwe3-mode4-600);
+        }
 
-.mode2 .form-container label,
-.mode2 .form-container legend,
-.form-container.mode2 label,
-.form-container.mode2 legend {
-    color: var(--liwe3-mode2-600);
-}
-
-/* Dark mode overrides for higher level mode2 cascading */
-[data-theme="dark"] .mode2 .form-container label,
-[data-theme="dark"] .mode2 .form-container legend,
-[data-theme="dark"] .form-container.mode2 label,
-[data-theme="dark"] .form-container.mode2 legend {
-    color: var(--liwe3-mode2-300);
-}
-
-.mode2 .form-container .form-group.floating .form-input:focus+label,
-.mode2 .form-container .form-group.floating .form-input:not(:placeholder-shown)+label,
-.form-container.mode2 .form-group.floating .form-input:focus+label,
-.form-container.mode2 .form-group.floating .form-input:not(:placeholder-shown)+label {
-    color: var(--liwe3-mode2-500);
-}
-
-/* Mode 3 Higher Level Cascading */
-.mode3 .form-container input,
-.mode3 .form-container select,
-.mode3 .form-container textarea,
-.form-container.mode3 input,
-.form-container.mode3 select,
-.form-container.mode3 textarea {
-    border-color: var(--liwe3-mode3-300);
-}
-
-.mode3 .form-container input:focus,
-.mode3 .form-container select:focus,
-.mode3 .form-container textarea:focus,
-.form-container.mode3 input:focus,
-.form-container.mode3 select:focus,
-.form-container.mode3 textarea:focus {
-    border-color: var(--liwe3-mode3-500);
-    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode3-500) l c h / 0.2);
-}
-
-.mode3 .form-container label,
-.mode3 .form-container legend,
-.form-container.mode3 label,
-.form-container.mode3 legend {
-    color: var(--liwe3-mode3-600);
-}
-
-/* Dark mode overrides for higher level mode3 cascading */
-[data-theme="dark"] .mode3 .form-container label,
-[data-theme="dark"] .mode3 .form-container legend,
-[data-theme="dark"] .form-container.mode3 label,
-[data-theme="dark"] .form-container.mode3 legend {
-    color: var(--liwe3-mode3-300);
-}
-
-.mode3 .form-container .form-group.floating .form-input:focus+label,
-.mode3 .form-container .form-group.floating .form-input:not(:placeholder-shown)+label,
-.form-container.mode3 .form-group.floating .form-input:focus+label,
-.form-container.mode3 .form-group.floating .form-input:not(:placeholder-shown)+label {
-    color: var(--liwe3-mode3-500);
-}
-
-/* Mode 4 Higher Level Cascading */
-.mode4 .form-container input,
-.mode4 .form-container select,
-.mode4 .form-container textarea,
-.form-container.mode4 input,
-.form-container.mode4 select,
-.form-container.mode4 textarea {
-    border-color: var(--liwe3-mode4-300);
-}
-
-.mode4 .form-container input:focus,
-.mode4 .form-container select:focus,
-.mode4 .form-container textarea:focus,
-.form-container.mode4 input:focus,
-.form-container.mode4 select:focus,
-.form-container.mode4 textarea:focus {
-    border-color: var(--liwe3-mode4-500);
-    box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode4-500) l c h / 0.2);
-}
-
-.mode4 .form-container label,
-.mode4 .form-container legend,
-.form-container.mode4 label,
-.form-container.mode4 legend {
-    color: var(--liwe3-mode4-600);
-}
-
-/* Dark mode overrides for higher level mode4 cascading */
-[data-theme="dark"] .mode4 .form-container label,
-[data-theme="dark"] .mode4 .form-container legend,
-[data-theme="dark"] .form-container.mode4 label,
-[data-theme="dark"] .form-container.mode4 legend {
-    color: var(--liwe3-mode4-300);
-}
-
-.mode4 .form-container .form-group.floating .form-input:focus+label,
-.mode4 .form-container .form-group.floating .form-input:not(:placeholder-shown)+label,
-.form-container.mode4 .form-group.floating .form-input:focus+label,
-.form-container.mode4 .form-group.floating .form-input:not(:placeholder-shown)+label {
-    color: var(--liwe3-mode4-500);
+        .form-group.floating {
+            .form-input:focus + label,
+            .form-input:not(:placeholder-shown) + label {
+                color: var(--liwe3-mode4-500);
+            }
+        }
+    }
 }
 
 
 
-/* Enhanced dark mode form container styling */
-[data-theme="dark"].form-container {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
+    /* Textarea */
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+        font-family: inherit;
+    }
 
-/* Ensure form-group modes have higher specificity than container modes */
-
-.form-container input.success {
-    border-color: var(--liwe3-success);
-    background: oklch(from var(--liwe3-success) calc(l + 0.4) calc(c * 0.3) h);
-    color: var(--liwe3-success-dark);
-}
-
-.form-container input.error {
-    border-color: var(--liwe3-error);
-    background: oklch(from var(--liwe3-error) calc(l + 0.4) calc(c * 0.3) h);
-    color: var(--liwe3-error-dark);
-}
-
-/* Textarea */
-.form-container textarea {
-    resize: vertical;
-    min-height: 100px;
-    font-family: inherit;
-}
-
-/* Select Dropdown */
-.form-container select {
-    cursor: pointer;
-    background: var(--liwe3-surface-raised);
-    /* Removed background-image, background-position, background-repeat, background-size */
-    /* Removed padding-right for arrow space */
+    /* Select Dropdown */
+    select {
+        cursor: pointer;
+        background: var(--liwe3-surface-raised);
+        /* Removed background-image, background-position, background-repeat, background-size */
+        /* Removed padding-right for arrow space */
+    }
 }
 
 /* Checkbox and Radio Styles */
@@ -498,120 +502,121 @@ label.required::after {
     padding: 0.5rem;
     border-radius: 6px;
     transition: background-color 0.2s ease;
+
+    &:hover {
+        background: var(--liwe3-hover-overlay);
+    }
 }
 
-.checkbox-item:hover,
-.radio-item:hover {
-    background: var(--liwe3-hover-overlay);
+.form-container {
+    input[type="checkbox"],
+    input[type="radio"] {
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 2px solid var(--liwe3-border-default);
+        border-radius: 4px;
+        background: var(--liwe3-surface-raised);
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+
+        &:checked {
+            background: var(--liwe3-mode1-500);
+            border-color: var(--liwe3-mode1-500);
+        }
+    }
+
+    input[type="radio"] {
+        border-radius: 50%;
+
+        &:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: white;
+        }
+    }
+
+    input[type="checkbox"]:checked::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
 }
 
-.form-container input[type="checkbox"],
-.form-container input[type="radio"] {
-    width: 1.25rem;
-    height: 1.25rem;
-    border: 2px solid var(--liwe3-border-default);
-    border-radius: 4px;
-    background: var(--liwe3-surface-raised);
-    cursor: pointer;
-    position: relative;
-    transition: all 0.3s ease;
-}
+    /* Range Slider */
+    input[type="range"] {
+        width: 100%;
+        height: 6px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700), var(--liwe3-mode1-800));
+        outline: none;
+        transition: all 0.3s ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
 
-.form-container input[type="radio"] {
-    border-radius: 50%;
-}
+        &::-webkit-slider-track {
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700), var(--liwe3-mode1-800));
+            border-radius: 3px;
+            border: none;
+        }
 
-.form-container input[type="checkbox"]:checked,
-.form-container input[type="radio"]:checked {
-    background: var(--liwe3-mode1-500);
-    border-color: var(--liwe3-mode1-500);
-}
+        &::-moz-range-track {
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700), var(--liwe3-mode1-800));
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+        }
 
-.form-container input[type="checkbox"]:checked::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
+        &::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--liwe3-mode1-500);
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
 
-.form-container input[type="radio"]:checked::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: white;
-}
+            &:hover {
+                transform: scale(1.2);
+                background: var(--liwe3-mode1-600);
+            }
+        }
 
-/* Range Slider */
-.form-container input[type="range"] {
-    width: 100%;
-    height: 6px;
-    border-radius: 3px;
-    background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700), var(--liwe3-mode1-800));
-    outline: none;
-    transition: all 0.3s ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
+        &::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--liwe3-mode1-500);
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            -moz-appearance: none;
 
-.form-container input[type="range"]::-webkit-slider-track {
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700), var(--liwe3-mode1-800));
-    border-radius: 3px;
-    border: none;
-}
-
-.form-container input[type="range"]::-moz-range-track {
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700), var(--liwe3-mode1-800));
-    border-radius: 3px;
-    border: none;
-    cursor: pointer;
-}
-
-.form-container input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--liwe3-mode1-500);
-    cursor: pointer;
-    border: 2px solid white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-.form-container input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--liwe3-mode1-500);
-    cursor: pointer;
-    border: 2px solid white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    -moz-appearance: none;
-}
-
-.form-container input[type="range"]::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-    background: var(--liwe3-mode1-600);
-}
-
-.form-container input[type="range"]::-moz-range-thumb:hover {
-    transform: scale(1.2);
-    background: var(--liwe3-mode1-600);
+            &:hover {
+                transform: scale(1.2);
+                background: var(--liwe3-mode1-600);
+            }
+        }
+    }
 }
 
 /* Form Actions */
@@ -626,69 +631,75 @@ label.required::after {
 }
 */
 
-/* Button Styles */
-.form-container button {
-    padding: 0.875rem 2rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    /* Button Styles */
+    button {
+        padding: 0.875rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:active {
+            transform: translateY(1px);
+            filter: brightness(0.95);
+        }
+    }
+
+    .mode1 {
+        button {
+            background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
+            color: white;
+            box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
+            }
+        }
+    }
+
+    .mode2 {
+        button {
+            background: var(--liwe3-surface-raised);
+            color: var(--liwe3-text-mode1);
+            border: 2px solid var(--liwe3-border-default);
+
+            &:hover {
+                background: var(--liwe3-surface-mode2);
+                border-color: var(--liwe3-mode1-500);
+                color: var(--liwe3-mode1-600);
+            }
+        }
+    }
 }
 
-.form-container button:active {
-    transform: translateY(1px);
-    filter: brightness(0.95);
-}
+    /* Error and Success Messages */
+    .message {
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        margin: 1rem 0;
+        font-weight: 500;
 
-.form-container .mode1 button {
-    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
-    color: white;
-    box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
-}
+        &.success {
+            background: var(--liwe3-success-light);
+            color: var(--liwe3-success-dark);
+            border: 1px solid var(--liwe3-success);
+        }
 
-.form-container .mode1 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
-}
+        &.error {
+            background: var(--liwe3-error-light);
+            color: var(--liwe3-error-dark);
+            border: 1px solid var(--liwe3-error);
+        }
 
-.form-container .mode2 button {
-    background: var(--liwe3-surface-raised);
-    color: var(--liwe3-text-mode1);
-    border: 2px solid var(--liwe3-border-default);
-}
-
-.form-container .mode2 button:hover {
-    background: var(--liwe3-surface-mode2);
-    border-color: var(--liwe3-mode1-500);
-    color: var(--liwe3-mode1-600);
-}
-
-/* Error and Success Messages */
-.form-container .message {
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
-    margin: 1rem 0;
-    font-weight: 500;
-}
-
-.form-container .message.success {
-    background: var(--liwe3-success-light);
-    color: var(--liwe3-success-dark);
-    border: 1px solid var(--liwe3-success);
-}
-
-.form-container .message.error {
-    background: var(--liwe3-error-light);
-    color: var(--liwe3-error-dark);
-    border: 1px solid var(--liwe3-error);
-}
-
-.form-container .message.warning {
-    background: var(--liwe3-warning-light);
-    color: var(--liwe3-warning-dark);
-    border: 1px solid var(--liwe3-warning);
+        &.warning {
+            background: var(--liwe3-warning-light);
+            color: var(--liwe3-warning-dark);
+            border: 1px solid var(--liwe3-warning);
+        }
+    }
 }
 
 /* Mobile Responsiveness */
@@ -708,234 +719,283 @@ label.required::after {
    ENHANCED FORM STYLING WITH THEME MODES
    ================================== */
 
-/* Direct button and submit input styling */
-.form-container button,
-.form-container input[type="submit"],
-.form-container input[type="button"] {
-    padding: 0.875rem 2rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
-    color: var(--liwe3-text-inverse);
-    box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
+    /* Direct button and submit input styling */
+    button,
+    input[type="submit"],
+    input[type="button"] {
+        padding: 0.875rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
+        color: var(--liwe3-text-inverse);
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
+
+        &:hover {
+            background: linear-gradient(135deg, var(--liwe3-mode1-200), var(--liwe3-mode1-500));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
+        }
+
+        &:active {
+            background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-800));
+            transform: translateY(1px);
+            filter: brightness(0.95);
+        }
+    }
 }
 
-.form-container button:hover,
-.form-container input[type="submit"]:hover,
-.form-container input[type="button"]:hover {
-    background: linear-gradient(135deg, var(--liwe3-mode1-200), var(--liwe3-mode1-500));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
+/* Mode-specific button styling - consolidated with nesting */
+.form-container {
+    .mode1,
+    &.mode1 {
+        button,
+        input[type="submit"],
+        input[type="button"] {
+            background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
+            color: var(--liwe3-text-inverse);
+            box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
+            }
+        }
+    }
+
+    .mode2,
+    &.mode2 {
+        button,
+        input[type="submit"],
+        input[type="button"] {
+            background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
+            color: var(--liwe3-text-inverse);
+            box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4);
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-800));
+            }
+        }
+    }
+
+    .mode3,
+    &.mode3 {
+        button,
+        input[type="submit"],
+        input[type="button"] {
+            background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
+            color: var(--liwe3-text-inverse);
+            box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4);
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-800));
+            }
+        }
+    }
+
+    .mode4,
+    &.mode4 {
+        button,
+        input[type="submit"],
+        input[type="button"] {
+            background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
+            color: var(--liwe3-text-inverse);
+            box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4);
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-800));
+            }
+        }
+    }
+
+    button.mode1,
+    input[type="submit"].mode1,
+    input[type="button"].mode1 {
+        background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
+        color: var(--liwe3-text-inverse);
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
+
+        &:hover {
+            background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
+        }
+
+        &:active {
+            background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
+        }
+    }
+
+    button.mode2,
+    input[type="submit"].mode2,
+    input[type="button"].mode2 {
+        background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
+        color: var(--liwe3-text-inverse);
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
+
+        &:hover {
+            background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4);
+        }
+
+        &:active {
+            background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-800));
+        }
+    }
+
+    button.mode3,
+    input[type="submit"].mode3,
+    input[type="button"].mode3 {
+        background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
+        color: var(--liwe3-text-inverse);
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
+
+        &:hover {
+            background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4);
+        }
+
+        &:active {
+            background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-800));
+        }
+    }
+
+    button.mode4,
+    input[type="submit"].mode4,
+    input[type="button"].mode4 {
+        background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
+        color: var(--liwe3-text-inverse);
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
+
+        &:hover {
+            background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4);
+        }
+
+        &:active {
+            background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-800));
+        }
+    }
 }
 
-.form-container button:active,
-.form-container input[type="submit"]:active,
-.form-container input[type="button"]:active {
-    background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-800));
-    transform: translateY(1px);
-    filter: brightness(0.95);
+.mode1 {
+    .form-container {
+        button,
+        input[type="submit"],
+        input[type="button"] {
+            background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
+            color: var(--liwe3-text-inverse);
+            box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
+            }
+        }
+    }
 }
 
-/* Mode-specific button styling */
-.form-container .mode1 button,
-.form-container .mode1 input[type="submit"],
-.form-container .mode1 input[type="button"],
-.form-container.mode1 button,
-.form-container.mode1 input[type="submit"],
-.form-container.mode1 input[type="button"],
-.mode1 .form-container button,
-.mode1 .form-container input[type="submit"],
-.mode1 .form-container input[type="button"],
-.form-container button.mode1,
-.form-container input[type="submit"].mode1,
-.form-container input[type="button"].mode1 {
-    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
-    color: var(--liwe3-text-inverse);
-    box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
+.mode2 {
+    .form-container {
+        button,
+        input[type="submit"],
+        input[type="button"] {
+            background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
+            color: var(--liwe3-text-inverse);
+            box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4);
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-800));
+            }
+        }
+    }
 }
 
-.form-container .mode1 button:hover,
-.form-container .mode1 input[type="submit"]:hover,
-.form-container .mode1 input[type="button"]:hover,
-.form-container.mode1 button:hover,
-.form-container.mode1 input[type="submit"]:hover,
-.form-container.mode1 input[type="button"]:hover,
-.mode1 .form-container button:hover,
-.mode1 .form-container input[type="submit"]:hover,
-.mode1 .form-container input[type="button"]:hover,
-.form-container button.mode1:hover,
-.form-container input[type="submit"].mode1:hover,
-.form-container input[type="button"].mode1:hover {
-    background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
+.mode3 {
+    .form-container {
+        button,
+        input[type="submit"],
+        input[type="button"] {
+            background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
+            color: var(--liwe3-text-inverse);
+            box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4);
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-800));
+            }
+        }
+    }
 }
 
-.form-container .mode1 button:active,
-.form-container .mode1 input[type="submit"]:active,
-.form-container .mode1 input[type="button"]:active,
-.form-container.mode1 button:active,
-.form-container.mode1 input[type="submit"]:active,
-.form-container.mode1 input[type="button"]:active,
-.mode1 .form-container button:active,
-.mode1 .form-container input[type="submit"]:active,
-.mode1 .form-container input[type="button"]:active,
-.form-container button.mode1:active,
-.form-container input[type="submit"].mode1:active,
-.form-container input[type="button"].mode1:active {
-    background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
+.mode4 {
+    .form-container {
+        button,
+        input[type="submit"],
+        input[type="button"] {
+            background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
+            color: var(--liwe3-text-inverse);
+            box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4);
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-800));
+            }
+        }
+    }
 }
 
-.form-container .mode2 button,
-.form-container .mode2 input[type="submit"],
-.form-container .mode2 input[type="button"],
-.form-container.mode2 button,
-.form-container.mode2 input[type="submit"],
-.form-container.mode2 input[type="button"],
-.mode2 .form-container button,
-.mode2 .form-container input[type="submit"],
-.mode2 .form-container input[type="button"],
-.form-container button.mode2,
-.form-container input[type="submit"].mode2,
-.form-container input[type="button"].mode2 {
-    background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
-    color: var(--liwe3-text-inverse);
-    box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
-}
-
-.form-container .mode2 button:hover,
-.form-container .mode2 input[type="submit"]:hover,
-.form-container .mode2 input[type="button"]:hover,
-.form-container.mode2 button:hover,
-.form-container.mode2 input[type="submit"]:hover,
-.form-container.mode2 input[type="button"]:hover,
-.mode2 .form-container button:hover,
-.mode2 .form-container input[type="submit"]:hover,
-.mode2 .form-container input[type="button"]:hover,
-.form-container button.mode2:hover,
-.form-container input[type="submit"].mode2:hover,
-.form-container input[type="button"].mode2:hover {
-    background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4);
-}
-
-.form-container .mode2 button:active,
-.form-container .mode2 input[type="submit"]:active,
-.form-container .mode2 input[type="button"]:active,
-.form-container.mode2 button:active,
-.form-container.mode2 input[type="submit"]:active,
-.form-container.mode2 input[type="button"]:active,
-.mode2 .form-container button:active,
-.mode2 .form-container input[type="submit"]:active,
-.mode2 .form-container input[type="button"]:active,
-.form-container button.mode2:active,
-.form-container input[type="submit"].mode2:active,
-.form-container input[type="button"].mode2:active {
-    background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-800));
-}
-
-.form-container .mode3 button,
-.form-container .mode3 input[type="submit"],
-.form-container .mode3 input[type="button"],
-.form-container.mode3 button,
-.form-container.mode3 input[type="submit"],
-.form-container.mode3 input[type="button"],
-.mode3 .form-container button,
-.mode3 .form-container input[type="submit"],
-.mode3 .form-container input[type="button"],
-.form-container button.mode3,
-.form-container input[type="submit"].mode3,
-.form-container input[type="button"].mode3 {
-    background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
-    color: var(--liwe3-text-inverse);
-    box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
-}
-
-.form-container .mode3 button:hover,
-.form-container .mode3 input[type="submit"]:hover,
-.form-container .mode3 input[type="button"]:hover,
-.form-container.mode3 button:hover,
-.form-container.mode3 input[type="submit"]:hover,
-.form-container.mode3 input[type="button"]:hover,
-.mode3 .form-container button:hover,
-.mode3 .form-container input[type="submit"]:hover,
-.mode3 .form-container input[type="button"]:hover,
-.form-container button.mode3:hover,
-.form-container input[type="submit"].mode3:hover,
-.form-container input[type="button"].mode3:hover {
-    background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4);
-}
-
-.form-container .mode3 button:active,
-.form-container .mode3 input[type="submit"]:active,
-.form-container .mode3 input[type="button"]:active,
-.form-container.mode3 button:active,
-.form-container.mode3 input[type="submit"]:active,
-.form-container.mode3 input[type="button"]:active,
-.mode3 .form-container button:active,
-.mode3 .form-container input[type="submit"]:active,
-.mode3 .form-container input[type="button"]:active,
-.form-container button.mode3:active,
-.form-container input[type="submit"].mode3:active,
-.form-container input[type="button"].mode3:active {
-    background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-800));
-}
-
-.form-container .mode4 button,
-.form-container .mode4 input[type="submit"],
-.form-container .mode4 input[type="button"],
-.form-container.mode4 button,
-.form-container.mode4 input[type="submit"],
-.form-container.mode4 input[type="button"],
-.mode4 .form-container button,
-.mode4 .form-container input[type="submit"],
-.mode4 .form-container input[type="button"],
-.form-container button.mode4,
-.form-container input[type="submit"].mode4,
-.form-container input[type="button"].mode4 {
-    background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
-    color: var(--liwe3-text-inverse);
-    box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
-}
-
-.form-container .mode4 button:hover,
-.form-container .mode4 input[type="submit"]:hover,
-.form-container .mode4 input[type="button"]:hover,
-.form-container.mode4 button:hover,
-.form-container.mode4 input[type="submit"]:hover,
-.form-container.mode4 input[type="button"]:hover,
-.mode4 .form-container button:hover,
-.mode4 .form-container input[type="submit"]:hover,
-.mode4 .form-container input[type="button"]:hover,
-.form-container button.mode4:hover,
-.form-container input[type="submit"].mode4:hover,
-.form-container input[type="button"].mode4:hover {
-    background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4);
-}
-
-.form-container .mode4 button:active,
-.form-container .mode4 input[type="submit"]:active,
-.form-container .mode4 input[type="button"]:active,
-.form-container.mode4 button:active,
-.form-container.mode4 input[type="submit"]:active,
-.form-container.mode4 input[type="button"]:active,
-.mode4 .form-container button:active,
-.mode4 .form-container input[type="submit"]:active,
-.mode4 .form-container input[type="button"]:active,
-.form-container button.mode4:active,
-.form-container input[type="submit"].mode4:active,
-.form-container input[type="button"].mode4:active {
-    background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-800));
-}
+/* Consolidated mode button styling moved above */
 
 /* Form actions row */
 .form-actions {
@@ -955,13 +1015,13 @@ label.required::after {
     background: var(--liwe3-surface-raised);
     border-radius: 12px;
     border: 1px solid var(--liwe3-border-subtle);
-}
 
-.color-palette-title {
-    color: var(--liwe3-text-mode1);
-    margin-bottom: 1.5rem;
-    font-size: 1.25rem;
-    font-weight: 600;
+    &-title {
+        color: var(--liwe3-text-mode1);
+        margin-bottom: 1.5rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
 }
 
 .color-mode-section {
@@ -971,22 +1031,22 @@ label.required::after {
 .color-mode-title {
     margin-bottom: 0.5rem;
     font-weight: 600;
-}
 
-.color-mode-title-mode1 {
-    color: var(--liwe3-mode1-600);
-}
+    &-mode1 {
+        color: var(--liwe3-mode1-600);
+    }
 
-.color-mode-title-mode2 {
-    color: var(--liwe3-mode2-600);
-}
+    &-mode2 {
+        color: var(--liwe3-mode2-600);
+    }
 
-.color-mode-title-mode3 {
-    color: var(--liwe3-mode3-600);
-}
+    &-mode3 {
+        color: var(--liwe3-mode3-600);
+    }
 
-.color-mode-title-mode4 {
-    color: var(--liwe3-mode4-600);
+    &-mode4 {
+        color: var(--liwe3-mode4-600);
+    }
 }
 
 .color-swatches {
@@ -1008,53 +1068,30 @@ label.required::after {
 }
 
 /* Themed radio items */
-.radio-item-mode1 {
-    background: oklch(from var(--liwe3-mode1-500) calc(l + 0.4) calc(c * 0.3) h);
-    border: 1px solid var(--liwe3-mode1-300);
-    color: var(--liwe3-mode1-700);
-}
+.radio-item {
+    &-mode1 {
+        background: oklch(from var(--liwe3-mode1-500) calc(l + 0.4) calc(c * 0.3) h);
+        border: 1px solid var(--liwe3-mode1-300);
+        color: var(--liwe3-mode1-700);
+    }
 
-.radio-item-mode2 {
-    background: oklch(from var(--liwe3-mode2-500) calc(l + 0.4) calc(c * 0.3) h);
-    border: 1px solid var(--liwe3-mode2-300);
-    color: var(--liwe3-mode2-700);
-}
+    &-mode2 {
+        background: oklch(from var(--liwe3-mode2-500) calc(l + 0.4) calc(c * 0.3) h);
+        border: 1px solid var(--liwe3-mode2-300);
+        color: var(--liwe3-mode2-700);
+    }
 
-.radio-item-mode3 {
-    background: oklch(from var(--liwe3-mode3-500) calc(l + 0.4) calc(c * 0.3) h);
-    border: 1px solid var(--liwe3-mode3-300);
-    color: var(--liwe3-mode3-700);
-}
+    &-mode3 {
+        background: oklch(from var(--liwe3-mode3-500) calc(l + 0.4) calc(c * 0.3) h);
+        border: 1px solid var(--liwe3-mode3-300);
+        color: var(--liwe3-mode3-700);
+    }
 
-.radio-item-mode4 {
-    background: oklch(from var(--liwe3-mode4-500) calc(l + 0.4) calc(c * 0.3) h);
-    border: 1px solid var(--liwe3-mode4-300);
-    color: var(--liwe3-mode4-700);
-}
-
-/* Dark theme variants for radio items */
-[data-theme="dark"] .radio-item-mode1 {
-    background: oklch(from var(--liwe3-mode1-500) calc(l - 0.3) calc(c * 0.8) h);
-    border-color: var(--liwe3-mode1-600);
-    color: var(--liwe3-mode1-300);
-}
-
-[data-theme="dark"] .radio-item-mode2 {
-    background: oklch(from var(--liwe3-mode2-500) calc(l - 0.3) calc(c * 0.8) h);
-    border-color: var(--liwe3-mode2-600);
-    color: var(--liwe3-mode2-300);
-}
-
-[data-theme="dark"] .radio-item-mode3 {
-    background: oklch(from var(--liwe3-mode3-500) calc(l - 0.3) calc(c * 0.8) h);
-    border-color: var(--liwe3-mode3-600);
-    color: var(--liwe3-mode3-300);
-}
-
-[data-theme="dark"] .radio-item-mode4 {
-    background: oklch(from var(--liwe3-mode4-500) calc(l - 0.3) calc(c * 0.8) h);
-    border-color: var(--liwe3-mode4-600);
-    color: var(--liwe3-mode4-300);
+    &-mode4 {
+        background: oklch(from var(--liwe3-mode4-500) calc(l + 0.4) calc(c * 0.3) h);
+        border: 1px solid var(--liwe3-mode4-300);
+        color: var(--liwe3-mode4-700);
+    }
 }
 
 /* Form data display */
@@ -1065,247 +1102,377 @@ label.required::after {
     border-radius: 8px;
 }
 
-.form-data-title {
-    color: var(--liwe3-text-mode1);
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
+.form-data {
+    &-title {
+        color: var(--liwe3-text-mode1);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
 
-.form-data-content {
-    color: var(--liwe3-text-mode2);
-    font-size: 0.875rem;
-    white-space: pre-wrap;
-    overflow-x: auto;
-    max-height: 300px;
-    overflow-y: auto;
+    &-content {
+        color: var(--liwe3-text-mode2);
+        font-size: 0.875rem;
+        white-space: pre-wrap;
+        overflow-x: auto;
+        max-height: 300px;
+        overflow-y: auto;
+    }
 }
 
 
 
 /* Dark Mode Enhancements */
-[data-theme="dark"] .form-container {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+[data-theme="dark"] {
+    label {
+        color: var(--liwe3-text-mode1) !important;
+    }
+
+    .form-container {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+        /* Dark mode button gradients */
+        button,
+        input[type="submit"],
+        input[type="button"] {
+            background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-700));
+            }
+        }
+
+        .mode1,
+        &.mode1 {
+            button,
+            input[type="submit"],
+            input[type="button"] {
+                background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+
+                &:hover {
+                    background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+                }
+
+                &:active {
+                    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-700));
+                }
+            }
+        }
+
+        .mode2,
+        &.mode2 {
+            button,
+            input[type="submit"],
+            input[type="button"] {
+                background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
+
+                &:hover {
+                    background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
+                }
+
+                &:active {
+                    background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-700));
+                }
+            }
+        }
+
+        .mode3,
+        &.mode3 {
+            button,
+            input[type="submit"],
+            input[type="button"] {
+                background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
+
+                &:hover {
+                    background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
+                }
+
+                &:active {
+                    background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-700));
+                }
+            }
+        }
+
+        .mode4,
+        &.mode4 {
+            button,
+            input[type="submit"],
+            input[type="button"] {
+                background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
+
+                &:hover {
+                    background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
+                }
+
+                &:active {
+                    background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-700));
+                }
+            }
+        }
+
+        button.mode1,
+        input[type="submit"].mode1,
+        input[type="button"].mode1 {
+            background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-700));
+            }
+        }
+
+        button.mode2,
+        input[type="submit"].mode2,
+        input[type="button"].mode2 {
+            background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-700));
+            }
+        }
+
+        button.mode3,
+        input[type="submit"].mode3,
+        input[type="button"].mode3 {
+            background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-700));
+            }
+        }
+
+        button.mode4,
+        input[type="submit"].mode4,
+        input[type="button"].mode4 {
+            background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
+
+            &:hover {
+                background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
+            }
+
+            &:active {
+                background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-700));
+            }
+        }
+
+        .form-group {
+            &.mode1 {
+                label,
+                legend {
+                    color: var(--liwe3-mode1-300) !important;
+                }
+            }
+
+            &.mode2 {
+                label,
+                legend {
+                    color: var(--liwe3-mode2-300) !important;
+                }
+            }
+
+            &.mode3 {
+                label,
+                legend {
+                    color: var(--liwe3-mode3-300) !important;
+                }
+            }
+
+            &.mode4 {
+                label,
+                legend {
+                    color: var(--liwe3-mode4-300) !important;
+                }
+            }
+        }
+    }
+
+    .form-group {
+        &.mode1 {
+            label,
+            legend {
+                color: var(--liwe3-mode1-300) !important;
+            }
+        }
+
+        &.mode2 {
+            label,
+            legend {
+                color: var(--liwe3-mode2-300) !important;
+            }
+        }
+
+        &.mode3 {
+            label,
+            legend {
+                color: var(--liwe3-mode3-300) !important;
+            }
+        }
+
+        &.mode4 {
+            label,
+            legend {
+                color: var(--liwe3-mode4-300) !important;
+            }
+        }
+    }
+
+    .mode1 {
+        .form-container {
+            button,
+            input[type="submit"],
+            input[type="button"] {
+                background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+
+                &:hover {
+                    background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+                }
+
+                &:active {
+                    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-700));
+                }
+            }
+
+            label,
+            legend {
+                color: var(--liwe3-mode1-300);
+            }
+        }
+    }
+
+    .mode2 {
+        .form-container {
+            button,
+            input[type="submit"],
+            input[type="button"] {
+                background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
+
+                &:hover {
+                    background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
+                }
+
+                &:active {
+                    background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-700));
+                }
+            }
+
+            label,
+            legend {
+                color: var(--liwe3-mode2-300);
+            }
+        }
+    }
+
+    .mode3 {
+        .form-container {
+            button,
+            input[type="submit"],
+            input[type="button"] {
+                background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
+
+                &:hover {
+                    background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
+                }
+
+                &:active {
+                    background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-700));
+                }
+            }
+
+            label,
+            legend {
+                color: var(--liwe3-mode3-300);
+            }
+        }
+    }
+
+    .mode4 {
+        .form-container {
+            button,
+            input[type="submit"],
+            input[type="button"] {
+                background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
+
+                &:hover {
+                    background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
+                }
+
+                &:active {
+                    background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-700));
+                }
+            }
+
+            label,
+            legend {
+                color: var(--liwe3-mode4-300);
+            }
+        }
+    }
+
+    .radio-item {
+        &-mode1 {
+            background: oklch(from var(--liwe3-mode1-500) calc(l - 0.3) calc(c * 0.8) h);
+            border-color: var(--liwe3-mode1-600);
+            color: var(--liwe3-mode1-300);
+        }
+
+        &-mode2 {
+            background: oklch(from var(--liwe3-mode2-500) calc(l - 0.3) calc(c * 0.8) h);
+            border-color: var(--liwe3-mode2-600);
+            color: var(--liwe3-mode2-300);
+        }
+
+        &-mode3 {
+            background: oklch(from var(--liwe3-mode3-500) calc(l - 0.3) calc(c * 0.8) h);
+            border-color: var(--liwe3-mode3-600);
+            color: var(--liwe3-mode3-300);
+        }
+
+        &-mode4 {
+            background: oklch(from var(--liwe3-mode4-500) calc(l - 0.3) calc(c * 0.8) h);
+            border-color: var(--liwe3-mode4-600);
+            color: var(--liwe3-mode4-300);
+        }
+    }
+
+    .file-upload-label:hover {
+        background: oklch(from var(--liwe3-mode1-500) calc(l - 0.4) calc(c * 0.5) h);
+    }
+
+    .form-range {
+        background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700));
+
+        &::-webkit-slider-track {
+            background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700));
+        }
+
+        &::-moz-range-track {
+            background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700));
+        }
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: var(--liwe3-text-mode3);
+        opacity: 1;
+    }
 }
 
-/* Dark mode button gradients */
-[data-theme="dark"] .form-container button,
-[data-theme="dark"] .form-container input[type="submit"],
-[data-theme="dark"] .form-container input[type="button"] {
-    background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
-}
-
-[data-theme="dark"] .form-container button:hover,
-[data-theme="dark"] .form-container input[type="submit"]:hover,
-[data-theme="dark"] .form-container input[type="button"]:hover {
-    background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
-}
-
-[data-theme="dark"] .form-container button:active,
-[data-theme="dark"] .form-container input[type="submit"]:active,
-[data-theme="dark"] .form-container input[type="button"]:active {
-    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-700));
-}
-
-/* Dark mode Mode 1 buttons */
-[data-theme="dark"] .form-container .mode1 button,
-[data-theme="dark"] .form-container .mode1 input[type="submit"],
-[data-theme="dark"] .form-container .mode1 input[type="button"],
-[data-theme="dark"] .form-container.mode1 button,
-[data-theme="dark"] .form-container.mode1 input[type="submit"],
-[data-theme="dark"] .form-container.mode1 input[type="button"],
-[data-theme="dark"] .mode1 .form-container button,
-[data-theme="dark"] .mode1 .form-container input[type="submit"],
-[data-theme="dark"] .mode1 .form-container input[type="button"],
-[data-theme="dark"] .form-container button.mode1,
-[data-theme="dark"] .form-container input[type="submit"].mode1,
-[data-theme="dark"] .form-container input[type="button"].mode1 {
-    background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
-}
-
-[data-theme="dark"] .form-container .mode1 button:hover,
-[data-theme="dark"] .form-container .mode1 input[type="submit"]:hover,
-[data-theme="dark"] .form-container .mode1 input[type="button"]:hover,
-[data-theme="dark"] .form-container.mode1 button:hover,
-[data-theme="dark"] .form-container.mode1 input[type="submit"]:hover,
-[data-theme="dark"] .form-container.mode1 input[type="button"]:hover,
-[data-theme="dark"] .mode1 .form-container button:hover,
-[data-theme="dark"] .mode1 .form-container input[type="submit"]:hover,
-[data-theme="dark"] .mode1 .form-container input[type="button"]:hover,
-[data-theme="dark"] .form-container button.mode1:hover,
-[data-theme="dark"] .form-container input[type="submit"].mode1:hover,
-[data-theme="dark"] .form-container input[type="button"].mode1:hover {
-    background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
-}
-
-[data-theme="dark"] .form-container .mode1 button:active,
-[data-theme="dark"] .form-container .mode1 input[type="submit"]:active,
-[data-theme="dark"] .form-container .mode1 input[type="button"]:active,
-[data-theme="dark"] .form-container.mode1 button:active,
-[data-theme="dark"] .form-container.mode1 input[type="submit"]:active,
-[data-theme="dark"] .form-container.mode1 input[type="button"]:active,
-[data-theme="dark"] .mode1 .form-container button:active,
-[data-theme="dark"] .mode1 .form-container input[type="submit"]:active,
-[data-theme="dark"] .mode1 .form-container input[type="button"]:active,
-[data-theme="dark"] .form-container button.mode1:active,
-[data-theme="dark"] .form-container input[type="submit"].mode1:active,
-[data-theme="dark"] .form-container input[type="button"].mode1:active {
-    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-700));
-}
-
-/* Dark mode Mode 2 buttons */
-[data-theme="dark"] .form-container .mode2 button,
-[data-theme="dark"] .form-container .mode2 input[type="submit"],
-[data-theme="dark"] .form-container .mode2 input[type="button"],
-[data-theme="dark"] .form-container.mode2 button,
-[data-theme="dark"] .form-container.mode2 input[type="submit"],
-[data-theme="dark"] .form-container.mode2 input[type="button"],
-[data-theme="dark"] .mode2 .form-container button,
-[data-theme="dark"] .mode2 .form-container input[type="submit"],
-[data-theme="dark"] .mode2 .form-container input[type="button"],
-[data-theme="dark"] .form-container button.mode2,
-[data-theme="dark"] .form-container input[type="submit"].mode2,
-[data-theme="dark"] .form-container input[type="button"].mode2 {
-    background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
-}
-
-[data-theme="dark"] .form-container .mode2 button:hover,
-[data-theme="dark"] .form-container .mode2 input[type="submit"]:hover,
-[data-theme="dark"] .form-container .mode2 input[type="button"]:hover,
-[data-theme="dark"] .form-container.mode2 button:hover,
-[data-theme="dark"] .form-container.mode2 input[type="submit"]:hover,
-[data-theme="dark"] .form-container.mode2 input[type="button"]:hover,
-[data-theme="dark"] .mode2 .form-container button:hover,
-[data-theme="dark"] .mode2 .form-container input[type="submit"]:hover,
-[data-theme="dark"] .mode2 .form-container input[type="button"]:hover,
-[data-theme="dark"] .form-container button.mode2:hover,
-[data-theme="dark"] .form-container input[type="submit"].mode2:hover,
-[data-theme="dark"] .form-container input[type="button"].mode2:hover {
-    background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
-}
-
-[data-theme="dark"] .form-container .mode2 button:active,
-[data-theme="dark"] .form-container .mode2 input[type="submit"]:active,
-[data-theme="dark"] .form-container .mode2 input[type="button"]:active,
-[data-theme="dark"] .form-container.mode2 button:active,
-[data-theme="dark"] .form-container.mode2 input[type="submit"]:active,
-[data-theme="dark"] .form-container.mode2 input[type="button"]:active,
-[data-theme="dark"] .mode2 .form-container button:active,
-[data-theme="dark"] .mode2 .form-container input[type="submit"]:active,
-[data-theme="dark"] .mode2 .form-container input[type="button"]:active,
-[data-theme="dark"] .form-container button.mode2:active,
-[data-theme="dark"] .form-container input[type="submit"].mode2:active,
-[data-theme="dark"] .form-container input[type="button"].mode2:active {
-    background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-700));
-}
-
-/* Dark mode Mode 3 buttons */
-[data-theme="dark"] .form-container .mode3 button,
-[data-theme="dark"] .form-container .mode3 input[type="submit"],
-[data-theme="dark"] .form-container .mode3 input[type="button"],
-[data-theme="dark"] .form-container.mode3 button,
-[data-theme="dark"] .form-container.mode3 input[type="submit"],
-[data-theme="dark"] .form-container.mode3 input[type="button"],
-[data-theme="dark"] .mode3 .form-container button,
-[data-theme="dark"] .mode3 .form-container input[type="submit"],
-[data-theme="dark"] .mode3 .form-container input[type="button"],
-[data-theme="dark"] .form-container button.mode3,
-[data-theme="dark"] .form-container input[type="submit"].mode3,
-[data-theme="dark"] .form-container input[type="button"].mode3 {
-    background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
-}
-
-[data-theme="dark"] .form-container .mode3 button:hover,
-[data-theme="dark"] .form-container .mode3 input[type="submit"]:hover,
-[data-theme="dark"] .form-container .mode3 input[type="button"]:hover,
-[data-theme="dark"] .form-container.mode3 button:hover,
-[data-theme="dark"] .form-container.mode3 input[type="submit"]:hover,
-[data-theme="dark"] .form-container.mode3 input[type="button"]:hover,
-[data-theme="dark"] .mode3 .form-container button:hover,
-[data-theme="dark"] .mode3 .form-container input[type="submit"]:hover,
-[data-theme="dark"] .mode3 .form-container input[type="button"]:hover,
-[data-theme="dark"] .form-container button.mode3:hover,
-[data-theme="dark"] .form-container input[type="submit"].mode3:hover,
-[data-theme="dark"] .form-container input[type="button"].mode3:hover {
-    background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
-}
-
-[data-theme="dark"] .form-container .mode3 button:active,
-[data-theme="dark"] .form-container .mode3 input[type="submit"]:active,
-[data-theme="dark"] .form-container .mode3 input[type="button"]:active,
-[data-theme="dark"] .form-container.mode3 button:active,
-[data-theme="dark"] .form-container.mode3 input[type="submit"]:active,
-[data-theme="dark"] .form-container.mode3 input[type="button"]:active,
-[data-theme="dark"] .mode3 .form-container button:active,
-[data-theme="dark"] .mode3 .form-container input[type="submit"]:active,
-[data-theme="dark"] .mode3 .form-container input[type="button"]:active,
-[data-theme="dark"] .form-container button.mode3:active,
-[data-theme="dark"] .form-container input[type="submit"].mode3:active,
-[data-theme="dark"] .form-container input[type="button"].mode3:active {
-    background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-700));
-}
-
-/* Dark mode Mode 4 buttons */
-[data-theme="dark"] .form-container .mode4 button,
-[data-theme="dark"] .form-container .mode4 input[type="submit"],
-[data-theme="dark"] .form-container .mode4 input[type="button"],
-[data-theme="dark"] .form-container.mode4 button,
-[data-theme="dark"] .form-container.mode4 input[type="submit"],
-[data-theme="dark"] .form-container.mode4 input[type="button"],
-[data-theme="dark"] .mode4 .form-container button,
-[data-theme="dark"] .mode4 .form-container input[type="submit"],
-[data-theme="dark"] .mode4 .form-container input[type="button"],
-[data-theme="dark"] .form-container button.mode4,
-[data-theme="dark"] .form-container input[type="submit"].mode4,
-[data-theme="dark"] .form-container input[type="button"].mode4 {
-    background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
-}
-
-[data-theme="dark"] .form-container .mode4 button:hover,
-[data-theme="dark"] .form-container .mode4 input[type="submit"]:hover,
-[data-theme="dark"] .form-container .mode4 input[type="button"]:hover,
-[data-theme="dark"] .form-container.mode4 button:hover,
-[data-theme="dark"] .form-container.mode4 input[type="submit"]:hover,
-[data-theme="dark"] .form-container.mode4 input[type="button"]:hover,
-[data-theme="dark"] .mode4 .form-container button:hover,
-[data-theme="dark"] .mode4 .form-container input[type="submit"]:hover,
-[data-theme="dark"] .mode4 .form-container input[type="button"]:hover,
-[data-theme="dark"] .form-container button.mode4:hover,
-[data-theme="dark"] .form-container input[type="submit"].mode4:hover,
-[data-theme="dark"] .form-container input[type="button"].mode4:hover {
-    background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
-}
-
-[data-theme="dark"] .form-container .mode4 button:active,
-[data-theme="dark"] .form-container .mode4 input[type="submit"]:active,
-[data-theme="dark"] .form-container .mode4 input[type="button"]:active,
-[data-theme="dark"] .form-container.mode4 button:active,
-[data-theme="dark"] .form-container.mode4 input[type="submit"]:active,
-[data-theme="dark"] .form-container.mode4 input[type="button"]:active,
-[data-theme="dark"] .mode4 .form-container button:active,
-[data-theme="dark"] .mode4 .form-container input[type="submit"]:active,
-[data-theme="dark"] .mode4 .form-container input[type="button"]:active,
-[data-theme="dark"] .form-container button.mode4:active,
-[data-theme="dark"] .form-container input[type="submit"].mode4:active,
-[data-theme="dark"] .form-container input[type="button"].mode4:active {
-    background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-700));
-}
-
-[data-theme="dark"] .file-upload-label:hover {
-    background: oklch(from var(--liwe3-mode1-500) calc(l - 0.4) calc(c * 0.5) h);
-}
-
-[data-theme="dark"] .form-range {
-    background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700));
-}
-
-[data-theme="dark"] .form-range::-webkit-slider-track {
-    background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700));
-}
-
-[data-theme="dark"] .form-range::-moz-range-track {
-    background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700));
-}
+/* All dark mode styling consolidated above */
 
 /* ===================================
    PLACEHOLDER STYLING FOR THEME MODES
@@ -1314,30 +1481,25 @@ label.required::after {
 /* Light mode placeholders - dark color for light backgrounds */
 :root,
 [data-theme="light"],
-:root:not([data-theme]) {}
-
-:root input::placeholder,
-:root textarea::placeholder,
-[data-theme="light"] input::placeholder,
-[data-theme="light"] textarea::placeholder,
-:root:not([data-theme]) input::placeholder,
-:root:not([data-theme]) textarea::placeholder {
-    color: var(--liwe3-text-mode3);
-    opacity: 1;
-}
-
-/* Dark mode placeholders - light color for dark backgrounds */
-[data-theme="dark"] input::placeholder,
-[data-theme="dark"] textarea::placeholder {
-    color: var(--liwe3-text-mode3);
-    opacity: 1;
-}
-
-@media (prefers-color-scheme: dark) {
-
-    :root:not([data-theme]) input::placeholder,
-    :root:not([data-theme]) textarea::placeholder {
+:root:not([data-theme]) {
+    input::placeholder,
+    textarea::placeholder {
         color: var(--liwe3-text-mode3);
         opacity: 1;
+    }
+}
+
+/* Dark mode and system dark preference handled in dark theme block above */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        label {
+            color: var(--liwe3-text-mode1) !important;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--liwe3-text-mode3);
+            opacity: 1;
+        }
     }
 }

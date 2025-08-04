@@ -165,6 +165,23 @@
    --liwe3-error: oklch(0.6 0.2 25);
    --liwe3-error-light: oklch(from var(--liwe3-error) calc(l + 0.2) calc(c * 0.7) h);
    --liwe3-error-dark: oklch(from var(--liwe3-error) calc(l - 0.2) calc(c * 1.2) h);
+
+   /* ===================================
+     BUTTON VARIABLES
+     ================================== */
+   --liwe3-button-border-size: 2px;
+
+   /* Light mode button border colors */
+   --liwe3-light-button-border-mode1: var(--liwe3-light-mode1-500);
+   --liwe3-light-button-border-mode2: var(--liwe3-light-mode2-500);
+   --liwe3-light-button-border-mode3: var(--liwe3-light-mode3-500);
+   --liwe3-light-button-border-mode4: var(--liwe3-light-mode4-500);
+
+   /* Dark mode button border colors */
+   --liwe3-dark-button-border-mode1: var(--liwe3-dark-mode1-500);
+   --liwe3-dark-button-border-mode2: var(--liwe3-dark-mode2-500);
+   --liwe3-dark-button-border-mode3: var(--liwe3-dark-mode3-500);
+   --liwe3-dark-button-border-mode4: var(--liwe3-dark-mode4-500);
 }
 
 /* ===================================
@@ -270,6 +287,13 @@
    --liwe3-info: var(--liwe3-mode1-500);
    --liwe3-info-light: var(--liwe3-mode1-300);
    --liwe3-info-dark: var(--liwe3-mode1-700);
+
+   /* Light mode button border colors (active references) */
+   --liwe3-button-border-color: var(--liwe3-border-default);
+   --liwe3-button-border-mode1: var(--liwe3-light-button-border-mode1);
+   --liwe3-button-border-mode2: var(--liwe3-light-button-border-mode2);
+   --liwe3-button-border-mode3: var(--liwe3-light-button-border-mode3);
+   --liwe3-button-border-mode4: var(--liwe3-light-button-border-mode4);
 }
 
 /* ===================================
@@ -373,6 +397,13 @@
    --liwe3-info: var(--liwe3-mode1-500);
    --liwe3-info-light: var(--liwe3-mode1-300);
    --liwe3-info-dark: var(--liwe3-mode1-700);
+
+   /* Dark mode button border colors (active references) */
+   --liwe3-button-border-color: var(--liwe3-border-default);
+   --liwe3-button-border-mode1: var(--liwe3-dark-button-border-mode1);
+   --liwe3-button-border-mode2: var(--liwe3-dark-button-border-mode2);
+   --liwe3-button-border-mode3: var(--liwe3-dark-button-border-mode3);
+   --liwe3-button-border-mode4: var(--liwe3-dark-button-border-mode4);
 }
 
 /* ===================================
@@ -461,6 +492,13 @@
       --liwe3-border-subtle: var(--liwe3-gray-700);
       --liwe3-border-default: var(--liwe3-gray-600);
       --liwe3-border-strong: var(--liwe3-gray-500);
+
+      /* Dark mode button border colors for system preference */
+      --liwe3-button-border-color: var(--liwe3-border-default);
+      --liwe3-button-border-mode1: var(--liwe3-dark-button-border-mode1);
+      --liwe3-button-border-mode2: var(--liwe3-dark-button-border-mode2);
+      --liwe3-button-border-mode3: var(--liwe3-dark-button-border-mode3);
+      --liwe3-button-border-mode4: var(--liwe3-dark-button-border-mode4);
    }
 }
 
@@ -505,62 +543,6 @@
    --liwe3-current-mode: var(--liwe3-mode4-500);
    --liwe3-current-mode-light: var(--liwe3-mode4-300);
    --liwe3-current-mode-dark: var(--liwe3-mode4-700);
-}
-
-/* Demo section styling classes */
-.demo-section {
-   padding: 1.5rem;
-   border-radius: 12px;
-   margin-bottom: 2rem;
-   border: 2px solid;
-   position: relative;
-   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.demo-section:hover {
-   transform: translateY(-2px);
-   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-
-.demo-section-mode1 {
-   background: oklch(from var(--liwe3-mode1-500) calc(l + 0.4) calc(c * 0.3) h);
-   border-color: var(--liwe3-mode1-300);
-}
-
-.demo-section-mode2 {
-   background: oklch(from var(--liwe3-mode2-500) calc(l + 0.4) calc(c * 0.3) h);
-   border-color: var(--liwe3-mode2-300);
-}
-
-.demo-section-mode3 {
-   background: oklch(from var(--liwe3-mode3-500) calc(l + 0.4) calc(c * 0.3) h);
-   border-color: var(--liwe3-mode3-300);
-}
-
-.demo-section-mode4 {
-   background: oklch(from var(--liwe3-mode4-500) calc(l + 0.4) calc(c * 0.3) h);
-   border-color: var(--liwe3-mode4-300);
-}
-
-/* Dark theme variants for demo sections */
-[data-theme="dark"] .demo-section-mode1 {
-   background: oklch(from var(--liwe3-mode1-500) calc(l - 0.3) calc(c * 0.8) h);
-   border-color: var(--liwe3-mode1-600);
-}
-
-[data-theme="dark"] .demo-section-mode2 {
-   background: oklch(from var(--liwe3-mode2-500) calc(l - 0.3) calc(c * 0.8) h);
-   border-color: var(--liwe3-mode2-600);
-}
-
-[data-theme="dark"] .demo-section-mode3 {
-   background: oklch(from var(--liwe3-mode3-500) calc(l - 0.3) calc(c * 0.8) h);
-   border-color: var(--liwe3-mode3-600);
-}
-
-[data-theme="dark"] .demo-section-mode4 {
-   background: oklch(from var(--liwe3-mode4-500) calc(l - 0.3) calc(c * 0.8) h);
-   border-color: var(--liwe3-mode4-600);
 }
 
 /* Dark theme text colors */
@@ -955,6 +937,241 @@
 @media (prefers-color-scheme: dark) {
    :root:not([data-theme]) {
       color: var(--liwe3-text-mode1);
+   }
+}
+
+/* ===================================
+   TABLE STYLING
+   ================================== */
+
+/* Base table styling */
+table {
+   width: 100%;
+   border-collapse: collapse;
+   border-spacing: 0;
+   font-size: 0.875rem;
+   line-height: 1.5;
+   background-color: var(--liwe3-surface-raised);
+   border: 1px solid var(--liwe3-border-default);
+   border-radius: 8px;
+   overflow: hidden;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Table headers */
+th {
+   background-color: var(--liwe3-surface-mode2);
+   color: var(--liwe3-text-mode1);
+   font-weight: 600;
+   text-align: left;
+   padding: 0.75rem 1rem;
+   border-bottom: 2px solid var(--liwe3-border-default);
+   position: relative;
+}
+
+/* Table cells */
+td {
+   padding: 0.75rem 1rem;
+   color: var(--liwe3-text-mode1);
+   vertical-align: top;
+}
+
+/* Table rows */
+tbody tr {
+   transition: background-color 0.2s ease, transform 0.1s ease;
+   cursor: pointer;
+}
+
+tbody tr:hover {
+   background-color: var(--liwe3-hover-overlay);
+   transform: translateY(-1px);
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+tr:last-child td {
+   border-bottom: none;
+}
+
+/* Striped rows */
+tr:nth-child(even) {
+   background-color: oklch(from var(--liwe3-surface-mode1) calc(l - 0.02) c h);
+}
+
+[data-theme="dark"] tr:nth-child(even) {
+   background-color: oklch(from var(--liwe3-surface-mode1) calc(l + 0.02) c h);
+}
+
+/* Enhanced cell borders */
+th,
+td {
+   border: 1px solid var(--liwe3-border-subtle);
+   position: relative;
+}
+
+th {
+   border-bottom: 2px solid var(--liwe3-border-default);
+}
+
+/* Remove duplicate border rules that are now handled above */
+
+/* Mode 1 table styling */
+.mode1 table,
+table.mode1 {
+   border-color: var(--liwe3-mode1-300);
+   box-shadow: 0 2px 8px oklch(from var(--liwe3-mode1-500) l c h / 0.1);
+}
+
+.mode1 th,
+table.mode1 th {
+   background-color: var(--liwe3-mode1-100);
+   color: var(--liwe3-mode1-800);
+   border-bottom-color: var(--liwe3-mode1-300);
+}
+
+.mode1 th,
+table.mode1 th {
+   border-color: var(--liwe3-mode1-200);
+   border-bottom-color: var(--liwe3-mode1-300);
+}
+
+.mode1 td,
+table.mode1 td {
+   border-color: var(--liwe3-mode1-200);
+}
+
+.mode1 tbody tr:hover,
+table.mode1 tbody tr:hover {
+   background-color: oklch(from var(--liwe3-mode1-500) l c h / 0.12);
+   box-shadow: 0 3px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.15);
+}
+
+/* Mode 2 table styling */
+.mode2 table,
+table.mode2 {
+   border-color: var(--liwe3-mode2-300);
+   box-shadow: 0 2px 8px oklch(from var(--liwe3-mode2-500) l c h / 0.1);
+}
+
+.mode2 th,
+table.mode2 th {
+   background-color: var(--liwe3-mode2-100);
+   color: var(--liwe3-mode2-800);
+   border-bottom-color: var(--liwe3-mode2-300);
+}
+
+.mode2 th,
+table.mode2 th {
+   border-color: var(--liwe3-mode2-200);
+   border-bottom-color: var(--liwe3-mode2-300);
+}
+
+.mode2 td,
+table.mode2 td {
+   border-color: var(--liwe3-mode2-200);
+}
+
+.mode2 tbody tr:hover,
+table.mode2 tbody tr:hover {
+   background-color: oklch(from var(--liwe3-mode2-500) l c h / 0.12);
+   box-shadow: 0 3px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.15);
+}
+
+/* Mode 3 table styling */
+.mode3 table,
+table.mode3 {
+   border-color: var(--liwe3-mode3-300);
+   box-shadow: 0 2px 8px oklch(from var(--liwe3-mode3-500) l c h / 0.1);
+}
+
+.mode3 th,
+table.mode3 th {
+   background-color: var(--liwe3-mode3-100);
+   color: var(--liwe3-mode3-800);
+   border-bottom-color: var(--liwe3-mode3-300);
+}
+
+.mode3 th,
+table.mode3 th {
+   border-color: var(--liwe3-mode3-200);
+   border-bottom-color: var(--liwe3-mode3-300);
+}
+
+.mode3 td,
+table.mode3 td {
+   border-color: var(--liwe3-mode3-200);
+}
+
+.mode3 tbody tr:hover,
+table.mode3 tbody tr:hover {
+   background-color: oklch(from var(--liwe3-mode3-500) l c h / 0.12);
+   box-shadow: 0 3px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.15);
+}
+
+/* Mode 4 table styling */
+.mode4 table,
+table.mode4 {
+   border-color: var(--liwe3-mode4-300);
+   box-shadow: 0 2px 8px oklch(from var(--liwe3-mode4-500) l c h / 0.1);
+}
+
+.mode4 th,
+table.mode4 th {
+   background-color: var(--liwe3-mode4-100);
+   color: var(--liwe3-mode4-800);
+   border-bottom-color: var(--liwe3-mode4-300);
+}
+
+.mode4 th,
+table.mode4 th {
+   border-color: var(--liwe3-mode4-200);
+   border-bottom-color: var(--liwe3-mode4-300);
+}
+
+.mode4 td,
+table.mode4 td {
+   border-color: var(--liwe3-mode4-200);
+}
+
+.mode4 tbody tr:hover,
+table.mode4 tbody tr:hover {
+   background-color: oklch(from var(--liwe3-mode4-500) l c h / 0.12);
+   box-shadow: 0 3px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.15);
+}
+
+/* Dark mode adjustments for tables */
+[data-theme="dark"] .mode1 th,
+[data-theme="dark"] table.mode1 th {
+   background-color: var(--liwe3-mode1-800);
+   color: var(--liwe3-mode1-200);
+}
+
+[data-theme="dark"] .mode2 th,
+[data-theme="dark"] table.mode2 th {
+   background-color: var(--liwe3-mode2-800);
+   color: var(--liwe3-mode2-200);
+}
+
+[data-theme="dark"] .mode3 th,
+[data-theme="dark"] table.mode3 th {
+   background-color: var(--liwe3-mode3-800);
+   color: var(--liwe3-mode3-200);
+}
+
+[data-theme="dark"] .mode4 th,
+[data-theme="dark"] table.mode4 th {
+   background-color: var(--liwe3-mode4-800);
+   color: var(--liwe3-mode4-200);
+}
+
+/* Responsive table behavior */
+@media (max-width: 768px) {
+   table {
+      font-size: 0.8125rem;
+   }
+
+   th,
+   td {
+      padding: 0.5rem 0.75rem;
    }
 }
 

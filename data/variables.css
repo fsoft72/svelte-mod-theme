@@ -5,3 +5,7 @@
 
     font-family: var(--font-family, 'Arial', sans-serif);
 }
+
+:root {
+    --liwe3-border-radius: 4px;
+}

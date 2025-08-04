@@ -3,7 +3,6 @@
     background: var(--liwe3-surface-raised);
     border: 1px solid var(--liwe3-border-subtle);
     border-radius: var(--liwe3-border-radius);
-    padding: 0.4rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
@@ -506,7 +505,6 @@ select {
     /* Removed background-image, background-position, background-repeat, background-size */
     /* Removed padding-right for arrow space */
 }
-}
 
 /* Checkbox and Radio Styles */
 .checkbox-group,
@@ -641,19 +639,6 @@ input[type="range"] {
         }
     }
 }
-}
-
-/* Form Actions */
-/*
-.form-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--liwe3-border-subtle);
-}
-*/
 
 /* Button Styles */
 button {
@@ -673,12 +658,13 @@ button {
 
 .mode1 {
     button {
-        background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
-        color: white;
+        background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-500));
+        color: var(--liwe3-text-inverse);
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
+        border: 1px solid var(--liwe3-mode1-300);
 
         &:hover {
-            transform: translateY(-2px);
+            background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
             box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
         }
     }
@@ -686,17 +672,44 @@ button {
 
 .mode2 {
     button {
-        background: var(--liwe3-surface-raised);
-        color: var(--liwe3-text-mode1);
-        border: 2px solid var(--liwe3-border-default);
+        background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
+        color: var(--liwe3-text-inverse);
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
+        border: none;
 
         &:hover {
-            background: var(--liwe3-surface-mode2);
-            border-color: var(--liwe3-mode1-500);
-            color: var(--liwe3-mode1-600);
+            background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4);
         }
     }
 }
+
+.mode3 {
+    button {
+        background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
+        color: var(--liwe3-text-inverse);
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
+        border: none;
+
+        &:hover {
+            background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4);
+        }
+    }
+}
+
+.mode4 {
+    button {
+        background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
+        color: var(--liwe3-text-inverse);
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
+        border: none;
+
+        &:hover {
+            background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4);
+        }
+    }
 }
 
 /* Error and Success Messages */
@@ -724,7 +737,6 @@ button {
         border: 1px solid var(--liwe3-warning);
     }
 }
-}
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
@@ -746,7 +758,8 @@ button {
 /* Direct button and submit input styling */
 button,
 input[type="submit"],
-input[type="button"] {
+input[type="button"],
+.liwe3-button {
     padding: 0.875rem 2rem;
     border: none;
     border-radius: 8px;
@@ -762,7 +775,6 @@ input[type="button"] {
     &:hover {
         background: var(--liwe3-surface-mode2);
         border-color: var(--liwe3-mode1-500);
-        transform: translateY(-2px);
     }
 
     &:active {
@@ -772,138 +784,130 @@ input[type="button"] {
 
     /* Mode-specific styling for buttons with direct mode classes */
     &.mode1 {
-        background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
-        color: var(--liwe3-text-inverse);
-        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
-        border: none;
+        /* background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800)) !important; */
+        color: var(--liwe3-text-inverse) !important;
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3) !important;
+        border: none !important;
 
         &:hover {
-            background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
+            background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800)) !important;
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4) !important;
         }
 
         &:active {
-            background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
+            background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700)) !important;
         }
     }
 
     &.mode2 {
-        background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
-        color: var(--liwe3-text-inverse);
-        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
-        border: none;
+        background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800)) !important;
+        color: var(--liwe3-text-inverse) !important;
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3) !important;
+        border: none !important;
 
         &:hover {
-            background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4);
+            background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800)) !important;
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4) !important;
         }
 
         &:active {
-            background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-800));
+            background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-800)) !important;
         }
     }
 
     &.mode3 {
-        background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
-        color: var(--liwe3-text-inverse);
-        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
-        border: none;
+        background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800)) !important;
+        color: var(--liwe3-text-inverse) !important;
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3) !important;
+        border: none !important;
 
         &:hover {
-            background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4);
+            background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800)) !important;
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4) !important;
         }
 
         &:active {
-            background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-800));
+            background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-800)) !important;
         }
     }
 
     &.mode4 {
-        background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
-        color: var(--liwe3-text-inverse);
-        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
-        border: none;
+        background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800)) !important;
+        color: var(--liwe3-text-inverse) !important;
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3) !important;
+        border: none !important;
 
         &:hover {
-            background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4);
+            background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800)) !important;
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4) !important;
         }
 
         &:active {
-            background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-800));
+            background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-800)) !important;
         }
     }
 
     &.success {
-        background: linear-gradient(135deg, var(--liwe3-success), var(--liwe3-success-dark));
-        color: white;
-        box-shadow: 0 4px 12px oklch(from var(--liwe3-success) l c h / 0.3);
-        border: none;
+        background: linear-gradient(135deg, var(--liwe3-success), var(--liwe3-success-dark)) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-success) l c h / 0.3) !important;
+        border: none !important;
 
         &:hover {
-            background: linear-gradient(135deg, oklch(from var(--liwe3-success) calc(l - 0.05) c h), var(--liwe3-success-dark));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px oklch(from var(--liwe3-success) l c h / 0.4);
+            background: linear-gradient(135deg, oklch(from var(--liwe3-success) calc(l - 0.05) c h), var(--liwe3-success-dark)) !important;
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-success) l c h / 0.4) !important;
         }
 
         &:active {
-            background: linear-gradient(135deg, var(--liwe3-success-dark), oklch(from var(--liwe3-success-dark) calc(l - 0.1) c h));
+            background: linear-gradient(135deg, var(--liwe3-success-dark), oklch(from var(--liwe3-success-dark) calc(l - 0.1) c h)) !important;
         }
     }
 
     &.warning {
-        background: linear-gradient(135deg, var(--liwe3-warning), var(--liwe3-warning-dark));
-        color: white;
-        box-shadow: 0 4px 12px oklch(from var(--liwe3-warning) l c h / 0.3);
-        border: none;
+        background: linear-gradient(135deg, var(--liwe3-warning), var(--liwe3-warning-dark)) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-warning) l c h / 0.3) !important;
+        border: none !important;
 
         &:hover {
-            background: linear-gradient(135deg, oklch(from var(--liwe3-warning) calc(l - 0.05) c h), var(--liwe3-warning-dark));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px oklch(from var(--liwe3-warning) l c h / 0.4);
+            background: linear-gradient(135deg, oklch(from var(--liwe3-warning) calc(l - 0.05) c h), var(--liwe3-warning-dark)) !important;
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-warning) l c h / 0.4) !important;
         }
 
         &:active {
-            background: linear-gradient(135deg, var(--liwe3-warning-dark), oklch(from var(--liwe3-warning-dark) calc(l - 0.1) c h));
+            background: linear-gradient(135deg, var(--liwe3-warning-dark), oklch(from var(--liwe3-warning-dark) calc(l - 0.1) c h)) !important;
         }
     }
 
     &.error {
-        background: linear-gradient(135deg, var(--liwe3-error), var(--liwe3-error-dark));
-        color: white;
-        box-shadow: 0 4px 12px oklch(from var(--liwe3-error) l c h / 0.3);
-        border: none;
+        background: linear-gradient(135deg, var(--liwe3-error), var(--liwe3-error-dark)) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-error) l c h / 0.3) !important;
+        border: none !important;
 
         &:hover {
-            background: linear-gradient(135deg, oklch(from var(--liwe3-error) calc(l - 0.05) c h), var(--liwe3-error-dark));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px oklch(from var(--liwe3-error) l c h / 0.4);
+            background: linear-gradient(135deg, oklch(from var(--liwe3-error) calc(l - 0.05) c h), var(--liwe3-error-dark)) !important;
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-error) l c h / 0.4) !important;
         }
 
         &:active {
-            background: linear-gradient(135deg, var(--liwe3-error-dark), oklch(from var(--liwe3-error-dark) calc(l - 0.1) c h));
+            background: linear-gradient(135deg, var(--liwe3-error-dark), oklch(from var(--liwe3-error-dark) calc(l - 0.1) c h)) !important;
         }
     }
 
     &.info {
-        background: linear-gradient(135deg, var(--liwe3-info), var(--liwe3-info-dark));
-        color: white;
-        box-shadow: 0 4px 12px oklch(from var(--liwe3-info) l c h / 0.3);
-        border: none;
+        background: linear-gradient(135deg, var(--liwe3-info), var(--liwe3-info-dark)) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-info) l c h / 0.3) !important;
+        border: none !important;
 
         &:hover {
-            background: linear-gradient(135deg, oklch(from var(--liwe3-info) calc(l - 0.05) c h), var(--liwe3-info-dark));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px oklch(from var(--liwe3-info) l c h / 0.4);
+            background: linear-gradient(135deg, oklch(from var(--liwe3-info) calc(l - 0.05) c h), var(--liwe3-info-dark)) !important;
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-info) l c h / 0.4) !important;
         }
 
         &:active {
-            background: linear-gradient(135deg, var(--liwe3-info-dark), oklch(from var(--liwe3-info-dark) calc(l - 0.1) c h));
+            background: linear-gradient(135deg, var(--liwe3-info-dark), oklch(from var(--liwe3-info-dark) calc(l - 0.1) c h)) !important;
         }
     }
 }
@@ -923,7 +927,6 @@ input[type="button"] {
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
-                transform: translateY(-2px);
                 box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
             }
 
@@ -945,7 +948,6 @@ input[type="button"] {
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
-                transform: translateY(-2px);
                 box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4);
             }
 
@@ -967,7 +969,6 @@ input[type="button"] {
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
-                transform: translateY(-2px);
                 box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4);
             }
 
@@ -989,7 +990,6 @@ input[type="button"] {
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
-                transform: translateY(-2px);
                 box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4);
             }
 
@@ -1008,8 +1008,8 @@ input[type="button"] {
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
-            transform: translateY(-2px);
             box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
+            /* Example border for hover state */
         }
 
         &:active {
@@ -1026,7 +1026,6 @@ input[type="button"] {
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
-            transform: translateY(-2px);
             box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4);
         }
 
@@ -1044,7 +1043,6 @@ input[type="button"] {
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
-            transform: translateY(-2px);
             box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4);
         }
 
@@ -1062,7 +1060,6 @@ input[type="button"] {
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
-            transform: translateY(-2px);
             box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4);
         }
 
@@ -1080,7 +1077,6 @@ input[type="button"] {
 
         &:hover {
             background: linear-gradient(135deg, oklch(from var(--liwe3-success) calc(l - 0.05) c h), var(--liwe3-success-dark));
-            transform: translateY(-2px);
             box-shadow: 0 6px 20px oklch(from var(--liwe3-success) l c h / 0.4);
         }
 
@@ -1098,7 +1094,6 @@ input[type="button"] {
 
         &:hover {
             background: linear-gradient(135deg, oklch(from var(--liwe3-warning) calc(l - 0.05) c h), var(--liwe3-warning-dark));
-            transform: translateY(-2px);
             box-shadow: 0 6px 20px oklch(from var(--liwe3-warning) l c h / 0.4);
         }
 
@@ -1116,7 +1111,6 @@ input[type="button"] {
 
         &:hover {
             background: linear-gradient(135deg, oklch(from var(--liwe3-error) calc(l - 0.05) c h), var(--liwe3-error-dark));
-            transform: translateY(-2px);
             box-shadow: 0 6px 20px oklch(from var(--liwe3-error) l c h / 0.4);
         }
 
@@ -1134,7 +1128,6 @@ input[type="button"] {
 
         &:hover {
             background: linear-gradient(135deg, oklch(from var(--liwe3-info) calc(l - 0.05) c h), var(--liwe3-info-dark));
-            transform: translateY(-2px);
             box-shadow: 0 6px 20px oklch(from var(--liwe3-info) l c h / 0.4);
         }
 
@@ -1145,19 +1138,22 @@ input[type="button"] {
 }
 
 .mode1 {
+
+    button,
     .form-container {
 
         button,
         input[type="submit"],
         input[type="button"] {
-            background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
+            background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600));
             color: var(--liwe3-text-inverse);
             box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
+            border: 1px solid var(--liwe3-mode1-900);
 
             &:hover {
-                background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
-                transform: translateY(-2px);
+                background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-700));
                 box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
+                border: 1px solid var(--liwe3-mode1-700);
             }
 
             &:active {
@@ -1179,7 +1175,6 @@ input[type="button"] {
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
-                transform: translateY(-2px);
                 box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4);
             }
 
@@ -1202,7 +1197,6 @@ input[type="button"] {
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
-                transform: translateY(-2px);
                 box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4);
             }
 
@@ -1225,7 +1219,6 @@ input[type="button"] {
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
-                transform: translateY(-2px);
                 box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4);
             }
 

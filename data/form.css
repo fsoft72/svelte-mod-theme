@@ -720,30 +720,98 @@ label.required::after {
    ================================== */
 
     /* Direct button and submit input styling */
-    button,
-    input[type="submit"],
-    input[type="button"] {
-        padding: 0.875rem 2rem;
-        border: none;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
+button,
+input[type="submit"],
+input[type="button"] {
+    padding: 0.875rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Default neutral styling - no mode colors */
+    background: var(--liwe3-surface-raised);
+    color: var(--liwe3-text-mode1);
+    border: 2px solid var(--liwe3-border-default);
+
+    &:hover {
+        background: var(--liwe3-surface-mode2);
+        border-color: var(--liwe3-mode1-500);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(1px);
+        filter: brightness(0.95);
+    }
+
+    /* Mode-specific styling for buttons with direct mode classes */
+    &.mode1 {
         background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
         color: var(--liwe3-text-inverse);
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
+        border: none;
 
         &:hover {
-            background: linear-gradient(135deg, var(--liwe3-mode1-200), var(--liwe3-mode1-500));
+            background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
             transform: translateY(-2px);
             box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
         }
 
         &:active {
-            background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-800));
-            transform: translateY(1px);
-            filter: brightness(0.95);
+            background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
+        }
+    }
+
+    &.mode2 {
+        background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
+        color: var(--liwe3-text-inverse);
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
+        border: none;
+
+        &:hover {
+            background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4);
+        }
+
+        &:active {
+            background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-800));
+        }
+    }
+
+    &.mode3 {
+        background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
+        color: var(--liwe3-text-inverse);
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
+        border: none;
+
+        &:hover {
+            background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4);
+        }
+
+        &:active {
+            background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-800));
+        }
+    }
+
+    &.mode4 {
+        background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
+        color: var(--liwe3-text-inverse);
+        box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
+        border: none;
+
+        &:hover {
+            background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4);
+        }
+
+        &:active {
+            background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-800));
         }
     }
 }

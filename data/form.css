@@ -658,10 +658,10 @@ button {
 
 .mode1 {
     button {
-        background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-500));
+        background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
         color: var(--liwe3-text-inverse);
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
-        border: 1px solid var(--liwe3-mode1-300);
+        border: 1px solid var(--liwe3-mode1-800);
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
@@ -672,10 +672,10 @@ button {
 
 .mode2 {
     button {
-        background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
+        background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-700));
         color: var(--liwe3-text-inverse);
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
-        border: none;
+        border: 1px solid var(--liwe3-mode2-800);
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
@@ -686,10 +686,10 @@ button {
 
 .mode3 {
     button {
-        background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
+        background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-700));
         color: var(--liwe3-text-inverse);
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
-        border: none;
+        border: 1px solid var(--liwe3-mode3-800);
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
@@ -700,10 +700,10 @@ button {
 
 .mode4 {
     button {
-        background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
+        background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-700));
         color: var(--liwe3-text-inverse);
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
-        border: none;
+        border: 1px solid var(--liwe3-mode4-800);
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
@@ -784,10 +784,10 @@ input[type="button"],
 
     /* Mode-specific styling for buttons with direct mode classes */
     &.mode1 {
-        /* background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800)) !important; */
+        background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700)) !important;
         color: var(--liwe3-text-inverse) !important;
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3) !important;
-        border: none !important;
+        border: 1px solid var(--liwe3-mode1-800) !important;
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800)) !important;
@@ -800,10 +800,10 @@ input[type="button"],
     }
 
     &.mode2 {
-        background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800)) !important;
+        background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-700)) !important;
         color: var(--liwe3-text-inverse) !important;
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3) !important;
-        border: none !important;
+        border: 1px solid var(--liwe3-mode2-800) !important;
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800)) !important;
@@ -816,10 +816,10 @@ input[type="button"],
     }
 
     &.mode3 {
-        background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800)) !important;
+        background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-700)) !important;
         color: var(--liwe3-text-inverse) !important;
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3) !important;
-        border: none !important;
+        border: 1px solid var(--liwe3-mode3-800) !important;
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800)) !important;
@@ -832,10 +832,10 @@ input[type="button"],
     }
 
     &.mode4 {
-        background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800)) !important;
+        background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-700)) !important;
         color: var(--liwe3-text-inverse) !important;
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3) !important;
-        border: none !important;
+        border: 1px solid var(--liwe3-mode4-800) !important;
 
         &:hover {
             background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800)) !important;
@@ -851,7 +851,7 @@ input[type="button"],
         background: linear-gradient(135deg, var(--liwe3-success), var(--liwe3-success-dark)) !important;
         color: white !important;
         box-shadow: 0 4px 12px oklch(from var(--liwe3-success) l c h / 0.3) !important;
-        border: none !important;
+        border: 1px solid var(--liwe3-success-dark) !important;
 
         &:hover {
             background: linear-gradient(135deg, oklch(from var(--liwe3-success) calc(l - 0.05) c h), var(--liwe3-success-dark)) !important;
@@ -867,7 +867,7 @@ input[type="button"],
         background: linear-gradient(135deg, var(--liwe3-warning), var(--liwe3-warning-dark)) !important;
         color: white !important;
         box-shadow: 0 4px 12px oklch(from var(--liwe3-warning) l c h / 0.3) !important;
-        border: none !important;
+        border: 1px solid var(--liwe3-warning-dark) !important;
 
         &:hover {
             background: linear-gradient(135deg, oklch(from var(--liwe3-warning) calc(l - 0.05) c h), var(--liwe3-warning-dark)) !important;
@@ -883,7 +883,7 @@ input[type="button"],
         background: linear-gradient(135deg, var(--liwe3-error), var(--liwe3-error-dark)) !important;
         color: white !important;
         box-shadow: 0 4px 12px oklch(from var(--liwe3-error) l c h / 0.3) !important;
-        border: none !important;
+        border: 1px solid var(--liwe3-error-dark) !important;
 
         &:hover {
             background: linear-gradient(135deg, oklch(from var(--liwe3-error) calc(l - 0.05) c h), var(--liwe3-error-dark)) !important;
@@ -899,7 +899,7 @@ input[type="button"],
         background: linear-gradient(135deg, var(--liwe3-info), var(--liwe3-info-dark)) !important;
         color: white !important;
         box-shadow: 0 4px 12px oklch(from var(--liwe3-info) l c h / 0.3) !important;
-        border: none !important;
+        border: 1px solid var(--liwe3-info-dark) !important;
 
         &:hover {
             background: linear-gradient(135deg, oklch(from var(--liwe3-info) calc(l - 0.05) c h), var(--liwe3-info-dark)) !important;
@@ -921,7 +921,7 @@ input[type="button"],
         button,
         input[type="submit"],
         input[type="button"] {
-            background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
+            background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
             color: var(--liwe3-text-inverse);
             box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
 
@@ -942,7 +942,7 @@ input[type="button"],
         button,
         input[type="submit"],
         input[type="button"] {
-            background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
+            background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-700));
             color: var(--liwe3-text-inverse);
             box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
 
@@ -963,7 +963,7 @@ input[type="button"],
         button,
         input[type="submit"],
         input[type="button"] {
-            background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
+            background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-700));
             color: var(--liwe3-text-inverse);
             box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
 
@@ -984,7 +984,7 @@ input[type="button"],
         button,
         input[type="submit"],
         input[type="button"] {
-            background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
+            background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-700));
             color: var(--liwe3-text-inverse);
             box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
 
@@ -1002,7 +1002,7 @@ input[type="button"],
     button.mode1,
     input[type="submit"].mode1,
     input[type="button"].mode1 {
-        background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
+        background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
         color: var(--liwe3-text-inverse);
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
 
@@ -1020,7 +1020,7 @@ input[type="button"],
     button.mode2,
     input[type="submit"].mode2,
     input[type="button"].mode2 {
-        background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
+        background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-700));
         color: var(--liwe3-text-inverse);
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
 
@@ -1037,7 +1037,7 @@ input[type="button"],
     button.mode3,
     input[type="submit"].mode3,
     input[type="button"].mode3 {
-        background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
+        background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-700));
         color: var(--liwe3-text-inverse);
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
 
@@ -1054,7 +1054,7 @@ input[type="button"],
     button.mode4,
     input[type="submit"].mode4,
     input[type="button"].mode4 {
-        background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
+        background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-700));
         color: var(--liwe3-text-inverse);
         box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
 
@@ -1145,7 +1145,7 @@ input[type="button"],
         button,
         input[type="submit"],
         input[type="button"] {
-            background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600));
+            background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
             color: var(--liwe3-text-inverse);
             box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
             border: 1px solid var(--liwe3-mode1-900);
@@ -1169,7 +1169,7 @@ input[type="button"],
         button,
         input[type="submit"],
         input[type="button"] {
-            background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
+            background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-700));
             color: var(--liwe3-text-inverse);
             box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
 
@@ -1191,7 +1191,7 @@ input[type="button"],
         button,
         input[type="submit"],
         input[type="button"] {
-            background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
+            background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-700));
             color: var(--liwe3-text-inverse);
             box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
 
@@ -1213,7 +1213,7 @@ input[type="button"],
         button,
         input[type="submit"],
         input[type="button"] {
-            background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
+            background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-700));
             color: var(--liwe3-text-inverse);
             box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
 
@@ -1369,7 +1369,7 @@ input[type="button"],
         button,
         input[type="submit"],
         input[type="button"] {
-            background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+            background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
@@ -1386,7 +1386,7 @@ input[type="button"],
             button,
             input[type="submit"],
             input[type="button"] {
-                background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+                background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
 
                 &:hover {
                     background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
@@ -1404,7 +1404,7 @@ input[type="button"],
             button,
             input[type="submit"],
             input[type="button"] {
-                background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
+                background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-700));
 
                 &:hover {
                     background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
@@ -1422,7 +1422,7 @@ input[type="button"],
             button,
             input[type="submit"],
             input[type="button"] {
-                background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
+                background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-700));
 
                 &:hover {
                     background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
@@ -1440,7 +1440,7 @@ input[type="button"],
             button,
             input[type="submit"],
             input[type="button"] {
-                background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
+                background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-700));
 
                 &:hover {
                     background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
@@ -1455,7 +1455,7 @@ input[type="button"],
         button.mode1,
         input[type="submit"].mode1,
         input[type="button"].mode1 {
-            background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+            background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
@@ -1469,7 +1469,7 @@ input[type="button"],
         button.mode2,
         input[type="submit"].mode2,
         input[type="button"].mode2 {
-            background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
+            background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-700));
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
@@ -1483,7 +1483,7 @@ input[type="button"],
         button.mode3,
         input[type="submit"].mode3,
         input[type="button"].mode3 {
-            background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
+            background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-700));
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
@@ -1497,7 +1497,7 @@ input[type="button"],
         button.mode4,
         input[type="submit"].mode4,
         input[type="button"].mode4 {
-            background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
+            background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-700));
 
             &:hover {
                 background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
@@ -1639,7 +1639,7 @@ input[type="button"],
             button,
             input[type="submit"],
             input[type="button"] {
-                background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+                background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
 
                 &:hover {
                     background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
@@ -1663,7 +1663,7 @@ input[type="button"],
             button,
             input[type="submit"],
             input[type="button"] {
-                background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
+                background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-700));
 
                 &:hover {
                     background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
@@ -1687,7 +1687,7 @@ input[type="button"],
             button,
             input[type="submit"],
             input[type="button"] {
-                background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
+                background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-700));
 
                 &:hover {
                     background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
@@ -1711,7 +1711,7 @@ input[type="button"],
             button,
             input[type="submit"],
             input[type="button"] {
-                background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
+                background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-700));
 
                 &:hover {
                     background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));

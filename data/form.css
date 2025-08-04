@@ -19,9 +19,9 @@
     height: 4px;
     background: linear-gradient(90deg,
             var(--liwe3-mode1-500) 0%,
-            var(--liwe3-mode2-500) 25%,
-            var(--liwe3-mode3-500) 50%,
-            var(--liwe3-mode4-500) 75%,
+            var(--liwe3-mode1-600) 25%,
+            var(--liwe3-mode1-700) 50%,
+            var(--liwe3-mode1-800) 75%,
             var(--liwe3-mode1-500) 100%);
 }
 
@@ -52,6 +52,17 @@ label {
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
     transition: color 0.2s ease;
+}
+
+/* Dark mode label enhancement */
+[data-theme="dark"] label {
+    color: var(--liwe3-text-mode1) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) label {
+        color: var(--liwe3-text-mode1) !important;
+    }
 }
 
 label.required::after {
@@ -151,8 +162,17 @@ label.required::after {
     box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode1-500) l c h / 0.2) !important;
 }
 
-.form-container .form-group.mode1 label {
+.form-container .form-group.mode1 label,
+.form-container .form-group.mode1 legend {
     color: var(--liwe3-mode1-600) !important;
+}
+
+/* Dark mode overrides for mode1 labels */
+[data-theme="dark"] .form-container .form-group.mode1 label,
+[data-theme="dark"] .form-container .form-group.mode1 legend,
+[data-theme="dark"] .form-group.mode1 label,
+[data-theme="dark"] .form-group.mode1 legend {
+    color: var(--liwe3-mode1-300) !important;
 }
 
 .form-container .form-group.mode1.floating .form-input:focus+label,
@@ -174,8 +194,17 @@ label.required::after {
     box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode2-500) l c h / 0.2) !important;
 }
 
-.form-container .form-group.mode2 label {
+.form-container .form-group.mode2 label,
+.form-container .form-group.mode2 legend {
     color: var(--liwe3-mode2-600) !important;
+}
+
+/* Dark mode overrides for mode2 labels */
+[data-theme="dark"] .form-container .form-group.mode2 label,
+[data-theme="dark"] .form-container .form-group.mode2 legend,
+[data-theme="dark"] .form-group.mode2 label,
+[data-theme="dark"] .form-group.mode2 legend {
+    color: var(--liwe3-mode2-300) !important;
 }
 
 .form-container .form-group.mode2.floating .form-input:focus+label,
@@ -197,8 +226,17 @@ label.required::after {
     box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode3-500) l c h / 0.2) !important;
 }
 
-.form-container .form-group.mode3 label {
+.form-container .form-group.mode3 label,
+.form-container .form-group.mode3 legend {
     color: var(--liwe3-mode3-600) !important;
+}
+
+/* Dark mode overrides for mode3 labels */
+[data-theme="dark"] .form-container .form-group.mode3 label,
+[data-theme="dark"] .form-container .form-group.mode3 legend,
+[data-theme="dark"] .form-group.mode3 label,
+[data-theme="dark"] .form-group.mode3 legend {
+    color: var(--liwe3-mode3-300) !important;
 }
 
 .form-container .form-group.mode3.floating .form-input:focus+label,
@@ -220,8 +258,17 @@ label.required::after {
     box-shadow: 0 0 0 3px oklch(from var(--liwe3-mode4-500) l c h / 0.2) !important;
 }
 
-.form-container .form-group.mode4 label {
+.form-container .form-group.mode4 label,
+.form-container .form-group.mode4 legend {
     color: var(--liwe3-mode4-600) !important;
+}
+
+/* Dark mode overrides for mode4 labels */
+[data-theme="dark"] .form-container .form-group.mode4 label,
+[data-theme="dark"] .form-container .form-group.mode4 legend,
+[data-theme="dark"] .form-group.mode4 label,
+[data-theme="dark"] .form-group.mode4 legend {
+    color: var(--liwe3-mode4-300) !important;
 }
 
 .form-container .form-group.mode4.floating .form-input:focus+label,
@@ -251,8 +298,18 @@ label.required::after {
 }
 
 .mode1 .form-container label,
-.form-container.mode1 label {
+.mode1 .form-container legend,
+.form-container.mode1 label,
+.form-container.mode1 legend {
     color: var(--liwe3-mode1-600);
+}
+
+/* Dark mode overrides for higher level mode1 cascading */
+[data-theme="dark"] .mode1 .form-container label,
+[data-theme="dark"] .mode1 .form-container legend,
+[data-theme="dark"] .form-container.mode1 label,
+[data-theme="dark"] .form-container.mode1 legend {
+    color: var(--liwe3-mode1-300);
 }
 
 .mode1 .form-container .form-group.floating .form-input:focus+label,
@@ -283,8 +340,18 @@ label.required::after {
 }
 
 .mode2 .form-container label,
-.form-container.mode2 label {
+.mode2 .form-container legend,
+.form-container.mode2 label,
+.form-container.mode2 legend {
     color: var(--liwe3-mode2-600);
+}
+
+/* Dark mode overrides for higher level mode2 cascading */
+[data-theme="dark"] .mode2 .form-container label,
+[data-theme="dark"] .mode2 .form-container legend,
+[data-theme="dark"] .form-container.mode2 label,
+[data-theme="dark"] .form-container.mode2 legend {
+    color: var(--liwe3-mode2-300);
 }
 
 .mode2 .form-container .form-group.floating .form-input:focus+label,
@@ -315,8 +382,18 @@ label.required::after {
 }
 
 .mode3 .form-container label,
-.form-container.mode3 label {
+.mode3 .form-container legend,
+.form-container.mode3 label,
+.form-container.mode3 legend {
     color: var(--liwe3-mode3-600);
+}
+
+/* Dark mode overrides for higher level mode3 cascading */
+[data-theme="dark"] .mode3 .form-container label,
+[data-theme="dark"] .mode3 .form-container legend,
+[data-theme="dark"] .form-container.mode3 label,
+[data-theme="dark"] .form-container.mode3 legend {
+    color: var(--liwe3-mode3-300);
 }
 
 .mode3 .form-container .form-group.floating .form-input:focus+label,
@@ -347,8 +424,18 @@ label.required::after {
 }
 
 .mode4 .form-container label,
-.form-container.mode4 label {
+.mode4 .form-container legend,
+.form-container.mode4 label,
+.form-container.mode4 legend {
     color: var(--liwe3-mode4-600);
+}
+
+/* Dark mode overrides for higher level mode4 cascading */
+[data-theme="dark"] .mode4 .form-container label,
+[data-theme="dark"] .mode4 .form-container legend,
+[data-theme="dark"] .form-container.mode4 label,
+[data-theme="dark"] .form-container.mode4 legend {
+    color: var(--liwe3-mode4-300);
 }
 
 .mode4 .form-container .form-group.floating .form-input:focus+label,
@@ -468,7 +555,7 @@ label.required::after {
     width: 100%;
     height: 6px;
     border-radius: 3px;
-    background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode4-500));
+    background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700), var(--liwe3-mode1-800));
     outline: none;
     transition: all 0.3s ease;
     -webkit-appearance: none;
@@ -479,7 +566,7 @@ label.required::after {
 .form-container input[type="range"]::-webkit-slider-track {
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode4-500));
+    background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700), var(--liwe3-mode1-800));
     border-radius: 3px;
     border: none;
 }
@@ -487,7 +574,7 @@ label.required::after {
 .form-container input[type="range"]::-moz-range-track {
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode4-500));
+    background: linear-gradient(90deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700), var(--liwe3-mode1-800));
     border-radius: 3px;
     border: none;
     cursor: pointer;
@@ -548,29 +635,15 @@ label.required::after {
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
 }
 
-.form-container button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transition: transform 0.6s ease;
-}
-
-.form-container button:active::before {
-    transform: translate(-50%, -50%) scale(4);
+.form-container button:active {
+    transform: translateY(1px);
+    filter: brightness(0.95);
 }
 
 .form-container .mode1 button {
-    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600));
+    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
     color: white;
     box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
 }
@@ -635,8 +708,10 @@ label.required::after {
    ENHANCED FORM STYLING WITH THEME MODES
    ================================== */
 
-/* Form buttons with proper mode theming */
-.form-btn {
+/* Direct button and submit input styling */
+.form-container button,
+.form-container input[type="submit"],
+.form-container input[type="button"] {
     padding: 0.875rem 2rem;
     border: none;
     border-radius: 8px;
@@ -644,69 +719,222 @@ label.required::after {
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.form-btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transition: transform 0.6s ease;
-}
-
-.form-btn:active::before {
-    transform: translate(-50%, -50%) scale(4);
-}
-
-.form-btn-mode1 {
-    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-600));
+    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
     color: var(--liwe3-text-inverse);
     box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
 }
 
-.form-btn-mode1:hover {
+.form-container button:hover,
+.form-container input[type="submit"]:hover,
+.form-container input[type="button"]:hover {
+    background: linear-gradient(135deg, var(--liwe3-mode1-200), var(--liwe3-mode1-500));
     transform: translateY(-2px);
     box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
 }
 
-.form-btn-mode2 {
-    background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-600));
+.form-container button:active,
+.form-container input[type="submit"]:active,
+.form-container input[type="button"]:active {
+    background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-800));
+    transform: translateY(1px);
+    filter: brightness(0.95);
+}
+
+/* Mode-specific button styling */
+.form-container .mode1 button,
+.form-container .mode1 input[type="submit"],
+.form-container .mode1 input[type="button"],
+.form-container.mode1 button,
+.form-container.mode1 input[type="submit"],
+.form-container.mode1 input[type="button"],
+.mode1 .form-container button,
+.mode1 .form-container input[type="submit"],
+.mode1 .form-container input[type="button"],
+.form-container button.mode1,
+.form-container input[type="submit"].mode1,
+.form-container input[type="button"].mode1 {
+    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-800));
+    color: var(--liwe3-text-inverse);
+    box-shadow: 0 4px 12px oklch(from var(--liwe3-mode1-500) l c h / 0.3);
+}
+
+.form-container .mode1 button:hover,
+.form-container .mode1 input[type="submit"]:hover,
+.form-container .mode1 input[type="button"]:hover,
+.form-container.mode1 button:hover,
+.form-container.mode1 input[type="submit"]:hover,
+.form-container.mode1 input[type="button"]:hover,
+.mode1 .form-container button:hover,
+.mode1 .form-container input[type="submit"]:hover,
+.mode1 .form-container input[type="button"]:hover,
+.form-container button.mode1:hover,
+.form-container input[type="submit"].mode1:hover,
+.form-container input[type="button"].mode1:hover {
+    background: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px oklch(from var(--liwe3-mode1-500) l c h / 0.4);
+}
+
+.form-container .mode1 button:active,
+.form-container .mode1 input[type="submit"]:active,
+.form-container .mode1 input[type="button"]:active,
+.form-container.mode1 button:active,
+.form-container.mode1 input[type="submit"]:active,
+.form-container.mode1 input[type="button"]:active,
+.mode1 .form-container button:active,
+.mode1 .form-container input[type="submit"]:active,
+.mode1 .form-container input[type="button"]:active,
+.form-container button.mode1:active,
+.form-container input[type="submit"].mode1:active,
+.form-container input[type="button"].mode1:active {
+    background: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
+}
+
+.form-container .mode2 button,
+.form-container .mode2 input[type="submit"],
+.form-container .mode2 input[type="button"],
+.form-container.mode2 button,
+.form-container.mode2 input[type="submit"],
+.form-container.mode2 input[type="button"],
+.mode2 .form-container button,
+.mode2 .form-container input[type="submit"],
+.mode2 .form-container input[type="button"],
+.form-container button.mode2,
+.form-container input[type="submit"].mode2,
+.form-container input[type="button"].mode2 {
+    background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-800));
     color: var(--liwe3-text-inverse);
     box-shadow: 0 4px 12px oklch(from var(--liwe3-mode2-500) l c h / 0.3);
 }
 
-.form-btn-mode2:hover {
+.form-container .mode2 button:hover,
+.form-container .mode2 input[type="submit"]:hover,
+.form-container .mode2 input[type="button"]:hover,
+.form-container.mode2 button:hover,
+.form-container.mode2 input[type="submit"]:hover,
+.form-container.mode2 input[type="button"]:hover,
+.mode2 .form-container button:hover,
+.mode2 .form-container input[type="submit"]:hover,
+.mode2 .form-container input[type="button"]:hover,
+.form-container button.mode2:hover,
+.form-container input[type="submit"].mode2:hover,
+.form-container input[type="button"].mode2:hover {
+    background: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
     transform: translateY(-2px);
     box-shadow: 0 6px 20px oklch(from var(--liwe3-mode2-500) l c h / 0.4);
 }
 
-.form-btn-mode3 {
-    background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-600));
+.form-container .mode2 button:active,
+.form-container .mode2 input[type="submit"]:active,
+.form-container .mode2 input[type="button"]:active,
+.form-container.mode2 button:active,
+.form-container.mode2 input[type="submit"]:active,
+.form-container.mode2 input[type="button"]:active,
+.mode2 .form-container button:active,
+.mode2 .form-container input[type="submit"]:active,
+.mode2 .form-container input[type="button"]:active,
+.form-container button.mode2:active,
+.form-container input[type="submit"].mode2:active,
+.form-container input[type="button"].mode2:active {
+    background: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-800));
+}
+
+.form-container .mode3 button,
+.form-container .mode3 input[type="submit"],
+.form-container .mode3 input[type="button"],
+.form-container.mode3 button,
+.form-container.mode3 input[type="submit"],
+.form-container.mode3 input[type="button"],
+.mode3 .form-container button,
+.mode3 .form-container input[type="submit"],
+.mode3 .form-container input[type="button"],
+.form-container button.mode3,
+.form-container input[type="submit"].mode3,
+.form-container input[type="button"].mode3 {
+    background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-800));
     color: var(--liwe3-text-inverse);
     box-shadow: 0 4px 12px oklch(from var(--liwe3-mode3-500) l c h / 0.3);
 }
 
-.form-btn-mode3:hover {
+.form-container .mode3 button:hover,
+.form-container .mode3 input[type="submit"]:hover,
+.form-container .mode3 input[type="button"]:hover,
+.form-container.mode3 button:hover,
+.form-container.mode3 input[type="submit"]:hover,
+.form-container.mode3 input[type="button"]:hover,
+.mode3 .form-container button:hover,
+.mode3 .form-container input[type="submit"]:hover,
+.mode3 .form-container input[type="button"]:hover,
+.form-container button.mode3:hover,
+.form-container input[type="submit"].mode3:hover,
+.form-container input[type="button"].mode3:hover {
+    background: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
     transform: translateY(-2px);
     box-shadow: 0 6px 20px oklch(from var(--liwe3-mode3-500) l c h / 0.4);
 }
 
-.form-btn-mode4 {
-    background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-600));
+.form-container .mode3 button:active,
+.form-container .mode3 input[type="submit"]:active,
+.form-container .mode3 input[type="button"]:active,
+.form-container.mode3 button:active,
+.form-container.mode3 input[type="submit"]:active,
+.form-container.mode3 input[type="button"]:active,
+.mode3 .form-container button:active,
+.mode3 .form-container input[type="submit"]:active,
+.mode3 .form-container input[type="button"]:active,
+.form-container button.mode3:active,
+.form-container input[type="submit"].mode3:active,
+.form-container input[type="button"].mode3:active {
+    background: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-800));
+}
+
+.form-container .mode4 button,
+.form-container .mode4 input[type="submit"],
+.form-container .mode4 input[type="button"],
+.form-container.mode4 button,
+.form-container.mode4 input[type="submit"],
+.form-container.mode4 input[type="button"],
+.mode4 .form-container button,
+.mode4 .form-container input[type="submit"],
+.mode4 .form-container input[type="button"],
+.form-container button.mode4,
+.form-container input[type="submit"].mode4,
+.form-container input[type="button"].mode4 {
+    background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-800));
     color: var(--liwe3-text-inverse);
     box-shadow: 0 4px 12px oklch(from var(--liwe3-mode4-500) l c h / 0.3);
 }
 
-.form-btn-mode4:hover {
+.form-container .mode4 button:hover,
+.form-container .mode4 input[type="submit"]:hover,
+.form-container .mode4 input[type="button"]:hover,
+.form-container.mode4 button:hover,
+.form-container.mode4 input[type="submit"]:hover,
+.form-container.mode4 input[type="button"]:hover,
+.mode4 .form-container button:hover,
+.mode4 .form-container input[type="submit"]:hover,
+.mode4 .form-container input[type="button"]:hover,
+.form-container button.mode4:hover,
+.form-container input[type="submit"].mode4:hover,
+.form-container input[type="button"].mode4:hover {
+    background: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
     transform: translateY(-2px);
     box-shadow: 0 6px 20px oklch(from var(--liwe3-mode4-500) l c h / 0.4);
+}
+
+.form-container .mode4 button:active,
+.form-container .mode4 input[type="submit"]:active,
+.form-container .mode4 input[type="button"]:active,
+.form-container.mode4 button:active,
+.form-container.mode4 input[type="submit"]:active,
+.form-container.mode4 input[type="button"]:active,
+.mode4 .form-container button:active,
+.mode4 .form-container input[type="submit"]:active,
+.mode4 .form-container input[type="button"]:active,
+.form-container button.mode4:active,
+.form-container input[type="submit"].mode4:active,
+.form-container input[type="button"].mode4:active {
+    background: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-800));
 }
 
 /* Form actions row */
@@ -860,20 +1088,223 @@ label.required::after {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
+/* Dark mode button gradients */
+[data-theme="dark"] .form-container button,
+[data-theme="dark"] .form-container input[type="submit"],
+[data-theme="dark"] .form-container input[type="button"] {
+    background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+}
+
+[data-theme="dark"] .form-container button:hover,
+[data-theme="dark"] .form-container input[type="submit"]:hover,
+[data-theme="dark"] .form-container input[type="button"]:hover {
+    background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+}
+
+[data-theme="dark"] .form-container button:active,
+[data-theme="dark"] .form-container input[type="submit"]:active,
+[data-theme="dark"] .form-container input[type="button"]:active {
+    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-700));
+}
+
+/* Dark mode Mode 1 buttons */
+[data-theme="dark"] .form-container .mode1 button,
+[data-theme="dark"] .form-container .mode1 input[type="submit"],
+[data-theme="dark"] .form-container .mode1 input[type="button"],
+[data-theme="dark"] .form-container.mode1 button,
+[data-theme="dark"] .form-container.mode1 input[type="submit"],
+[data-theme="dark"] .form-container.mode1 input[type="button"],
+[data-theme="dark"] .mode1 .form-container button,
+[data-theme="dark"] .mode1 .form-container input[type="submit"],
+[data-theme="dark"] .mode1 .form-container input[type="button"],
+[data-theme="dark"] .form-container button.mode1,
+[data-theme="dark"] .form-container input[type="submit"].mode1,
+[data-theme="dark"] .form-container input[type="button"].mode1 {
+    background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+}
+
+[data-theme="dark"] .form-container .mode1 button:hover,
+[data-theme="dark"] .form-container .mode1 input[type="submit"]:hover,
+[data-theme="dark"] .form-container .mode1 input[type="button"]:hover,
+[data-theme="dark"] .form-container.mode1 button:hover,
+[data-theme="dark"] .form-container.mode1 input[type="submit"]:hover,
+[data-theme="dark"] .form-container.mode1 input[type="button"]:hover,
+[data-theme="dark"] .mode1 .form-container button:hover,
+[data-theme="dark"] .mode1 .form-container input[type="submit"]:hover,
+[data-theme="dark"] .mode1 .form-container input[type="button"]:hover,
+[data-theme="dark"] .form-container button.mode1:hover,
+[data-theme="dark"] .form-container input[type="submit"].mode1:hover,
+[data-theme="dark"] .form-container input[type="button"].mode1:hover {
+    background: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
+}
+
+[data-theme="dark"] .form-container .mode1 button:active,
+[data-theme="dark"] .form-container .mode1 input[type="submit"]:active,
+[data-theme="dark"] .form-container .mode1 input[type="button"]:active,
+[data-theme="dark"] .form-container.mode1 button:active,
+[data-theme="dark"] .form-container.mode1 input[type="submit"]:active,
+[data-theme="dark"] .form-container.mode1 input[type="button"]:active,
+[data-theme="dark"] .mode1 .form-container button:active,
+[data-theme="dark"] .mode1 .form-container input[type="submit"]:active,
+[data-theme="dark"] .mode1 .form-container input[type="button"]:active,
+[data-theme="dark"] .form-container button.mode1:active,
+[data-theme="dark"] .form-container input[type="submit"].mode1:active,
+[data-theme="dark"] .form-container input[type="button"].mode1:active {
+    background: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-700));
+}
+
+/* Dark mode Mode 2 buttons */
+[data-theme="dark"] .form-container .mode2 button,
+[data-theme="dark"] .form-container .mode2 input[type="submit"],
+[data-theme="dark"] .form-container .mode2 input[type="button"],
+[data-theme="dark"] .form-container.mode2 button,
+[data-theme="dark"] .form-container.mode2 input[type="submit"],
+[data-theme="dark"] .form-container.mode2 input[type="button"],
+[data-theme="dark"] .mode2 .form-container button,
+[data-theme="dark"] .mode2 .form-container input[type="submit"],
+[data-theme="dark"] .mode2 .form-container input[type="button"],
+[data-theme="dark"] .form-container button.mode2,
+[data-theme="dark"] .form-container input[type="submit"].mode2,
+[data-theme="dark"] .form-container input[type="button"].mode2 {
+    background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
+}
+
+[data-theme="dark"] .form-container .mode2 button:hover,
+[data-theme="dark"] .form-container .mode2 input[type="submit"]:hover,
+[data-theme="dark"] .form-container .mode2 input[type="button"]:hover,
+[data-theme="dark"] .form-container.mode2 button:hover,
+[data-theme="dark"] .form-container.mode2 input[type="submit"]:hover,
+[data-theme="dark"] .form-container.mode2 input[type="button"]:hover,
+[data-theme="dark"] .mode2 .form-container button:hover,
+[data-theme="dark"] .mode2 .form-container input[type="submit"]:hover,
+[data-theme="dark"] .mode2 .form-container input[type="button"]:hover,
+[data-theme="dark"] .form-container button.mode2:hover,
+[data-theme="dark"] .form-container input[type="submit"].mode2:hover,
+[data-theme="dark"] .form-container input[type="button"].mode2:hover {
+    background: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
+}
+
+[data-theme="dark"] .form-container .mode2 button:active,
+[data-theme="dark"] .form-container .mode2 input[type="submit"]:active,
+[data-theme="dark"] .form-container .mode2 input[type="button"]:active,
+[data-theme="dark"] .form-container.mode2 button:active,
+[data-theme="dark"] .form-container.mode2 input[type="submit"]:active,
+[data-theme="dark"] .form-container.mode2 input[type="button"]:active,
+[data-theme="dark"] .mode2 .form-container button:active,
+[data-theme="dark"] .mode2 .form-container input[type="submit"]:active,
+[data-theme="dark"] .mode2 .form-container input[type="button"]:active,
+[data-theme="dark"] .form-container button.mode2:active,
+[data-theme="dark"] .form-container input[type="submit"].mode2:active,
+[data-theme="dark"] .form-container input[type="button"].mode2:active {
+    background: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-700));
+}
+
+/* Dark mode Mode 3 buttons */
+[data-theme="dark"] .form-container .mode3 button,
+[data-theme="dark"] .form-container .mode3 input[type="submit"],
+[data-theme="dark"] .form-container .mode3 input[type="button"],
+[data-theme="dark"] .form-container.mode3 button,
+[data-theme="dark"] .form-container.mode3 input[type="submit"],
+[data-theme="dark"] .form-container.mode3 input[type="button"],
+[data-theme="dark"] .mode3 .form-container button,
+[data-theme="dark"] .mode3 .form-container input[type="submit"],
+[data-theme="dark"] .mode3 .form-container input[type="button"],
+[data-theme="dark"] .form-container button.mode3,
+[data-theme="dark"] .form-container input[type="submit"].mode3,
+[data-theme="dark"] .form-container input[type="button"].mode3 {
+    background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
+}
+
+[data-theme="dark"] .form-container .mode3 button:hover,
+[data-theme="dark"] .form-container .mode3 input[type="submit"]:hover,
+[data-theme="dark"] .form-container .mode3 input[type="button"]:hover,
+[data-theme="dark"] .form-container.mode3 button:hover,
+[data-theme="dark"] .form-container.mode3 input[type="submit"]:hover,
+[data-theme="dark"] .form-container.mode3 input[type="button"]:hover,
+[data-theme="dark"] .mode3 .form-container button:hover,
+[data-theme="dark"] .mode3 .form-container input[type="submit"]:hover,
+[data-theme="dark"] .mode3 .form-container input[type="button"]:hover,
+[data-theme="dark"] .form-container button.mode3:hover,
+[data-theme="dark"] .form-container input[type="submit"].mode3:hover,
+[data-theme="dark"] .form-container input[type="button"].mode3:hover {
+    background: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
+}
+
+[data-theme="dark"] .form-container .mode3 button:active,
+[data-theme="dark"] .form-container .mode3 input[type="submit"]:active,
+[data-theme="dark"] .form-container .mode3 input[type="button"]:active,
+[data-theme="dark"] .form-container.mode3 button:active,
+[data-theme="dark"] .form-container.mode3 input[type="submit"]:active,
+[data-theme="dark"] .form-container.mode3 input[type="button"]:active,
+[data-theme="dark"] .mode3 .form-container button:active,
+[data-theme="dark"] .mode3 .form-container input[type="submit"]:active,
+[data-theme="dark"] .mode3 .form-container input[type="button"]:active,
+[data-theme="dark"] .form-container button.mode3:active,
+[data-theme="dark"] .form-container input[type="submit"].mode3:active,
+[data-theme="dark"] .form-container input[type="button"].mode3:active {
+    background: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-700));
+}
+
+/* Dark mode Mode 4 buttons */
+[data-theme="dark"] .form-container .mode4 button,
+[data-theme="dark"] .form-container .mode4 input[type="submit"],
+[data-theme="dark"] .form-container .mode4 input[type="button"],
+[data-theme="dark"] .form-container.mode4 button,
+[data-theme="dark"] .form-container.mode4 input[type="submit"],
+[data-theme="dark"] .form-container.mode4 input[type="button"],
+[data-theme="dark"] .mode4 .form-container button,
+[data-theme="dark"] .mode4 .form-container input[type="submit"],
+[data-theme="dark"] .mode4 .form-container input[type="button"],
+[data-theme="dark"] .form-container button.mode4,
+[data-theme="dark"] .form-container input[type="submit"].mode4,
+[data-theme="dark"] .form-container input[type="button"].mode4 {
+    background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
+}
+
+[data-theme="dark"] .form-container .mode4 button:hover,
+[data-theme="dark"] .form-container .mode4 input[type="submit"]:hover,
+[data-theme="dark"] .form-container .mode4 input[type="button"]:hover,
+[data-theme="dark"] .form-container.mode4 button:hover,
+[data-theme="dark"] .form-container.mode4 input[type="submit"]:hover,
+[data-theme="dark"] .form-container.mode4 input[type="button"]:hover,
+[data-theme="dark"] .mode4 .form-container button:hover,
+[data-theme="dark"] .mode4 .form-container input[type="submit"]:hover,
+[data-theme="dark"] .mode4 .form-container input[type="button"]:hover,
+[data-theme="dark"] .form-container button.mode4:hover,
+[data-theme="dark"] .form-container input[type="submit"].mode4:hover,
+[data-theme="dark"] .form-container input[type="button"].mode4:hover {
+    background: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
+}
+
+[data-theme="dark"] .form-container .mode4 button:active,
+[data-theme="dark"] .form-container .mode4 input[type="submit"]:active,
+[data-theme="dark"] .form-container .mode4 input[type="button"]:active,
+[data-theme="dark"] .form-container.mode4 button:active,
+[data-theme="dark"] .form-container.mode4 input[type="submit"]:active,
+[data-theme="dark"] .form-container.mode4 input[type="button"]:active,
+[data-theme="dark"] .mode4 .form-container button:active,
+[data-theme="dark"] .mode4 .form-container input[type="submit"]:active,
+[data-theme="dark"] .mode4 .form-container input[type="button"]:active,
+[data-theme="dark"] .form-container button.mode4:active,
+[data-theme="dark"] .form-container input[type="submit"].mode4:active,
+[data-theme="dark"] .form-container input[type="button"].mode4:active {
+    background: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-700));
+}
+
 [data-theme="dark"] .file-upload-label:hover {
     background: oklch(from var(--liwe3-mode1-500) calc(l - 0.4) calc(c * 0.5) h);
 }
 
 [data-theme="dark"] .form-range {
-    background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode4-400));
+    background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700));
 }
 
 [data-theme="dark"] .form-range::-webkit-slider-track {
-    background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode4-400));
+    background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700));
 }
 
 [data-theme="dark"] .form-range::-moz-range-track {
-    background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode4-400));
+    background: linear-gradient(90deg, var(--liwe3-mode1-400), var(--liwe3-mode1-500), var(--liwe3-mode1-600), var(--liwe3-mode1-700));
 }
 
 /* ===================================

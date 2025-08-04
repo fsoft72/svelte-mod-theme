@@ -357,7 +357,7 @@
    --liwe3-text-mode2: var(--liwe3-gray-300);
    --liwe3-text-mode3: var(--liwe3-gray-400);
    --liwe3-text-disabled: var(--liwe3-gray-600);
-   --liwe3-text-inverse: var(--liwe3-gray-900);
+   --liwe3-text-inverse: oklch(1 0 0);
 
    /* Dark mode border colors */
    --liwe3-border-subtle: var(--liwe3-gray-700);
@@ -456,7 +456,7 @@
       --liwe3-text-mode2: var(--liwe3-gray-300);
       --liwe3-text-mode3: var(--liwe3-gray-400);
       --liwe3-text-disabled: var(--liwe3-gray-600);
-      --liwe3-text-inverse: var(--liwe3-gray-900);
+      --liwe3-text-inverse: oklch(1 0 0);
 
       --liwe3-border-subtle: var(--liwe3-gray-700);
       --liwe3-border-default: var(--liwe3-gray-600);

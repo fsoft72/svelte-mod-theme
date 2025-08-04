@@ -38,7 +38,7 @@
             let themeParts = localStorage.getItem( `liwe3-theme-parts` );
             if ( themeParts && themeParts.length > 0 ) {
                 storeTheme.setThemeParts( JSON.parse( themeParts ) );
-            } else if ( themeData.parts ) {
+            } else if ( Array.isArray(themeData.parts) && themeData.parts.length > 0 ) {
                 storeTheme.setThemeParts( themeData.parts );
             }
         }
@@ -66,7 +66,6 @@
         if( colorPicker ) {
             colorPicker.setThemeMode( themeData.mode || 'light' );
         }
-        console.log('_________Theme parts:', $state.snapshot(themeParts));
     } );
 
 </script>

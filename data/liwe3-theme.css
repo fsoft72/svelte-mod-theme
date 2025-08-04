@@ -169,8 +169,8 @@
     --liwe3-accent-color: var(--liwe3-light-mode4-500);
     --liwe3-lighter-accent-color: var(--liwe3-light-mode4-300);
     --liwe3-darker-accent-color: var(--liwe3-light-mode4-700);
-    --liwe3-background: var(--liwe3-light-background-color);
-    --liwe3-color: var(--liwe3-light-text-color);
+    --liwe3-background: var(--liwe3-light-background);
+    --liwe3-color: var(--liwe3-light-color);
     --liwe3-link-color: var(--liwe3-light-link-color);
     --liwe3-link-hover-color: var(--liwe3-light-link-500-hover);
     --liwe3-link-active-color: var(--liwe3-light-link-500-active);
@@ -232,8 +232,8 @@
     --liwe3-accent-color: var(--liwe3-dark-mode4-500);
     --liwe3-lighter-accent-color: var(--liwe3-dark-mode4-300);
     --liwe3-darker-accent-color: var(--liwe3-dark-mode4-700);
-    --liwe3-background: var(--liwe3-dark-background-color);
-    --liwe3-color: var(--liwe3-dark-text-color);
+    --liwe3-background: var(--liwe3-dark-background);
+    --liwe3-color: var(--liwe3-dark-color);
     --liwe3-link-color: var(--liwe3-dark-link-color);
     --liwe3-link-hover-color: var(--liwe3-dark-link-500-hover);
     --liwe3-link-active-color: var(--liwe3-dark-link-500-active);

@@ -1,11 +1,47 @@
+:root {
+    --liwe3-main-font-family: Primary;
+    --liwe3-font-family: var(--liwe3-main-font-family);
+    --liwe3-secondary-font-family: Secondary;
+    --liwe3-font-weight: 400;
+    --liwe3-font-size: 20px;
+    --liwe3-border-radius: 0.15rem;
+    --liwe3-border-width: 1px;
+    --liwe3-border-style: solid;
+}
+
+body {
+    width: 100%;
+    background-color: var(--liwe3-background);
+    font-family: var(--liwe3-font-family);
+    font-size: var(--liwe3-font-size);
+    font-weight: var(--liwe3-font-weight);
+    color: var(--liwe3-color);
+}
+
+/* BROWSER RESET RULES */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-
-    font-family: var(--font-family, 'Arial', sans-serif);
 }
 
-:root {
-    --liwe3-border-radius: 4px;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+    outline: none;
+    border: none;
+    font: inherit;
+}
+
+/* end reset rules */
+html {
+    position: relative;
+    width: 100%;
+    font-size: var(--liwe3-font-size);
 }

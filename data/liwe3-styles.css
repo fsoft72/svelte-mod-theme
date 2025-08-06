@@ -57,12 +57,3 @@ html {
   width: 100%;
   font-size: var(--liwe3-font-size);
 }
-
-body {
-  width: 100%;
-  background-color: var(--liwe3-background);
-  font-family: var(--liwe3-font-family);
-  font-size: var(--liwe3-font-size);
-  font-weight: var(--liwe3-font-weight);
-  color: var(--liwe3-color);
-}

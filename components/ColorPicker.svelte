@@ -11,7 +11,6 @@
 
 	interface Props {
 		themeMode?: ThemeModeType;
-		isVisible?: boolean;
 		darkTheme?: ColorsType;
 		lightTheme?: ColorsType;
 		oncolorschanged?: (mode: ThemeModeType, colors: ColorsType) => void;
@@ -88,13 +87,11 @@
 	const updateColors = (): void => {
 		if (!browser) return;
 
-		/*
 		Object.entries(currentColors).forEach(([colorType, colorValue]) => {
 			const oklchValue = hexToOklch(colorValue);
 			const varName = `--liwe3-${themeMode}-${colorType}`;
 			document.documentElement.style.setProperty(varName, oklchValue);
 		});
-		*/
 
 		oncolorschanged?.(themeMode, currentColors);
 	};

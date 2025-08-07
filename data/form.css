@@ -6,32 +6,32 @@
     --btn-gradient-mode1: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
     --btn-gradient-mode1-hover: linear-gradient(135deg, var(--liwe3-mode1-400), var(--liwe3-mode1-800));
     --btn-gradient-mode1-active: linear-gradient(135deg, var(--liwe3-mode1-600), var(--liwe3-mode1-700));
-    
+
     --btn-gradient-mode2: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-700));
     --btn-gradient-mode2-hover: linear-gradient(135deg, var(--liwe3-mode2-400), var(--liwe3-mode2-800));
     --btn-gradient-mode2-active: linear-gradient(135deg, var(--liwe3-mode2-600), var(--liwe3-mode2-800));
-    
+
     --btn-gradient-mode3: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-700));
     --btn-gradient-mode3-hover: linear-gradient(135deg, var(--liwe3-mode3-400), var(--liwe3-mode3-800));
     --btn-gradient-mode3-active: linear-gradient(135deg, var(--liwe3-mode3-600), var(--liwe3-mode3-800));
-    
+
     --btn-gradient-mode4: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-700));
     --btn-gradient-mode4-hover: linear-gradient(135deg, var(--liwe3-mode4-400), var(--liwe3-mode4-800));
     --btn-gradient-mode4-active: linear-gradient(135deg, var(--liwe3-mode4-600), var(--liwe3-mode4-800));
-    
+
     /* Status button gradients */
     --btn-gradient-success: linear-gradient(135deg, var(--liwe3-success), var(--liwe3-success-dark));
     --btn-gradient-success-hover: linear-gradient(135deg, oklch(from var(--liwe3-success) calc(l - 0.05) c h), var(--liwe3-success-dark));
     --btn-gradient-success-active: linear-gradient(135deg, var(--liwe3-success-dark), oklch(from var(--liwe3-success-dark) calc(l - 0.1) c h));
-    
+
     --btn-gradient-warning: linear-gradient(135deg, var(--liwe3-warning), var(--liwe3-warning-dark));
     --btn-gradient-warning-hover: linear-gradient(135deg, oklch(from var(--liwe3-warning) calc(l - 0.05) c h), var(--liwe3-warning-dark));
     --btn-gradient-warning-active: linear-gradient(135deg, var(--liwe3-warning-dark), oklch(from var(--liwe3-warning-dark) calc(l - 0.1) c h));
-    
+
     --btn-gradient-error: linear-gradient(135deg, var(--liwe3-error), var(--liwe3-error-dark));
     --btn-gradient-error-hover: linear-gradient(135deg, oklch(from var(--liwe3-error) calc(l - 0.05) c h), var(--liwe3-error-dark));
     --btn-gradient-error-active: linear-gradient(135deg, var(--liwe3-error-dark), oklch(from var(--liwe3-error-dark) calc(l - 0.1) c h));
-    
+
     --btn-gradient-info: linear-gradient(135deg, var(--liwe3-info), var(--liwe3-info-dark));
     --btn-gradient-info-hover: linear-gradient(135deg, oklch(from var(--liwe3-info) calc(l - 0.05) c h), var(--liwe3-info-dark));
     --btn-gradient-info-active: linear-gradient(135deg, var(--liwe3-info-dark), oklch(from var(--liwe3-info-dark) calc(l - 0.1) c h));
@@ -41,28 +41,28 @@
 [data-theme="dark"] {
     --btn-gradient-mode1-hover: linear-gradient(135deg, var(--liwe3-mode1-300), var(--liwe3-mode1-500));
     --btn-gradient-mode1-active: linear-gradient(135deg, var(--liwe3-mode1-500), var(--liwe3-mode1-700));
-    
+
     --btn-gradient-mode2-hover: linear-gradient(135deg, var(--liwe3-mode2-300), var(--liwe3-mode2-500));
     --btn-gradient-mode2-active: linear-gradient(135deg, var(--liwe3-mode2-500), var(--liwe3-mode2-700));
-    
+
     --btn-gradient-mode3-hover: linear-gradient(135deg, var(--liwe3-mode3-300), var(--liwe3-mode3-500));
     --btn-gradient-mode3-active: linear-gradient(135deg, var(--liwe3-mode3-500), var(--liwe3-mode3-700));
-    
+
     --btn-gradient-mode4-hover: linear-gradient(135deg, var(--liwe3-mode4-300), var(--liwe3-mode4-500));
     --btn-gradient-mode4-active: linear-gradient(135deg, var(--liwe3-mode4-500), var(--liwe3-mode4-700));
-    
+
     --btn-gradient-success: linear-gradient(135deg, oklch(from var(--liwe3-success) calc(l - 0.1) c h), var(--liwe3-success));
     --btn-gradient-success-hover: linear-gradient(135deg, oklch(from var(--liwe3-success) calc(l - 0.05) c h), var(--liwe3-success));
     --btn-gradient-success-active: linear-gradient(135deg, var(--liwe3-success), var(--liwe3-success-dark));
-    
+
     --btn-gradient-warning: linear-gradient(135deg, oklch(from var(--liwe3-warning) calc(l - 0.1) c h), var(--liwe3-warning));
     --btn-gradient-warning-hover: linear-gradient(135deg, oklch(from var(--liwe3-warning) calc(l - 0.05) c h), var(--liwe3-warning));
     --btn-gradient-warning-active: linear-gradient(135deg, var(--liwe3-warning), var(--liwe3-warning-dark));
-    
+
     --btn-gradient-error: linear-gradient(135deg, oklch(from var(--liwe3-error) calc(l - 0.1) c h), var(--liwe3-error));
     --btn-gradient-error-hover: linear-gradient(135deg, oklch(from var(--liwe3-error) calc(l - 0.05) c h), var(--liwe3-error));
     --btn-gradient-error-active: linear-gradient(135deg, var(--liwe3-error), var(--liwe3-error-dark));
-    
+
     --btn-gradient-info: linear-gradient(135deg, oklch(from var(--liwe3-info) calc(l - 0.1) c h), var(--liwe3-info));
     --btn-gradient-info-hover: linear-gradient(135deg, oklch(from var(--liwe3-info) calc(l - 0.05) c h), var(--liwe3-info));
     --btn-gradient-info-active: linear-gradient(135deg, var(--liwe3-info), var(--liwe3-info-dark));
@@ -1878,5 +1878,11 @@ input[type="button"],
             color: var(--liwe3-text-mode3);
             opacity: 1;
         }
+    }
+}
+
+.form-container {
+    input[type="color"] {
+        padding: 0 !important;
     }
 }

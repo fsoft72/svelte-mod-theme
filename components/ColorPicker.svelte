@@ -1,13 +1,8 @@
-<script module lang="ts">
-	export type ThemeModeType = 'light' | 'dark';
-	export type ColorModeType = 'mode1' | 'mode2' | 'mode3' | 'mode4';
-	export type ColorsType = Record<ColorModeType, string>;
-	export type DefaultColorsType = Record<ThemeModeType, ColorsType>;
-</script>
-
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
+	import { debounce } from '$liwe3/utils/utils';
+	import type { ColorModeType, ColorsType, DefaultColorsType, ThemeModeType } from '../types';
 
 	interface Props {
 		themeMode?: ThemeModeType;
@@ -40,6 +35,13 @@
 	// This derived only stores the four color modes for the current theme (dark / light)
 	let currentColors: ColorsType = $derived(themeColors[themeMode]);
 	let isVisible: boolean = $state(false);
+	let pickerButton: HTMLButtonElement | null = $state(null);
+	let pickerContainer: HTMLDivElement | null = $state(null);
+
+	// Create debounced version of oncolorschanged callback
+	const debouncedOnColorsChanged = debounce((mode: ThemeModeType, colors: ColorsType) => {
+		oncolorschanged?.(mode, colors);
+	}, 300);
 
 	/**
 	 * Convert hex color to OKLCH format
@@ -93,7 +95,7 @@
 			document.documentElement.style.setProperty(varName, oklchValue);
 		});
 
-		oncolorschanged?.(themeMode, currentColors);
+		debouncedOnColorsChanged(themeMode, currentColors);
 	};
 
 	/**
@@ -119,9 +121,11 @@
 		const target = event.target as HTMLElement;
 		const colorPicker = document.querySelector('[data-color-picker]');
 
-		if (colorPicker && !colorPicker.contains(target)) {
-			isVisible = false;
-		}
+		if (colorPicker && !colorPicker.contains(target)) isVisible = false;
+	};
+
+	const showPicker = (): void => {
+		isVisible = !isVisible;
 	};
 
 	onMount(() => {
@@ -136,11 +140,15 @@
 	});
 </script>
 
-<div class="color-picker-container" data-color-picker>
-	<button class="toggle-panel" title="Toggle Color Picker" onclick={() => (isVisible = !isVisible)}>
+<div bind:this={pickerContainer} class="color-picker-container" data-color-picker>
+	<button
+		bind:this={pickerButton}
+		class="toggle-panel mode2"
+		title="Toggle Color Picker"
+		onclick={showPicker}
+	>
 		{isVisible ? '✕' : '🎨'}
 	</button>
-
 	{#if isVisible}
 		<div class="color-picker-panel visible form-container">
 			<h3>🎨 Live Color Editor</h3>
@@ -171,10 +179,10 @@
 
 <style>
 	.color-picker-container {
-		position: fixed;
-		top: 20px;
-		right: 20px;
+		position: absolute;
 		z-index: 1001;
+		top: 0;
+		left: 0;
 	}
 
 	.toggle-panel {
@@ -203,21 +211,23 @@
 	}
 
 	.color-picker-panel {
-		position: absolute;
-		top: 0;
-		right: 0;
+		position: relative;
+
 		background: var(--liwe3-surface-raised, #ffffff);
 		border: 2px solid var(--liwe3-border-default, #d1d5db);
 		border-radius: 12px;
 		padding: 1.5rem;
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-		min-width: 280px;
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+		width: 360px;
+
 		backdrop-filter: blur(10px);
 		color: var(--liwe3-text-mode1, #111827);
 
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+
+		margin: 0 !important;
 	}
 
 	.color-picker-panel h3 {

@@ -1,0 +1,322 @@
+<script module lang="ts">
+	export type ThemeModeType = 'light' | 'dark';
+	export type ColorModeType = 'mode1' | 'mode2' | 'mode3' | 'mode4';
+	export type ColorsType = Record<ColorModeType, string>;
+	export type DefaultColorsType = Record<ThemeModeType, ColorsType>;
+</script>
+
+<script lang="ts">
+	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
+
+	interface Props {
+		themeMode?: ThemeModeType;
+		isVisible?: boolean;
+		darkTheme?: ColorsType;
+		lightTheme?: ColorsType;
+		oncolorschanged?: (mode: ThemeModeType, colors: ColorsType) => void;
+	}
+
+	let { themeMode = $bindable('light'), darkTheme, lightTheme, oncolorschanged }: Props = $props();
+
+	const DEFAULT_COLORS: DefaultColorsType = {
+		light: lightTheme || {
+			mode1: '#4f46e5',
+			mode2: '#059669',
+			mode3: '#ea580c',
+			mode4: '#9333ea'
+		},
+		dark: darkTheme || {
+			mode1: '#a78bfa',
+			mode2: '#34d399',
+			mode3: '#fb923c',
+			mode4: '#c084fc'
+		}
+	};
+
+	let themeColors: Record<ThemeModeType, ColorsType> = $state({
+		light: { ...DEFAULT_COLORS.light },
+		dark: { ...DEFAULT_COLORS.dark }
+	});
+	// This derived only stores the four color modes for the current theme (dark / light)
+	let currentColors: ColorsType = $derived(themeColors[themeMode]);
+	let isVisible: boolean = $state(false);
+
+	/**
+	 * Convert hex color to OKLCH format
+	 * @param hex - Hex color string (e.g., '#ff0000')
+	 * @returns OKLCH color string (e.g., 'oklch(0.628 0.225 29)')
+	 */
+	const hexToOklch = (hex: string): string => {
+		if (!hex || hex.length !== 7) return hex;
+
+		const r = parseInt(hex.slice(1, 3), 16) / 255;
+		const g = parseInt(hex.slice(3, 5), 16) / 255;
+		const b = parseInt(hex.slice(5, 7), 16) / 255;
+
+		const toLinear = (c: number) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+		const rLin = toLinear(r);
+		const gLin = toLinear(g);
+		const bLin = toLinear(b);
+
+		const x = 0.4124564 * rLin + 0.3575761 * gLin + 0.1804375 * bLin;
+		const y = 0.2126729 * rLin + 0.7151522 * gLin + 0.072175 * bLin;
+		const z = 0.0193339 * rLin + 0.119192 * gLin + 0.9503041 * bLin;
+
+		const fx = x > 0.008856 ? Math.pow(x, 1 / 3) : 7.787 * x + 16 / 116;
+		const fy = y > 0.008856 ? Math.pow(y, 1 / 3) : 7.787 * y + 16 / 116;
+		const fz = z > 0.008856 ? Math.pow(z, 1 / 3) : 7.787 * z + 16 / 116;
+
+		const L = 116 * fy - 16;
+		const a = 500 * (fx - fy);
+		const bVal = 200 * (fy - fz);
+
+		const C = Math.sqrt(a * a + bVal * bVal);
+		let H = (Math.atan2(bVal, a) * 180) / Math.PI;
+		if (H < 0) H += 360;
+
+		const lightness = Math.max(0, Math.min(1, L / 100));
+		const chroma = Math.max(0, Math.min(0.4, C / 150));
+		const hue = H;
+
+		return `oklch(${lightness.toFixed(3)} ${chroma.toFixed(3)} ${hue.toFixed(0)})`;
+	};
+
+	/**
+	 * Update CSS custom properties and dispatch color change event
+	 */
+	const updateColors = (): void => {
+		if (!browser) return;
+
+		/*
+		Object.entries(currentColors).forEach(([colorType, colorValue]) => {
+			const oklchValue = hexToOklch(colorValue);
+			const varName = `--liwe3-${themeMode}-${colorType}`;
+			document.documentElement.style.setProperty(varName, oklchValue);
+		});
+		*/
+
+		oncolorschanged?.(themeMode, currentColors);
+	};
+
+	/**
+	 * Reset colors to default values
+	 */
+	const resetColors = (): void => {
+		currentColors = { ...DEFAULT_COLORS[themeMode] };
+		updateColors();
+	};
+
+	/**
+	 * Handle color input changes
+	 */
+	const handleColorChange = (colorType: ColorModeType, value: string): void => {
+		currentColors[colorType] = value;
+		updateColors();
+	};
+
+	/**
+	 * Handle click outside to close panel
+	 */
+	const handleClickOutside = (event: MouseEvent): void => {
+		const target = event.target as HTMLElement;
+		const colorPicker = document.querySelector('[data-color-picker]');
+
+		if (colorPicker && !colorPicker.contains(target)) {
+			isVisible = false;
+		}
+	};
+
+	onMount(() => {
+		if (browser) {
+			document.addEventListener('click', handleClickOutside);
+			updateColors();
+
+			return () => {
+				document.removeEventListener('click', handleClickOutside);
+			};
+		}
+	});
+</script>
+
+<div class="color-picker-container" data-color-picker>
+	<button class="toggle-panel" title="Toggle Color Picker" onclick={() => (isVisible = !isVisible)}>
+		{isVisible ? '✕' : '🎨'}
+	</button>
+
+	{#if isVisible}
+		<div class="color-picker-panel visible form-container">
+			<h3>🎨 Live Color Editor</h3>
+			<button
+				class="toggle-mode"
+				onclick={() => (themeMode = themeMode === 'light' ? 'dark' : 'light')}
+			>
+				{themeMode === 'light' ? 'Light Mode' : 'Dark Mode'}
+			</button>
+
+			{#each Object.entries(currentColors) as [colorType, colorValue]}
+				<div class="color-picker-group">
+					<label class="color-picker-label">{colorType}:</label>
+					<input
+						type="color"
+						class={`color-picker ${colorType}`}
+						value={colorValue}
+						oninput={(e) => handleColorChange(colorType as ColorModeType, e.currentTarget.value)}
+					/>
+					<span class="color-value-display">{colorValue}</span>
+				</div>
+			{/each}
+
+			<button class="reset-button mode1" onclick={resetColors}> Reset to Default </button>
+		</div>
+	{/if}
+</div>
+
+<style>
+	.color-picker-container {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		z-index: 1001;
+	}
+
+	.toggle-panel {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		background: var(--liwe3-mode1-500, #4f46e5);
+		color: white;
+		border: none;
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+		cursor: pointer;
+		font-size: 1.2rem;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+		transition: all 0.2s ease;
+
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	.toggle-panel:hover {
+		transform: scale(1.1);
+		background: var(--liwe3-mode1-600, #4338ca);
+	}
+
+	.color-picker-panel {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: var(--liwe3-surface-raised, #ffffff);
+		border: 2px solid var(--liwe3-border-default, #d1d5db);
+		border-radius: 12px;
+		padding: 1.5rem;
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+		min-width: 280px;
+		backdrop-filter: blur(10px);
+		color: var(--liwe3-text-mode1, #111827);
+
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.color-picker-panel h3 {
+		margin: 0 0 1rem 0;
+		color: var(--liwe3-text-mode1, #111827);
+		font-size: 1.1rem;
+		text-align: center;
+	}
+
+	.color-picker-group {
+		display: flex;
+		align-items: center;
+		margin-bottom: 1rem;
+		gap: 1rem;
+	}
+
+	.color-picker-group:last-of-type {
+		margin-bottom: 0;
+	}
+
+	.color-picker-label {
+		flex: 1;
+		font-weight: 600;
+		color: var(--liwe3-text-mode1, #111827);
+		font-size: 0.9rem;
+	}
+
+	.color-picker {
+		width: 50px;
+		height: 35px;
+		border: 2px solid var(--liwe3-border-default, #d1d5db);
+		border-radius: 6px;
+		cursor: pointer;
+		background: none;
+		transition:
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.color-picker:hover {
+		transform: scale(1.05);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	}
+
+	.color-picker:focus {
+		outline: 2px solid var(--liwe3-mode1-500, #4f46e5);
+		outline-offset: 2px;
+	}
+
+	.color-value-display {
+		font-family: 'Courier New', monospace;
+		font-size: 0.75rem;
+		color: var(--liwe3-text-mode3, #6b7280);
+		margin-left: 0.5rem;
+		min-width: 80px;
+	}
+
+	.reset-button {
+		width: 100%;
+		padding: 0.5rem;
+		margin-top: 1rem;
+		background: var(--liwe3-gray-200, #f3f4f6);
+		color: var(--liwe3-text-mode1, #111827);
+		border: 1px solid var(--liwe3-border-default, #d1d5db);
+		border-radius: 6px;
+		cursor: pointer;
+		font-size: 0.9rem;
+		transition: all 0.2s ease;
+	}
+
+	.reset-button:hover {
+		background: var(--liwe3-gray-300, #e5e7eb);
+	}
+
+	@media (max-width: 768px) {
+		.color-picker-container {
+			bottom: 20px;
+			top: auto;
+			right: 20px;
+			left: 20px;
+		}
+
+		.color-picker-panel {
+			position: fixed;
+			top: auto;
+			bottom: 80px;
+			right: 20px;
+			left: 20px;
+			max-width: none;
+		}
+
+		.toggle-panel {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			top: auto;
+		}
+	}
+</style>

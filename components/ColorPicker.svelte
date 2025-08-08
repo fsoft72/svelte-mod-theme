@@ -6,27 +6,32 @@
 
 	interface Props {
 		themeMode?: ThemeModeType;
-		darkTheme?: ColorsType;
-		lightTheme?: ColorsType;
-		oncolorschanged?: (mode: ThemeModeType, colors: ColorsType) => void;
+		darkTheme?: ColorsType | undefined;
+		lightTheme?: ColorsType | undefined;
+		onColorsChanged?: (mode: ThemeModeType, colors: ColorsType) => void;
 	}
 
-	let { themeMode = $bindable('light'), darkTheme, lightTheme, oncolorschanged }: Props = $props();
+	let { themeMode = $bindable('light'), darkTheme, lightTheme, onColorsChanged }: Props = $props();
 
 	const DEFAULT_COLORS: DefaultColorsType = {
 		light: lightTheme || {
 			mode1: '#4f46e5',
 			mode2: '#059669',
 			mode3: '#ea580c',
-			mode4: '#9333ea'
+			mode4: '#9333ea',
+			//background: '#f3f4f6',
+			//color: '#111827'
 		},
 		dark: darkTheme || {
 			mode1: '#a78bfa',
 			mode2: '#34d399',
 			mode3: '#fb923c',
-			mode4: '#c084fc'
+			mode4: '#c084fc',
+			//background: '#1f2937',
+			//color: '#f3f4f6'
 		}
 	};
+	console.log ('=== ColorPicker props:', themeMode, darkTheme, lightTheme, DEFAULT_COLORS);
 
 	let themeColors: Record<ThemeModeType, ColorsType> = $state({
 		light: { ...DEFAULT_COLORS.light },
@@ -40,7 +45,7 @@
 
 	// Create debounced version of oncolorschanged callback
 	const debouncedOnColorsChanged = debounce((mode: ThemeModeType, colors: ColorsType) => {
-		oncolorschanged?.(mode, colors);
+		onColorsChanged?.(mode, colors);
 	}, 300);
 
 	/**
@@ -159,18 +164,21 @@
 				{themeMode === 'light' ? 'Light Mode' : 'Dark Mode'}
 			</button>
 
-			{#each Object.entries(currentColors) as [colorType, colorValue]}
-				<div class="color-picker-group">
-					<label class="color-picker-label">{colorType}:</label>
-					<input
-						type="color"
-						class={`color-picker ${colorType}`}
-						value={colorValue}
-						oninput={(e) => handleColorChange(colorType as ColorModeType, e.currentTarget.value)}
-					/>
-					<span class="color-value-display">{colorValue}</span>
-				</div>
-			{/each}
+			<div class="color-picker-groups">
+				{#each Object.entries(currentColors) as [colorType, colorValue]}
+					<div class="color-picker-group">
+						<label class="color-picker-label" for={`color-${themeMode}-${colorType}`}>{colorType}:</label>
+						<input
+							id={`color-${colorType}`}
+							type="color"
+							class={`color-picker ${colorType}`}
+							value={colorValue}
+							oninput={(e) => handleColorChange(colorType as ColorModeType, e.currentTarget.value)}
+						/>
+						<span class="color-value-display">{colorValue}</span>
+					</div>
+				{/each}
+			</div>
 
 			<button class="reset-button mode1" onclick={resetColors}> Reset to Default </button>
 		</div>
@@ -218,7 +226,7 @@
 		border-radius: 12px;
 		padding: 1.5rem;
 		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-		width: 360px;
+		width: 45%;
 
 		backdrop-filter: blur(10px);
 		color: var(--liwe3-text-mode1, #111827);
@@ -237,9 +245,18 @@
 		text-align: center;
 	}
 
+	.color-picker-groups {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		width:100%;
+	}
+
 	.color-picker-group {
 		display: flex;
 		align-items: center;
+		width: 280px;
 		margin-bottom: 1rem;
 		gap: 1rem;
 	}
@@ -324,6 +341,11 @@
 			bottom: 20px;
 			right: 20px;
 			top: auto;
+		}
+	}
+	@media (min-width: 1920px) {
+		.color-picker-panel {
+			width: 720px;
 		}
 	}
 </style>

@@ -6,11 +6,16 @@
 		THEME_PARTS,
 		type ThemeDataType,
 		type ThemeModeType,
-		type ThemePartsType
-	} from '../types';
+		type ThemePartsType,
+		type ColorsType,
+		type ThemeDataArg
+	} from '$modules/theme/types';
+	import { runeDebug } from '$liwe3/utils/runes.svelte';
 
 	type ThemePropsType = {
-		themeData?: (ThemeDataType & { mode?: ThemeModeType }) | undefined;
+		themeMode?: ThemeModeType;
+		themeData?: ThemeDataType | undefined;
+		onColorsChanged?: (mode: ThemeModeType, colors: ColorsType) => void;
 	};
 
 	const prefix = PUBLIC_PROJECT_KEY ? `${PUBLIC_PROJECT_KEY}-` : '';
@@ -23,15 +28,15 @@
 		'form'
 	];
 
-	let { themeData }: ThemePropsType = $props();
+	let { themeMode = $bindable('light'), themeData, onColorsChanged = $bindable() }: ThemePropsType = $props();
 	let themeParts: ThemePartsType[] = $state(
 		Array.isArray(themeData?.parts) && themeData.parts.length > 0
 			? themeData.parts
 			: defaultThemeParts
 	);
-	let currentMode: ThemeModeType = $state(themeData?.mode || 'light');
-	let currentDark: ThemeDataType['dark'] = $state(themeData?.dark || {});
-	let currentLight: ThemeDataType['light'] = $state(themeData?.light || {});
+
+	let currentDark: ThemeDataType['dark'] | undefined= $state(themeData?.dark );
+	let currentLight: ThemeDataType['light'] | undefined = $state(themeData?.light);
 
 	const toLocalStorage = (key: string, value: Record<string, string> | string[] | string) => {
 		if (!browser) return;
@@ -49,25 +54,30 @@
 		const value = localStorage.getItem(prefix + key);
 		if (value === null) return null;
 		try {
-			return JSON.parse(value);
+			return JSON.parse(value) as ColorsType;
 		} catch (e) {
 			console.error(`Error parsing localStorage value for key "${key}":`, e);
 			return null;
 		}
 	};
 
-	export const setTheme = (mode: ThemeModeType) => {
-		if (!browser) return;
-		document.documentElement.setAttribute('data-theme', mode);
-	};
+	export const getCurrentValues = (): ThemeDataArg | undefined => {
+		return {
+			mode: (getFromLocalStorage('mode') || themeMode) as string,
+			light: (getFromLocalStorage('light') || currentLight) as ColorsType,
+			dark: (getFromLocalStorage('dark') || currentDark) as ColorsType,
+		};
+	}
 
-	export const setBaseValues = (data: (ThemeDataType & { mode?: ThemeModeType }) | undefined) => {
-		if (!browser || !data) return false;
+	export const setBaseValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined) => {
+		if (!browser || !data || !mode) return false;
+
+		console.log('=== setBaseValues:', mode, data);
 
 		const tmpMode = getFromLocalStorage('mode');
-		currentMode = tmpMode
+		themeMode = tmpMode
 			? (tmpMode as ThemeModeType)
-			: (toLocalStorage('mode', data.mode || 'light') as ThemeModeType);
+			: (toLocalStorage('mode', mode || 'light') as ThemeModeType);
 
 		const tmpParts = getFromLocalStorage('parts');
 		themeParts =
@@ -86,10 +96,19 @@
 			: (toLocalStorage('light', data.light || {}) as ThemeDataType['light']);
 	};
 
+	export const setTheme = (mode: ThemeModeType) => {
+		if (!browser) return;
+		document.documentElement.setAttribute('data-theme', mode);
+	};
+
+	$effect(() => {
+		setTheme(themeMode);
+	});
+
 	onMount(() => {
 		if (!browser) return;
-		setBaseValues(themeData);
-		setTheme(currentMode);
+		setBaseValues(themeMode, themeData);
+		setTheme(themeMode);
 	});
 </script>
 

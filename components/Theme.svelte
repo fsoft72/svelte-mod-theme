@@ -63,16 +63,14 @@
 
 	export const getCurrentValues = (): ThemeDataArg | undefined => {
 		return {
-			mode: (getFromLocalStorage('mode') || themeMode) as string,
-			light: (getFromLocalStorage('light') || currentLight) as ColorsType,
-			dark: (getFromLocalStorage('dark') || currentDark) as ColorsType,
+			mode: (getFromLocalStorage('mode') || $state.snapshot(themeMode)) as string,
+			light: (getFromLocalStorage('light') || $state.snapshot(currentLight)) as ColorsType,
+			dark: (getFromLocalStorage('dark') || $state.snapshot(currentDark)) as ColorsType,
 		};
 	}
 
 	export const setBaseValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined) => {
 		if (!browser || !data || !mode) return false;
-
-		console.log('=== setBaseValues:', mode, data);
 
 		const tmpMode = getFromLocalStorage('mode');
 		themeMode = tmpMode
@@ -102,13 +100,13 @@
 	};
 
 	$effect(() => {
-		setTheme(themeMode);
+		setTheme($state.snapshot(themeMode));
 	});
 
 	onMount(() => {
 		if (!browser) return;
-		setBaseValues(themeMode, themeData);
-		setTheme(themeMode);
+		setBaseValues($state.snapshot(themeMode), themeData);
+		setTheme($state.snapshot(themeMode));
 	});
 </script>
 

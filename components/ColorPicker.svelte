@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { onMount, tick } from 'svelte';
-	import { debounce } from '$liwe3/utils/utils';
+	import { onMount } from 'svelte';
 	import type { ColorModeType, ColorsType, DefaultColorsType, ThemeModeType } from '../types';
 
 	interface Props {
@@ -42,11 +41,6 @@
 	let isVisible: boolean = $state(false);
 	let pickerButton: HTMLButtonElement | null = $state(null);
 	let pickerContainer: HTMLDivElement | null = $state(null);
-
-	// Create debounced version of oncolorschanged callback
-	const debouncedOnColorsChanged = debounce((mode: ThemeModeType, colors: ColorsType) => {
-		onColorsChanged?.(mode, colors);
-	}, 300);
 
 	/**
 	 * Convert hex color to OKLCH format
@@ -97,10 +91,9 @@
 		Object.entries(currentColors).forEach(([colorType, colorValue]) => {
 			const oklchValue = hexToOklch(colorValue);
 			const varName = `--liwe3-${themeMode}-${colorType}`;
+			console.log(`Setting CSS variable ${varName} to ${oklchValue}`);
 			document.documentElement.style.setProperty(varName, oklchValue);
 		});
-
-		debouncedOnColorsChanged(themeMode, currentColors);
 	};
 
 	/**
@@ -117,6 +110,14 @@
 	const handleColorChange = (colorType: ColorModeType, value: string): void => {
 		currentColors[colorType] = value;
 		updateColors();
+	};
+
+	/**
+	 * Finalize color selection and notify parent component
+	 */
+	const finalizeColorSelection = (colorType: ColorModeType, value: string): void => {
+		currentColors[colorType] = value;
+		onColorsChanged?.($state.snapshot(themeMode), $state.snapshot(currentColors));
 	};
 
 	/**
@@ -174,6 +175,7 @@
 							class={`color-picker ${colorType}`}
 							value={colorValue}
 							oninput={(e) => handleColorChange(colorType as ColorModeType, e.currentTarget.value)}
+							onchange={(e) => finalizeColorSelection(colorType as ColorModeType, e.currentTarget.value)}
 						/>
 						<span class="color-value-display">{colorValue}</span>
 					</div>
@@ -187,10 +189,10 @@
 
 <style>
 	.color-picker-container {
-		position: absolute;
+		position: fixed;
 		z-index: 1001;
-		top: 0;
-		left: 0;
+		top: 1rem;
+		left: 1rem;
 	}
 
 	.toggle-panel {

@@ -1,4 +1,4 @@
-export const THEME_PARTS = [ 'fonts', 'theme', 'variables', 'typography', 'layout', 'form' ];
+export const THEME_PARTS = [ 'fonts', 'variables', 'theme', 'typography', 'layout', 'form' ];
 export const THEME_MODES = [ 'light', 'dark' ];
 
 export type ThemePartsType = typeof THEME_PARTS[ number ];

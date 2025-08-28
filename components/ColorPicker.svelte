@@ -18,16 +18,22 @@
 			mode2: '#059669',
 			mode3: '#ea580c',
 			mode4: '#9333ea',
-			//background: '#f3f4f6',
-			//color: '#111827'
+			background: '#f3f4f6',
+			color: '#111827',
+			success: '#10b981',
+			warning: '#eab308',
+			error: '#ef4444'
 		},
 		dark: darkTheme || {
 			mode1: '#a78bfa',
 			mode2: '#34d399',
 			mode3: '#fb923c',
 			mode4: '#c084fc',
-			//background: '#1f2937',
-			//color: '#f3f4f6'
+			background: '#1f2937',
+			color: '#f3f4f6',
+			success: '#10b981',
+			warning: '#eab308',
+			error: '#ef4444'
 		}
 	};
 	console.log ('=== ColorPicker props:', themeMode, darkTheme, lightTheme, DEFAULT_COLORS);

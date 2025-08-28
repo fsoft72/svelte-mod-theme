@@ -19,14 +19,7 @@
 	};
 
 	const prefix = PUBLIC_PROJECT_KEY ? `${PUBLIC_PROJECT_KEY}-` : '';
-	const defaultThemeParts: ThemePartsType[] = [
-		'fonts',
-		'theme',
-		'variables',
-		'typography',
-		'layout',
-		'form'
-	];
+	const defaultThemeParts: ThemePartsType[] = THEME_PARTS;
 
 	let { themeMode = $bindable('light'), themeData, onColorsChanged = $bindable() }: ThemePropsType = $props();
 	let themeParts: ThemePartsType[] = $state(
@@ -61,6 +54,31 @@
 		}
 	};
 
+	const _updateValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined, updateOnly: boolean = false) => {
+		if (!browser || !data || !mode) return false;
+
+		const tmpMode = getFromLocalStorage('mode');
+		themeMode = tmpMode && !updateOnly
+			? (tmpMode as ThemeModeType)
+			: (toLocalStorage('mode', mode || 'light') as ThemeModeType);
+
+		const tmpParts = getFromLocalStorage('parts');
+		themeParts =
+			tmpParts && Array.isArray(tmpParts) && tmpParts.length > 0 && !updateOnly
+				? (tmpParts as ThemePartsType[])
+				: (toLocalStorage('parts', data.parts || defaultThemeParts) as ThemePartsType[]);
+
+		const tmpDark = getFromLocalStorage('dark');
+		currentDark = tmpDark && !updateOnly
+			? (tmpDark as ThemeDataType['dark'])
+			: (toLocalStorage('dark', data.dark || {}) as ThemeDataType['dark']);
+
+		const tmpLight = getFromLocalStorage('light');
+		currentLight = tmpLight && !updateOnly
+			? (tmpLight as ThemeDataType['light'])
+			: (toLocalStorage('light', data.light || {}) as ThemeDataType['light']);
+	};
+
 	export const getCurrentValues = (): ThemeDataArg | undefined => {
 		return {
 			mode: (getFromLocalStorage('mode') || $state.snapshot(themeMode)) as string,
@@ -69,34 +87,27 @@
 		};
 	}
 
+	/** Read values from localStorage and update it if key is not found
+	 * @param mode ThemeModeType
+	 * @param data ThemeDataType
+	 */
 	export const setBaseValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined) => {
-		if (!browser || !data || !mode) return false;
+		_updateValues(mode, data);
+	};
 
-		const tmpMode = getFromLocalStorage('mode');
-		themeMode = tmpMode
-			? (tmpMode as ThemeModeType)
-			: (toLocalStorage('mode', mode || 'light') as ThemeModeType);
-
-		const tmpParts = getFromLocalStorage('parts');
-		themeParts =
-			tmpParts && Array.isArray(tmpParts) && tmpParts.length > 0
-				? (tmpParts as ThemePartsType[])
-				: (toLocalStorage('parts', data.parts || defaultThemeParts) as ThemePartsType[]);
-
-		const tmpDark = getFromLocalStorage('dark');
-		currentDark = tmpDark
-			? (tmpDark as ThemeDataType['dark'])
-			: (toLocalStorage('dark', data.dark || {}) as ThemeDataType['dark']);
-
-		const tmpLight = getFromLocalStorage('light');
-		currentLight = tmpLight
-			? (tmpLight as ThemeDataType['light'])
-			: (toLocalStorage('light', data.light || {}) as ThemeDataType['light']);
+	/** Write passed values to localStorage overwriting existing ones.
+	 *  Use this with onColorsChanged to update the theme dynamically.
+	 * @param mode ThemeModeType
+	 * @param data Partial<ThemeDataType>
+	 */
+	export const updateBaseValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined) => {
+		_updateValues(mode, data, true);
 	};
 
 	export const setTheme = (mode: ThemeModeType) => {
 		if (!browser) return;
 		document.documentElement.setAttribute('data-theme', mode);
+		toLocalStorage('mode', mode);
 	};
 
 	$effect(() => {

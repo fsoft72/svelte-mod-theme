@@ -19,6 +19,7 @@
 	};
 
 	const prefix = PUBLIC_PROJECT_KEY ? `${PUBLIC_PROJECT_KEY}-` : '';
+	const lsKey = 'theme';
 	const defaultThemeParts: ThemePartsType[] = THEME_PARTS;
 
 	let { themeMode = $bindable('light'), themeData, onColorsChanged = $bindable() }: ThemePropsType = $props();
@@ -31,23 +32,23 @@
 	let currentDark: ThemeDataType['dark'] | undefined= $state(themeData?.dark );
 	let currentLight: ThemeDataType['light'] | undefined = $state(themeData?.light);
 
-	const toLocalStorage = (key: string, value: Record<string, string> | string[] | string) => {
+	const toLocalStorage = ( value: ThemeDataArg) => {
 		if (!browser) return;
 
 		if (!prefix || prefix.length === 0)
 			console.warn('No prefix set for localStorage, this may cause conflicts with other projects.');
 
 		const stringValue = JSON.stringify(value);
-		localStorage.setItem(prefix + key, stringValue);
+		localStorage.setItem(prefix + lsKey, stringValue);
 		return value;
 	};
 
-	const getFromLocalStorage = (key: string): Record<string, string> | string[] | string | null => {
+	const getFromLocalStorage = (key: string): ThemeDataArg | null => {
 		if (!browser) return null;
 		const value = localStorage.getItem(prefix + key);
 		if (value === null) return null;
 		try {
-			return JSON.parse(value) as ColorsType;
+			return JSON.parse(value) as ThemeDataArg;
 		} catch (e) {
 			console.error(`Error parsing localStorage value for key "${key}":`, e);
 			return null;
@@ -57,33 +58,39 @@
 	const _updateValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined, updateOnly: boolean = false) => {
 		if (!browser || !data || !mode) return false;
 
-		const tmpMode = getFromLocalStorage('mode');
+		const localStorageValues = getFromLocalStorage( lsKey );
+		const localStorageData: ThemeDataArg = {};
+
+		const tmpMode = localStorageValues?.mode || null;
 		themeMode = tmpMode && !updateOnly
 			? (tmpMode as ThemeModeType)
-			: (toLocalStorage('mode', mode || 'light') as ThemeModeType);
+			: (localStorageData['mode'] = mode || 'light') as ThemeModeType;
 
-		const tmpParts = getFromLocalStorage('parts');
+		const tmpParts = localStorageValues?.parts || null;
 		themeParts =
 			tmpParts && Array.isArray(tmpParts) && tmpParts.length > 0 && !updateOnly
 				? (tmpParts as ThemePartsType[])
-				: (toLocalStorage('parts', data.parts || defaultThemeParts) as ThemePartsType[]);
+				: (localStorageData['parts'] = data.parts || defaultThemeParts) as ThemePartsType[];
 
-		const tmpDark = getFromLocalStorage('dark');
+		const tmpDark = localStorageValues?.dark || null;
 		currentDark = tmpDark && !updateOnly
 			? (tmpDark as ThemeDataType['dark'])
-			: (toLocalStorage('dark', data.dark || {}) as ThemeDataType['dark']);
+			: (localStorageData['dark'] = data.dark || {}) as ThemeDataType['dark'];
 
-		const tmpLight = getFromLocalStorage('light');
+		const tmpLight = localStorageValues?.light || null;
 		currentLight = tmpLight && !updateOnly
 			? (tmpLight as ThemeDataType['light'])
-			: (toLocalStorage('light', data.light || {}) as ThemeDataType['light']);
+			: (localStorageData['light'] = data.light || {}) as ThemeDataType['light'];
+
+		toLocalStorage(localStorageData);
 	};
 
 	export const getCurrentValues = (): ThemeDataArg | undefined => {
+		const localStorageValues = getFromLocalStorage( lsKey );
 		return {
-			mode: (getFromLocalStorage('mode') || $state.snapshot(themeMode)) as string,
-			light: (getFromLocalStorage('light') || $state.snapshot(currentLight)) as ColorsType,
-			dark: (getFromLocalStorage('dark') || $state.snapshot(currentDark)) as ColorsType,
+			mode: (localStorageValues?.mode || $state.snapshot(themeMode)) as string,
+			light: (localStorageValues?.light || $state.snapshot(currentLight)) as ColorsType,
+			dark: (localStorageValues?.dark || $state.snapshot(currentDark)) as ColorsType,
 		};
 	}
 
@@ -106,8 +113,12 @@
 
 	export const setTheme = (mode: ThemeModeType) => {
 		if (!browser) return;
+
 		document.documentElement.setAttribute('data-theme', mode);
-		toLocalStorage('mode', mode);
+
+		const localStorageValues = getFromLocalStorage( lsKey ) || {} as ThemeDataArg;
+		localStorageValues['mode'] = mode;
+		toLocalStorage(localStorageValues);
 	};
 
 	$effect(() => {

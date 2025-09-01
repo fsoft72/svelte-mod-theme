@@ -13,29 +13,29 @@
 		type ColorModeType
 
 	} from '$modules/theme/types';
+
+	import themeStore from '$modules/theme/store.svelte';
 	import { runeDebug } from '$liwe3/utils/runes.svelte';
 
 	type ThemePropsType = {
 		themeMode?: ThemeModeType;												// Theme mode (light/dark)
 		themeData?: ThemeDataType | undefined;									// Colors by theme mode
-		onColorsChanged?: (mode: ThemeModeType, colors: ColorsType) => void;	// Callback for color changes
+		onColorsChanged?: (mode: ThemeModeType, colors: ColorsType, save?: boolean) => void;	// Callback for color changes
 		injection?: boolean;													// Whether to inject styles
 	};
 
 	const prefix = PUBLIC_PROJECT_KEY ? `${PUBLIC_PROJECT_KEY}-` : '';
 	const lsKey = 'theme';
+
+	let { themeMode = 'light', themeData, onColorsChanged, injection = true }: ThemePropsType = $props();
+
 	const defaultThemeParts: ThemePartsType[] = THEME_PARTS;
 
-	let { themeMode = $bindable('light'), themeData, onColorsChanged = $bindable(), injection = true }: ThemePropsType = $props();
 	let themeParts: ThemePartsType[] = $state(
 		Array.isArray(themeData?.parts) && themeData.parts.length > 0
 			? themeData.parts
 			: defaultThemeParts
 	);
-
-	let currentDark: ThemeDataType['dark'] | undefined= $state(themeData?.dark );
-	let currentLight: ThemeDataType['light'] | undefined = $state(themeData?.light);
-	let currentColors: ColorsType = $derived(themeMode === 'light' ? currentLight || {} : currentDark || {});
 
 	function _hexToRgb(hex:string): { r: number; g: number; b: number } {
 		if (hex.length === 4) {
@@ -88,7 +88,7 @@
 		if (!browser) return;
 
 		const oklchValue = hexToOklch(value);
-		const varName = `--liwe3-${themeMode}-${colorType}`;
+		const varName = `--liwe3-${themeStore.getMode()}-${colorType}`;
 		//console.log(`Setting CSS variable ${varName} to ${oklchValue}`);
 		document.documentElement.style.setProperty(varName, oklchValue);
 	}
@@ -105,12 +105,12 @@
 	};
 
 	/**
-	 * Update CSS custom properties and dispatch color change event
+	 * Update CSS custom properties
 	 */
 	const applyThemeColors = (): void => {
 		if (!browser) return;
 
-		Object.entries(currentColors).forEach(([colorType, colorValue]) => {
+		Object.entries(themeStore.getColors()).forEach(([colorType, colorValue]) => {
 			_setCssVariable(colorType, colorValue);
 		});
 	};
@@ -138,8 +138,8 @@
 		}
 	};
 
-	const _updateValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined, updateOnly: boolean = false) => {
-		if (!browser || !injection) return false;
+	const getStoredValues = ( updateOnly:boolean) => {
+		if(updateOnly) return { tmpMode: null, tmpLight: null, tmpDark: null, tmpParts: null };
 
 		const localStorageValues = getFromLocalStorage( lsKey );
 
@@ -147,42 +147,60 @@
 		const tmpLight = localStorageValues?.light || null;
 		const tmpDark = localStorageValues?.dark || null;
 		const tmpParts = localStorageValues?.parts || null;
+		return { tmpMode, tmpLight, tmpDark, tmpParts };
+	};
 
-		themeMode = tmpMode && Object.keys(tmpMode).length > 0 && !updateOnly
-			? (tmpMode as ThemeModeType)
-			: (mode || 'light') as ThemeModeType;
+	const _updateValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined, updateOnly: boolean = false) => {
+		if (!browser || !injection) return false;
 
-		currentDark = tmpDark && Object.keys(tmpDark).length > 0 && !updateOnly
-			? (tmpDark as ThemeDataType['dark'])
-			: (data?.dark || {}) as ThemeDataType['dark'];
+		console.log('=== Theme updating values:', { mode, data, updateOnly });
 
-		currentLight = tmpLight && Object.keys(tmpLight).length > 0 && !updateOnly
-			? (tmpLight as ThemeDataType['light'])
-			: (data?.light || {}) as ThemeDataType['light'];
+		const { tmpMode, tmpLight, tmpDark, tmpParts } = getStoredValues(updateOnly);
 
-		themeParts = tmpParts && Array.isArray(tmpParts) && tmpParts.length > 0 && !updateOnly
-			? (tmpParts as ThemePartsType[])
-			: (data?.parts || defaultThemeParts) as ThemePartsType[];
+		if( tmpMode || mode ){
+			themeStore.setMode ( tmpMode && Object.keys(tmpMode).length > 0
+				? (tmpMode as ThemeModeType)
+				: mode as ThemeModeType);
+		}
+		if( tmpDark || data?.dark ){
+			console.log('=== Theme updating dark values:', { tmpDark, data });
+			themeStore.setDark (tmpDark && Object.keys(tmpDark).length > 0
+				? (tmpDark as ThemeDataType['dark'])
+				: data?.dark as ThemeDataType['dark']);
+		}
+		if( tmpLight || data?.light ){
+			console.log('=== Theme updating light values:', { tmpLight, data });
+			themeStore.setLight ( tmpLight && Object.keys(tmpLight).length > 0
+				? (tmpLight as ThemeDataType['light'])
+				: data?.light as ThemeDataType['light']);
+		}
+		if( tmpParts || data?.parts ){
+			themeParts = tmpParts && Array.isArray(tmpParts) && tmpParts.length > 0
+				? (tmpParts as ThemePartsType[])
+				: data?.parts as ThemePartsType[];
+		}
 
-		const localStorageData: ThemeDataArg = {
-			mode: themeMode,
-			dark: currentDark,
-			light:currentLight,
-			parts:themeParts
-		};
-		//console.log('=== Theme setting localStorage data:', localStorageData);
-		toLocalStorage(localStorageData);
 		applyThemeColors();
 	};
 
-	export const getCurrentValues = (): ThemeDataArg | undefined => {
-		const localStorageValues = getFromLocalStorage( lsKey );
-		console.log('=== Current values from localStorage:', localStorageValues, currentLight, currentDark);
+	export const saveToLocalStorage = (): void => {
+		if (!browser) return;
 
+		const localStorageData: ThemeDataArg = {
+			mode: themeStore.getMode(),
+			dark: themeStore.getDark(),
+			light: themeStore.getLight(),
+			parts: themeParts
+		};
+		//console.log('=== Theme setting localStorage data:', localStorageData);
+		toLocalStorage(localStorageData);
+	};
+
+	export const getCurrentValues = (): ThemeDataArg | undefined => {
 		return {
-			mode: localStorageValues?.mode && Object.keys(localStorageValues.mode).length > 0 ? localStorageValues.mode : $state.snapshot(themeMode) as string,
-			light: localStorageValues?.light && Object.keys(localStorageValues.light).length > 0 ? localStorageValues?.light : $state.snapshot(currentLight) as ColorsType,
-			dark: localStorageValues?.dark && Object.keys(localStorageValues.dark).length > 0 ? localStorageValues?.dark : $state.snapshot(currentDark) as ColorsType,
+			mode: themeStore.getMode(),
+			light: themeStore.getLight(),
+			dark: themeStore.getDark()
 		};
 	}
 
@@ -194,41 +212,41 @@
 		_updateValues(mode, data);
 	};
 
-	/** Write passed values to localStorage overwriting existing ones.
-	 *  Use this with onColorsChanged to update the theme dynamically.
-	 * @param mode ThemeModeType
-	 * @param data Partial<ThemeDataType>
+	/** Use this with ColorPicker onColorsConfirmed callback to update the theme dynamically.
 	 */
-	export const updateBaseValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined) => {
-		_updateValues(mode, data, true);
+	export const updateBaseValues = () => {
+		_updateValues(themeStore.getMode(), themeStore.getColors(), true);
+	};
+
+	/** Use this with ColorPicker onColorsConfirmed callback to update the theme dynamically.
+	 * 	Write values to localStorage overwriting existing ones.
+	 */
+	export const confirmBaseValues = () => {
+		_updateValues(themeStore.getMode(), themeStore.getColors(), true);
+		saveToLocalStorage();
 	};
 
 	export const setColor = (colorType: ColorModeType, value: string): void => {
 		if (!browser) return;
-
+		themeStore.setColor(colorType, value);
 		_setCssVariable(colorType, value);
 	};
 
 	export const setTheme = (mode: ThemeModeType) => {
 		if (!browser) return;
-
-		const localStorageValues = getFromLocalStorage( lsKey ) || {} as ThemeDataArg;
-		localStorageValues['mode'] = mode;
-		toLocalStorage(localStorageValues);
-
-		document.documentElement.setAttribute('data-theme', mode);
+		themeStore.setMode(mode);
 	};
-
-	$effect(() => {
-		console.log('=== Theme effect, mode or colors changed');
-		setTheme($state.snapshot(themeMode));
-	});
 
 	onMount(() => {
 		if (!browser) return;
 		console.log('=== Theme mounted with data:', themeData);
-		setBaseValues($state.snapshot(themeMode), themeData);
-		setTheme($state.snapshot(themeMode));
+		if(themeMode)
+			themeStore.setMode(themeMode);
+		else
+			themeMode = themeStore.getMode();
+
+		setBaseValues(themeStore.getMode(), themeData);
+		saveToLocalStorage();
 	});
 </script>
 

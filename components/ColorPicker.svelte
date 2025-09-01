@@ -1,83 +1,49 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
-	import { COLOR_MODES, THEME_MODES } from '$modules/theme/types';
-	import type { ColorModeType, ColorsType, DefaultColorsType, ThemeDataType, ThemeModeType } from '$modules/theme/types';
+
+	import themeStore from '$modules/theme/store.svelte';
+
+	import type { ColorModeType, ColorsType, ThemeModeType } from '$modules/theme/types';
 
 	interface Props {
-		themeMode?: ThemeModeType;
 		darkTheme?: ColorsType | undefined;
 		lightTheme?: ColorsType | undefined;
-		onColorsUpdated?: (mode: ThemeModeType, colors: ColorsType) => void;
-		handleColorChange?: (colorType: ColorModeType, value: string) => void;
+		//
+		onColorsChanged?: () => void;
+		onColorsConfirmed?: () => void;
 	}
 
 	let {
-		themeMode = $bindable('light'),
 		darkTheme,
 		lightTheme,
-		onColorsUpdated,
-		handleColorChange
+		onColorsChanged,
+		onColorsConfirmed,
 	}: Props = $props();
 
-	const DEFAULT_COLORS: DefaultColorsType = {
-		light: lightTheme || {
-			mode1: '#4f46e5',
-			mode2: '#059669',
-			mode3: '#ea580c',
-			mode4: '#9333ea',
-			background: '#f3f4f6',
-			color: '#111827',
-			success: '#10b981',
-			warning: '#eab308',
-			error: '#ef4444'
-		},
-		dark: darkTheme || {
-			mode1: '#a78bfa',
-			mode2: '#34d399',
-			mode3: '#fb923c',
-			mode4: '#c084fc',
-			background: '#1f2937',
-			color: '#f3f4f6',
-			success: '#10b981',
-			warning: '#eab308',
-			error: '#ef4444'
-		}
-	};
-	console.log ('=== ColorPicker props:', themeMode, darkTheme, lightTheme, DEFAULT_COLORS);
-
-	let themeColors: Record<ThemeModeType, ColorsType> = $state({
-		light: { ...DEFAULT_COLORS.light },
-		dark: { ...DEFAULT_COLORS.dark }
-	});
 	// This derived only stores the four color modes for the current theme (dark / light)
-	let currentColors: ColorsType = $derived(themeColors[themeMode]);
 	let isVisible: boolean = $state(false);
 	let pickerButton: HTMLButtonElement | null = $state(null);
 	let pickerContainer: HTMLDivElement | null = $state(null);
 
+	let themeMode: ThemeModeType = $state(themeStore.getMode());
+
+	console.log ('=== ColorPicker props:', darkTheme, lightTheme);
 	/**
 	 * Reset colors to default values
 	 */
 	const resetColors = (): void => {
-		currentColors = { ...DEFAULT_COLORS[themeMode] };
-		onColorsUpdated?.($state.snapshot(themeMode), $state.snapshot(DEFAULT_COLORS[themeMode]));
+		if( confirm('Reset colors to default values?') ) {
+			themeStore.resetColors();
+		}
 	};
 
 	/**
 	 * Handle color input changes
 	 */
 	const colorChange = (colorType: ColorModeType, value: string): void => {
-		currentColors[colorType] = value;
-		handleColorChange?.(colorType, value);
-	};
-
-	/**
-	 * Finalize color selection and notify parent component
-	 */
-	const finalizeColorSelection = (colorType: ColorModeType, value: string): void => {
-		currentColors[colorType] = value;
-		onColorsUpdated?.($state.snapshot(themeMode), $state.snapshot(currentColors));
+		themeStore.setColor(colorType, value);
+		onColorsChanged && onColorsChanged();
 	};
 
 	/**
@@ -96,6 +62,7 @@
 
 	onMount(() => {
 		if (browser) {
+
 			document.addEventListener('click', handleClickOutside);
 			//console.log('=== ColorPicker mounted', DEFAULT_COLORS);
 
@@ -120,13 +87,16 @@
 			<h3>🎨 Live Color Editor</h3>
 			<button
 				class="toggle-mode"
-				onclick={() => (themeMode = themeMode === 'light' ? 'dark' : 'light')}
+				onclick={() => {
+					themeMode = themeMode === 'light' ? 'dark' : 'light';
+					themeStore.setMode(themeMode);
+				 } }
 			>
 				{themeMode === 'light' ? 'Light Mode' : 'Dark Mode'}
 			</button>
 
 			<div class="color-picker-groups">
-				{#each Object.entries(currentColors) as [colorType, colorValue]}
+				{#each Object.entries(themeStore.getColors()) as [colorType, colorValue]}
 					<div class="color-picker-group">
 						<label class="color-picker-label" for={`color-${themeMode}-${colorType}`}>{colorType}:</label>
 						<input
@@ -134,8 +104,7 @@
 							type="color"
 							class={`color-picker ${colorType}`}
 							value={colorValue}
-							oninput={(e) => colorChange(colorType as ColorModeType, e.currentTarget.value)}
-							onchange={(e) => finalizeColorSelection(colorType as ColorModeType, e.currentTarget.value)}
+							onchange={(e) => colorChange(colorType as ColorModeType, e.currentTarget.value)}
 						/>
 						<span class="color-value-display">{colorValue}</span>
 					</div>
@@ -143,6 +112,7 @@
 			</div>
 
 			<button class="reset-button mode1" onclick={resetColors}> Reset to Default </button>
+			<button class="confirm-button success" onclick={onColorsConfirmed}> Save Colors Scheme </button>
 		</div>
 	{/if}
 </div>

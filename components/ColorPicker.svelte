@@ -1,16 +1,24 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
-	import type { ColorModeType, ColorsType, DefaultColorsType, ThemeModeType } from '../types';
+	import { COLOR_MODES, THEME_MODES } from '$modules/theme/types';
+	import type { ColorModeType, ColorsType, DefaultColorsType, ThemeDataType, ThemeModeType } from '$modules/theme/types';
 
 	interface Props {
 		themeMode?: ThemeModeType;
 		darkTheme?: ColorsType | undefined;
 		lightTheme?: ColorsType | undefined;
-		onColorsChanged?: (mode: ThemeModeType, colors: ColorsType) => void;
+		onColorsUpdated?: (mode: ThemeModeType, colors: ColorsType) => void;
+		handleColorChange?: (colorType: ColorModeType, value: string) => void;
 	}
 
-	let { themeMode = $bindable('light'), darkTheme, lightTheme, onColorsChanged }: Props = $props();
+	let {
+		themeMode = $bindable('light'),
+		darkTheme,
+		lightTheme,
+		onColorsUpdated,
+		handleColorChange
+	}: Props = $props();
 
 	const DEFAULT_COLORS: DefaultColorsType = {
 		light: lightTheme || {
@@ -48,92 +56,20 @@
 	let pickerButton: HTMLButtonElement | null = $state(null);
 	let pickerContainer: HTMLDivElement | null = $state(null);
 
-	function hexToRgb(hex:string): { r: number; g: number; b: number } {
-		if (hex.length === 4) {
-			return {
-				r: parseInt(hex[1] + hex[1], 16),
-				g: parseInt(hex[2] + hex[2], 16),
-				b: parseInt(hex[3] + hex[3], 16),
-			};
-		} else if (hex.length === 7) {
-			return {
-				r: parseInt(hex[1] + hex[2], 16),
-				g: parseInt(hex[3] + hex[4], 16),
-				b: parseInt(hex[5] + hex[6], 16),
-			};
-		}
-		return { r: 0, g: 0, b: 0 };
-	}
-
-	function rgbToOklch(r: number, g: number, b: number): { l: number; c: number; h: number } {
-		r /= 255;
-		g /= 255;
-		b /= 255;
-
-		// Gamma correction
-		r = r <= 0.04045 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
-		g = g <= 0.04045 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
-		b = b <= 0.04045 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
-
-		// Convert to Oklab
-		const l = 0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b;
-		const m = 0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b;
-		const s = 0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b;
-		const l_ = Math.cbrt(l);
-		const m_ = Math.cbrt(m);
-		const s_ = Math.cbrt(s);
-
-		const L = 0.2104542553 * l_ + 0.7936177850 * m_ - 0.0040720468 * s_;
-		const a = 1.9779984951 * l_ - 2.4285922050 * m_ + 0.4505937099 * s_;
-		const b_ = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.8086757660 * s_;
-
-		// Then convert Oklab to OKLCH
-		const C = Math.sqrt(a * a + b_ * b_);
-		let H = Math.atan2(b_, a) * (180 / Math.PI);
-		if (H < 0) H += 360;
-
-		return { l: L, c: C, h: H };
-	}
-
-	/**
-	 * Convert hex color to OKLCH format
-	 * @param hex - Hex color string (e.g., '#ff0000')
-	 * @returns OKLCH color string (e.g., 'oklch(0.628 0.225 29)')
-	 */
-	const hexToOklch = (hex: string): string => {
-		const { r, g, b } = hexToRgb(hex);
-		const { l, c, h } = rgbToOklch(r, g, b);
-		return `oklch(${l.toFixed(3)} ${c.toFixed(3)} ${h.toFixed(0)})`;
-	};
-
-	/**
-	 * Update CSS custom properties and dispatch color change event
-	 */
-	const updateColors = (): void => {
-		if (!browser) return;
-
-		Object.entries(currentColors).forEach(([colorType, colorValue]) => {
-			const oklchValue = hexToOklch(colorValue);
-			const varName = `--liwe3-${themeMode}-${colorType}`;
-			console.log(`Setting CSS variable ${varName} to ${oklchValue}`);
-			document.documentElement.style.setProperty(varName, oklchValue);
-		});
-	};
-
 	/**
 	 * Reset colors to default values
 	 */
 	const resetColors = (): void => {
 		currentColors = { ...DEFAULT_COLORS[themeMode] };
-		updateColors();
+		onColorsUpdated?.($state.snapshot(themeMode), $state.snapshot(DEFAULT_COLORS[themeMode]));
 	};
 
 	/**
 	 * Handle color input changes
 	 */
-	const handleColorChange = (colorType: ColorModeType, value: string): void => {
+	const colorChange = (colorType: ColorModeType, value: string): void => {
 		currentColors[colorType] = value;
-		updateColors();
+		handleColorChange?.(colorType, value);
 	};
 
 	/**
@@ -141,7 +77,7 @@
 	 */
 	const finalizeColorSelection = (colorType: ColorModeType, value: string): void => {
 		currentColors[colorType] = value;
-		onColorsChanged?.($state.snapshot(themeMode), $state.snapshot(currentColors));
+		onColorsUpdated?.($state.snapshot(themeMode), $state.snapshot(currentColors));
 	};
 
 	/**
@@ -161,7 +97,7 @@
 	onMount(() => {
 		if (browser) {
 			document.addEventListener('click', handleClickOutside);
-			updateColors();
+			//console.log('=== ColorPicker mounted', DEFAULT_COLORS);
 
 			return () => {
 				document.removeEventListener('click', handleClickOutside);
@@ -198,7 +134,7 @@
 							type="color"
 							class={`color-picker ${colorType}`}
 							value={colorValue}
-							oninput={(e) => handleColorChange(colorType as ColorModeType, e.currentTarget.value)}
+							oninput={(e) => colorChange(colorType as ColorModeType, e.currentTarget.value)}
 							onchange={(e) => finalizeColorSelection(colorType as ColorModeType, e.currentTarget.value)}
 						/>
 						<span class="color-value-display">{colorValue}</span>

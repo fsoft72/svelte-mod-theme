@@ -8,21 +8,25 @@
 		type ThemeModeType,
 		type ThemePartsType,
 		type ColorsType,
-		type ThemeDataArg
+		type ThemeDataArg,
+
+		type ColorModeType
+
 	} from '$modules/theme/types';
 	import { runeDebug } from '$liwe3/utils/runes.svelte';
 
 	type ThemePropsType = {
-		themeMode?: ThemeModeType;
-		themeData?: ThemeDataType | undefined;
-		onColorsChanged?: (mode: ThemeModeType, colors: ColorsType) => void;
+		themeMode?: ThemeModeType;												// Theme mode (light/dark)
+		themeData?: ThemeDataType | undefined;									// Colors by theme mode
+		onColorsChanged?: (mode: ThemeModeType, colors: ColorsType) => void;	// Callback for color changes
+		injection?: boolean;													// Whether to inject styles
 	};
 
 	const prefix = PUBLIC_PROJECT_KEY ? `${PUBLIC_PROJECT_KEY}-` : '';
 	const lsKey = 'theme';
 	const defaultThemeParts: ThemePartsType[] = THEME_PARTS;
 
-	let { themeMode = $bindable('light'), themeData, onColorsChanged = $bindable() }: ThemePropsType = $props();
+	let { themeMode = $bindable('light'), themeData, onColorsChanged = $bindable(), injection = true }: ThemePropsType = $props();
 	let themeParts: ThemePartsType[] = $state(
 		Array.isArray(themeData?.parts) && themeData.parts.length > 0
 			? themeData.parts
@@ -31,6 +35,85 @@
 
 	let currentDark: ThemeDataType['dark'] | undefined= $state(themeData?.dark );
 	let currentLight: ThemeDataType['light'] | undefined = $state(themeData?.light);
+	let currentColors: ColorsType = $derived(themeMode === 'light' ? currentLight || {} : currentDark || {});
+
+	function _hexToRgb(hex:string): { r: number; g: number; b: number } {
+		if (hex.length === 4) {
+			return {
+				r: parseInt(hex[1] + hex[1], 16),
+				g: parseInt(hex[2] + hex[2], 16),
+				b: parseInt(hex[3] + hex[3], 16),
+			};
+		} else if (hex.length === 7) {
+			return {
+				r: parseInt(hex[1] + hex[2], 16),
+				g: parseInt(hex[3] + hex[4], 16),
+				b: parseInt(hex[5] + hex[6], 16),
+			};
+		}
+		return { r: 0, g: 0, b: 0 };
+	}
+
+	function _rgbToOklch(r: number, g: number, b: number): { l: number; c: number; h: number } {
+		r /= 255;
+		g /= 255;
+		b /= 255;
+
+		// Gamma correction
+		r = r <= 0.04045 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
+		g = g <= 0.04045 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
+		b = b <= 0.04045 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+
+		// Convert to Oklab
+		const l = 0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b;
+		const m = 0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b;
+		const s = 0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b;
+		const l_ = Math.cbrt(l);
+		const m_ = Math.cbrt(m);
+		const s_ = Math.cbrt(s);
+
+		const L = 0.2104542553 * l_ + 0.7936177850 * m_ - 0.0040720468 * s_;
+		const a = 1.9779984951 * l_ - 2.4285922050 * m_ + 0.4505937099 * s_;
+		const b_ = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.8086757660 * s_;
+
+		// Then convert Oklab to OKLCH
+		const C = Math.sqrt(a * a + b_ * b_);
+		let H = Math.atan2(b_, a) * (180 / Math.PI);
+		if (H < 0) H += 360;
+
+		return { l: L, c: C, h: H };
+	}
+
+	function _setCssVariable(colorType: ColorModeType, value: string): void {
+		if (!browser) return;
+
+		const oklchValue = hexToOklch(value);
+		const varName = `--liwe3-${themeMode}-${colorType}`;
+		//console.log(`Setting CSS variable ${varName} to ${oklchValue}`);
+		document.documentElement.style.setProperty(varName, oklchValue);
+	}
+
+	/**
+	 * Convert hex color to OKLCH format
+	 * @param hex - Hex color string (e.g., '#ff0000')
+	 * @returns OKLCH color string (e.g., 'oklch(0.628 0.225 29)')
+	 */
+	const hexToOklch = (hex: string): string => {
+		const { r, g, b } = _hexToRgb(hex);
+		const { l, c, h } = _rgbToOklch(r, g, b);
+		return `oklch(${l.toFixed(3)} ${c.toFixed(3)} ${h.toFixed(0)})`;
+	};
+
+	/**
+	 * Update CSS custom properties and dispatch color change event
+	 */
+	const applyThemeColors = (): void => {
+		if (!browser) return;
+
+		Object.entries(currentColors).forEach(([colorType, colorValue]) => {
+			_setCssVariable(colorType, colorValue);
+		});
+	};
 
 	const toLocalStorage = ( value: ThemeDataArg) => {
 		if (!browser) return;
@@ -56,41 +139,50 @@
 	};
 
 	const _updateValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined, updateOnly: boolean = false) => {
-		if (!browser || !data || !mode) return false;
+		if (!browser || !injection) return false;
 
 		const localStorageValues = getFromLocalStorage( lsKey );
-		const localStorageData: ThemeDataArg = {};
 
 		const tmpMode = localStorageValues?.mode || null;
-		themeMode = tmpMode && !updateOnly
-			? (tmpMode as ThemeModeType)
-			: (localStorageData['mode'] = mode || 'light') as ThemeModeType;
-
-		const tmpParts = localStorageValues?.parts || null;
-		themeParts =
-			tmpParts && Array.isArray(tmpParts) && tmpParts.length > 0 && !updateOnly
-				? (tmpParts as ThemePartsType[])
-				: (localStorageData['parts'] = data.parts || defaultThemeParts) as ThemePartsType[];
-
-		const tmpDark = localStorageValues?.dark || null;
-		currentDark = tmpDark && !updateOnly
-			? (tmpDark as ThemeDataType['dark'])
-			: (localStorageData['dark'] = data.dark || {}) as ThemeDataType['dark'];
-
 		const tmpLight = localStorageValues?.light || null;
-		currentLight = tmpLight && !updateOnly
-			? (tmpLight as ThemeDataType['light'])
-			: (localStorageData['light'] = data.light || {}) as ThemeDataType['light'];
+		const tmpDark = localStorageValues?.dark || null;
+		const tmpParts = localStorageValues?.parts || null;
 
+		themeMode = tmpMode && Object.keys(tmpMode).length > 0 && !updateOnly
+			? (tmpMode as ThemeModeType)
+			: (mode || 'light') as ThemeModeType;
+
+		currentDark = tmpDark && Object.keys(tmpDark).length > 0 && !updateOnly
+			? (tmpDark as ThemeDataType['dark'])
+			: (data?.dark || {}) as ThemeDataType['dark'];
+
+		currentLight = tmpLight && Object.keys(tmpLight).length > 0 && !updateOnly
+			? (tmpLight as ThemeDataType['light'])
+			: (data?.light || {}) as ThemeDataType['light'];
+
+		themeParts = tmpParts && Array.isArray(tmpParts) && tmpParts.length > 0 && !updateOnly
+			? (tmpParts as ThemePartsType[])
+			: (data?.parts || defaultThemeParts) as ThemePartsType[];
+
+		const localStorageData: ThemeDataArg = {
+			mode: themeMode,
+			dark: currentDark,
+			light:currentLight,
+			parts:themeParts
+		};
+		//console.log('=== Theme setting localStorage data:', localStorageData);
 		toLocalStorage(localStorageData);
+		applyThemeColors();
 	};
 
 	export const getCurrentValues = (): ThemeDataArg | undefined => {
 		const localStorageValues = getFromLocalStorage( lsKey );
+		console.log('=== Current values from localStorage:', localStorageValues, currentLight, currentDark);
+
 		return {
-			mode: (localStorageValues?.mode || $state.snapshot(themeMode)) as string,
-			light: (localStorageValues?.light || $state.snapshot(currentLight)) as ColorsType,
-			dark: (localStorageValues?.dark || $state.snapshot(currentDark)) as ColorsType,
+			mode: localStorageValues?.mode && Object.keys(localStorageValues.mode).length > 0 ? localStorageValues.mode : $state.snapshot(themeMode) as string,
+			light: localStorageValues?.light && Object.keys(localStorageValues.light).length > 0 ? localStorageValues?.light : $state.snapshot(currentLight) as ColorsType,
+			dark: localStorageValues?.dark && Object.keys(localStorageValues.dark).length > 0 ? localStorageValues?.dark : $state.snapshot(currentDark) as ColorsType,
 		};
 	}
 
@@ -111,22 +203,30 @@
 		_updateValues(mode, data, true);
 	};
 
-	export const setTheme = (mode: ThemeModeType) => {
+	export const setColor = (colorType: ColorModeType, value: string): void => {
 		if (!browser) return;
 
-		document.documentElement.setAttribute('data-theme', mode);
+		_setCssVariable(colorType, value);
+	};
+
+	export const setTheme = (mode: ThemeModeType) => {
+		if (!browser) return;
 
 		const localStorageValues = getFromLocalStorage( lsKey ) || {} as ThemeDataArg;
 		localStorageValues['mode'] = mode;
 		toLocalStorage(localStorageValues);
+
+		document.documentElement.setAttribute('data-theme', mode);
 	};
 
 	$effect(() => {
+		console.log('=== Theme effect, mode or colors changed');
 		setTheme($state.snapshot(themeMode));
 	});
 
 	onMount(() => {
 		if (!browser) return;
+		console.log('=== Theme mounted with data:', themeData);
 		setBaseValues($state.snapshot(themeMode), themeData);
 		setTheme($state.snapshot(themeMode));
 	});

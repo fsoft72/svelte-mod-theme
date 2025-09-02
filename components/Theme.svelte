@@ -13,6 +13,7 @@
 		type ColorModeType
 
 	} from '$modules/theme/types';
+	import { DEFAULT_COLORS } from '$modules/theme/store.svelte';
 
 	import themeStore from '$modules/theme/store.svelte';
 	import { runeDebug } from '$liwe3/utils/runes.svelte';
@@ -23,6 +24,11 @@
 		onColorsChanged?: (mode: ThemeModeType, colors: ColorsType, save?: boolean) => void;	// Callback for color changes
 		injection?: boolean;													// Whether to inject styles
 	};
+
+	const currentMode: ThemeModeType = $derived(themeStore.mode);
+	const currentColors: ColorsType = $derived(themeStore.colors);
+	const currentDark: ThemeDataType[ 'dark' ] = $derived(themeStore.dark);
+	const currentLight: ThemeDataType[ 'light' ] = $derived(themeStore.light);
 
 	const prefix = PUBLIC_PROJECT_KEY ? `${PUBLIC_PROJECT_KEY}-` : '';
 	const lsKey = 'theme';
@@ -88,7 +94,7 @@
 		if (!browser) return;
 
 		const oklchValue = hexToOklch(value);
-		const varName = `--liwe3-${themeStore.getMode()}-${colorType}`;
+		const varName = `--liwe3-${currentMode}-${colorType}`;
 		//console.log(`Setting CSS variable ${varName} to ${oklchValue}`);
 		document.documentElement.style.setProperty(varName, oklchValue);
 	}
@@ -110,7 +116,7 @@
 	const applyThemeColors = (): void => {
 		if (!browser) return;
 
-		Object.entries(themeStore.getColors()).forEach(([colorType, colorValue]) => {
+		Object.entries(currentColors).forEach(([colorType, colorValue]) => {
 			_setCssVariable(colorType, colorValue);
 		});
 	};
@@ -138,115 +144,96 @@
 		}
 	};
 
-	const getStoredValues = ( updateOnly:boolean) => {
-		if(updateOnly) return { tmpMode: null, tmpLight: null, tmpDark: null, tmpParts: null };
-
-		const localStorageValues = getFromLocalStorage( lsKey );
-
-		const tmpMode = localStorageValues?.mode || null;
-		const tmpLight = localStorageValues?.light || null;
-		const tmpDark = localStorageValues?.dark || null;
-		const tmpParts = localStorageValues?.parts || null;
-		return { tmpMode, tmpLight, tmpDark, tmpParts };
-	};
-
-	const _updateValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined, updateOnly: boolean = false) => {
+	const _updateValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined) => {
 		if (!browser || !injection) return false;
 
-		console.log('=== Theme updating values:', { mode, data, updateOnly });
-
-		const { tmpMode, tmpLight, tmpDark, tmpParts } = getStoredValues(updateOnly);
-
-		if( tmpMode || mode ){
-			themeStore.setMode ( tmpMode && Object.keys(tmpMode).length > 0
-				? (tmpMode as ThemeModeType)
-				: mode as ThemeModeType);
+		if( mode ){
+			themeStore.mode = mode;
 		}
-		if( tmpDark || data?.dark ){
-			console.log('=== Theme updating dark values:', { tmpDark, data });
-			themeStore.setDark (tmpDark && Object.keys(tmpDark).length > 0
-				? (tmpDark as ThemeDataType['dark'])
-				: data?.dark as ThemeDataType['dark']);
+		if( data?.dark ){
+			themeStore.dark = data.dark;
 		}
-		if( tmpLight || data?.light ){
-			console.log('=== Theme updating light values:', { tmpLight, data });
-			themeStore.setLight ( tmpLight && Object.keys(tmpLight).length > 0
-				? (tmpLight as ThemeDataType['light'])
-				: data?.light as ThemeDataType['light']);
+		if( data?.light ){
+			themeStore.light = data.light;
 		}
-		if( tmpParts || data?.parts ){
-			themeParts = tmpParts && Array.isArray(tmpParts) && tmpParts.length > 0
-				? (tmpParts as ThemePartsType[])
-				: data?.parts as ThemePartsType[];
+		if( data?.parts ){
+			themeParts = data.parts;
 		}
 
 		applyThemeColors();
 	};
 
-	export const saveToLocalStorage = (): void => {
+	const saveToLocalStorage = (): void => {
 		if (!browser) return;
 
 		const localStorageData: ThemeDataArg = {
-			mode: themeStore.getMode(),
-			dark: themeStore.getDark(),
-			light: themeStore.getLight(),
+			mode: currentMode,
+			dark: currentDark,
+			light: currentLight,
 			parts: themeParts
 		};
 		//console.log('=== Theme setting localStorage data:', localStorageData);
 		toLocalStorage(localStorageData);
 	};
 
+	const createInitialTheme = (mode: ThemeModeType, data: ThemeDataType | undefined) => {
+		const stored = getFromLocalStorage(lsKey);
+		return {
+			mode: stored?.mode || mode,
+			light: { ...DEFAULT_COLORS.light, ...stored?.light, ...data?.light },
+			dark: { ...DEFAULT_COLORS.dark, ...stored?.dark, ...data?.dark },
+			parts: data?.parts || stored?.parts || defaultThemeParts
+		};
+	};
+
 	export const getCurrentValues = (): ThemeDataArg | undefined => {
 		return {
-			mode: themeStore.getMode(),
-			light: themeStore.getLight(),
-			dark: themeStore.getDark()
+			mode: currentMode,
+			light: currentLight,
+			dark: currentDark
 		};
 	}
 
-	/** Read values from localStorage and update it if key is not found
-	 * @param mode ThemeModeType
-	 * @param data ThemeDataType
-	 */
-	export const setBaseValues = (mode: ThemeModeType | undefined, data: ThemeDataType | undefined) => {
-		_updateValues(mode, data);
-	};
-
 	/** Use this with ColorPicker onColorsConfirmed callback to update the theme dynamically.
 	 */
-	export const updateBaseValues = () => {
-		_updateValues(themeStore.getMode(), themeStore.getColors(), true);
+	export const updateColors = () => {
+		_updateValues(currentMode, currentColors);
 	};
 
 	/** Use this with ColorPicker onColorsConfirmed callback to update the theme dynamically.
 	 * 	Write values to localStorage overwriting existing ones.
 	 */
-	export const confirmBaseValues = () => {
-		_updateValues(themeStore.getMode(), themeStore.getColors(), true);
+	export const saveTheme = () => {
+		_updateValues(currentMode, currentColors);
 		saveToLocalStorage();
 	};
 
 	export const setColor = (colorType: ColorModeType, value: string): void => {
 		if (!browser) return;
+
+		function isValidHexColor ( hex: string ): boolean {
+			return /^#([0-9A-F]{3}){1,2}$/i.test( hex );
+		};
+
+		if (!isValidHexColor(value)) {
+			console.warn(`Invalid color value: ${value}`);
+			return;
+		}
+
 		themeStore.setColor(colorType, value);
 		_setCssVariable(colorType, value);
 	};
 
-	export const setTheme = (mode: ThemeModeType) => {
+	export const setThemeMode = (mode: ThemeModeType) => {
 		if (!browser) return;
-		themeStore.setMode(mode);
+		themeStore.mode = mode;
 	};
 
 	onMount(() => {
-		if (!browser) return;
-		console.log('=== Theme mounted with data:', themeData);
-		if(themeMode)
-			themeStore.setMode(themeMode);
-		else
-			themeMode = themeStore.getMode();
-
-		setBaseValues(themeStore.getMode(), themeData);
-		saveToLocalStorage();
+		if (!browser || !injection) return;
+		const completeTheme = createInitialTheme(themeMode, themeData);
+		themeStore.initialize( themeMode, completeTheme);
+		applyThemeColors();
 	});
 </script>
 

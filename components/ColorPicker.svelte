@@ -26,7 +26,8 @@
 	let pickerButton: HTMLButtonElement | null = $state(null);
 	let pickerContainer: HTMLDivElement | null = $state(null);
 
-	let themeMode: ThemeModeType = $state(themeStore.getMode());
+	const currentMode: ThemeModeType = $derived(themeStore.mode);
+	const currentColors: ColorsType = $derived(themeStore.colors);
 
 	console.log ('=== ColorPicker props:', darkTheme, lightTheme);
 	/**
@@ -46,6 +47,10 @@
 		onColorsChanged && onColorsChanged();
 	};
 
+	const toggleThemeMode = (): void => {
+		themeStore.mode = currentMode === 'light' ? 'dark' : 'light';
+	};
+
 	/**
 	 * Handle click outside to close panel
 	 */
@@ -62,9 +67,7 @@
 
 	onMount(() => {
 		if (browser) {
-
 			document.addEventListener('click', handleClickOutside);
-			//console.log('=== ColorPicker mounted', DEFAULT_COLORS);
 
 			return () => {
 				document.removeEventListener('click', handleClickOutside);
@@ -87,18 +90,15 @@
 			<h3>🎨 Live Color Editor</h3>
 			<button
 				class="toggle-mode"
-				onclick={() => {
-					themeMode = themeMode === 'light' ? 'dark' : 'light';
-					themeStore.setMode(themeMode);
-				 } }
+				onclick={toggleThemeMode}
 			>
-				{themeMode === 'light' ? 'Light Mode' : 'Dark Mode'}
+				{currentMode === 'light' ? 'Light Mode' : 'Dark Mode'}
 			</button>
 
 			<div class="color-picker-groups">
-				{#each Object.entries(themeStore.getColors()) as [colorType, colorValue]}
+				{#each Object.entries(currentColors) as [colorType, colorValue]}
 					<div class="color-picker-group">
-						<label class="color-picker-label" for={`color-${themeMode}-${colorType}`}>{colorType}:</label>
+						<label class="color-picker-label" for={`color-${currentMode}-${colorType}`}>{colorType}:</label>
 						<input
 							id={`color-${colorType}`}
 							type="color"

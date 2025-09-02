@@ -1,17 +1,15 @@
+import { THEME_PARTS } from './types';
+
 import type {
 	ThemeDataType,
 	ThemeModeType,
 	ColorsType,
 	DefaultColorsType,
-	ColorModeType
+	ColorModeType,
+	ThemeDataArg
 } from '$modules/theme/types';
 
-let currentMode: ThemeModeType = $state( 'light' );
-let currentDark: ThemeDataType[ 'dark' ] = $state( {} );
-let currentLight: ThemeDataType[ 'light' ] = $state( {} );
-const currentColors: ColorsType = $derived( currentMode === 'light' ? currentLight || {} : currentDark || {} );
-
-const DEFAULT_COLORS: DefaultColorsType = {
+export const DEFAULT_COLORS: DefaultColorsType = {
 	light: {
 		mode1: '#4f46e5',
 		mode2: '#059669',
@@ -36,44 +34,72 @@ const DEFAULT_COLORS: DefaultColorsType = {
 	}
 };
 
+const themeObject: ThemeDataArg = $state( {
+	mode: 'light',
+	light: { ...DEFAULT_COLORS.light },
+	dark: { ...DEFAULT_COLORS.dark },
+	parts: THEME_PARTS
+} );
+const currentMode: ThemeModeType = $derived( themeObject.mode || 'light' );
+const currentDark: ThemeDataType[ 'dark' ] = $derived( themeObject.dark );
+const currentLight: ThemeDataType[ 'light' ] = $derived( themeObject.light );
+const currentColors: ColorsType = $derived( currentMode === 'light' ? currentLight || {} : currentDark || {} );
+
+
 const assignValue = ( mode: ThemeModeType, themeData: ThemeDataType[ 'dark' ] | ThemeDataType[ 'light' ] | undefined ) => {
 	const data: ThemeDataType[ 'dark' ] | ThemeDataType[ 'light' ] = !themeData || Object.keys( themeData ).length === 0 ? DEFAULT_COLORS[ mode ] : themeData;
 	if ( mode === 'light' ) {
-		currentLight = data;
+		themeObject.light = data;
 	} else {
-		currentDark = data;
+		themeObject.dark = data;
 	}
 };
 
 const store = {
-	setMode: ( mode: ThemeModeType ) => {
-		currentMode = mode;
-		document.documentElement.setAttribute( 'data-theme', mode );
+	initialize: ( themeMode: ThemeModeType, themeData: ThemeDataArg ) => {
+		themeObject.mode = themeMode || themeData.mode;
+		themeObject.light = { ...DEFAULT_COLORS.light, ...themeData.light };
+		themeObject.dark = { ...DEFAULT_COLORS.dark, ...themeData.dark };
+		themeObject.parts = themeData.parts || THEME_PARTS;
+
+		if ( typeof document !== 'undefined' && themeObject.mode ) {
+			document.documentElement.setAttribute( 'data-theme', themeObject.mode );
+		}
 	},
-	getMode: () => currentMode,
-	setDark: ( dark: ThemeDataType[ 'dark' ] ) => {
-		console.log( '=== Setting dark theme in store:', dark );
-		assignValue( 'dark', dark );
-	},
-	getDark: () => currentDark,
-	setLight: ( light: ThemeDataType[ 'light' ] ) => {
-		console.log( '=== Setting light theme in store:', light );
-		assignValue( 'light', light );
-	},
-	getLight: () => currentLight,
-	getColors: () => currentColors,
 	setColor: ( colorType: ColorModeType, value: string ) => {
 		if ( currentMode === 'light' ) {
-			if ( currentLight ) currentLight[ colorType ] = value;
+			if ( themeObject.light ) themeObject.light[ colorType ] = value;
 		} else {
-			if ( currentDark ) currentDark[ colorType ] = value;
+			if ( themeObject.dark ) themeObject.dark[ colorType ] = value;
 		}
 	},
 	resetColors: () => {
-		currentDark = DEFAULT_COLORS.dark;
-		currentLight = DEFAULT_COLORS.light;
+		themeObject.dark = DEFAULT_COLORS.dark;
+		themeObject.light = DEFAULT_COLORS.light;
 	},
-	getDefaultColors: () => DEFAULT_COLORS
+	set mode ( mode: ThemeModeType ) {
+		console.log( '=== Setting theme mode in store:', mode );
+		themeObject.mode = mode;
+		document.documentElement.setAttribute( 'data-theme', mode );
+	},
+	set dark ( dark: ThemeDataType[ 'dark' ] ) {
+		assignValue( 'dark', dark );
+	},
+	set light ( light: ThemeDataType[ 'light' ] ) {
+		assignValue( 'light', light );
+	},
+	get mode () {
+		return currentMode;
+	},
+	get colors () {
+		return currentColors;
+	},
+	get dark () {
+		return currentDark;
+	},
+	get light () {
+		return currentLight;
+	}
 };
 
 export default store;

@@ -41,9 +41,7 @@ const themeObject: ThemeDataArg = $state( {
 	parts: THEME_PARTS
 } );
 const currentMode: ThemeModeType = $derived( themeObject.mode || 'light' );
-const currentDark: ThemeDataType[ 'dark' ] = $derived( themeObject.dark );
-const currentLight: ThemeDataType[ 'light' ] = $derived( themeObject.light );
-const currentColors: ColorsType = $derived( currentMode === 'light' ? currentLight || {} : currentDark || {} );
+const currentColors: ColorsType = $derived( currentMode === 'light' ? themeObject.light || {} : themeObject.dark || {} );
 
 
 const assignValue = ( mode: ThemeModeType, themeData: ThemeDataType[ 'dark' ] | ThemeDataType[ 'light' ] | undefined ) => {
@@ -107,10 +105,10 @@ const store = {
 		return currentColors;
 	},
 	get dark () {
-		return currentDark;
+		return themeObject.dark;
 	},
 	get light () {
-		return currentLight;
+		return themeObject.light;
 	}
 };
 

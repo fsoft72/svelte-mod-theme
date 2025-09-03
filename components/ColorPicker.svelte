@@ -21,7 +21,6 @@
 		onColorsConfirmed,
 	}: Props = $props();
 
-	// This derived only stores the four color modes for the current theme (dark / light)
 	let isVisible: boolean = $state(false);
 	let pickerButton: HTMLButtonElement | null = $state(null);
 	let pickerContainer: HTMLDivElement | null = $state(null);

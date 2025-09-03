@@ -210,17 +210,8 @@
 
 	export const setColor = (colorType: ColorModeType, value: string): void => {
 		if (!browser) return;
-
-		function isValidHexColor ( hex: string ): boolean {
-			return /^#([0-9A-F]{3}){1,2}$/i.test( hex );
-		};
-
-		if (!isValidHexColor(value)) {
-			console.warn(`Invalid color value: ${value}`);
+		if(!themeStore.setColor(colorType, value))
 			return;
-		}
-
-		themeStore.setColor(colorType, value);
 		_setCssVariable(colorType, value);
 	};
 

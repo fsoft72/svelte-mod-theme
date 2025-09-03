@@ -55,6 +55,11 @@ const assignValue = ( mode: ThemeModeType, themeData: ThemeDataType[ 'dark' ] | 
 	}
 };
 
+
+const isValidHexColor = ( hex: string ): boolean => {
+	return /^#([0-9A-F]{3}){1,2}$/i.test( hex );
+};
+
 const store = {
 	initialize: ( themeMode: ThemeModeType, themeData: ThemeDataArg ) => {
 		themeObject.mode = themeMode || themeData.mode;
@@ -66,12 +71,19 @@ const store = {
 			document.documentElement.setAttribute( 'data-theme', themeObject.mode );
 		}
 	},
-	setColor: ( colorType: ColorModeType, value: string ) => {
+	setColor: ( colorType: ColorModeType, value: string ): boolean => {
+
+		if ( !isValidHexColor( value ) ) {
+			console.warn( `Invalid color value: ${ value }` );
+			return false;
+		}
+
 		if ( currentMode === 'light' ) {
 			if ( themeObject.light ) themeObject.light[ colorType ] = value;
 		} else {
 			if ( themeObject.dark ) themeObject.dark[ colorType ] = value;
 		}
+		return true;
 	},
 	resetColors: () => {
 		themeObject.dark = DEFAULT_COLORS.dark;
